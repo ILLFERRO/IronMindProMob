@@ -36,6 +36,34 @@
                 android:textColor="#FFFFFF"
                 android:layout_marginTop="16dp" />
 
+            <!-- Voce Nome e Cognome Sezione Profilo --> -->
+            <TextView
+                android:id="@+id/nome_cognome"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Nome e Cognome"
+                android:padding="12dp"
+                android:textSize="16sp"
+                android:textColor="#FFFFFF"
+                android:background="?attr/selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#CCCCCC" />
+
+            <!-- Sezione Backup & Ripristino -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Backup e Ripristino"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:textColor="#FFFFFF"
+                android:layout_marginTop="16dp" />
+
             <!-- Voce Backup & Ripristino -->
             <TextView
                 android:id="@+id/backup_ripristino"

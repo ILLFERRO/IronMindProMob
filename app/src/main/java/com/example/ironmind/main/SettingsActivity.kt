@@ -44,6 +44,12 @@ class SettingsActivity : AppCompatActivity() {
             title = "Impostazioni"
         }
 
+        //Profilo Nome & Cognome
+        findViewById<TextView>(R.id.nome_cognome).setOnClickListener {
+            startActivity(Intent(this, ProfiloNomeCognomeActivity::class.java))
+        }
+
+        //Backup & Ripristino
         findViewById<TextView>(R.id.backup_ripristino).setOnClickListener {
             startActivity(Intent(this, BackupRipristinoActivity::class.java))
         }

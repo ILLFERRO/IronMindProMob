@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:background="#4B0082"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".main.ProfiloNomeCognomeActivity">
+
+    <!-- Toolbar -->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar_profilo_nome"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <!-- Titolo Schermata -->
+    <TextView
+        android:id="@+id/titoloSchermata"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Inserisci Nome e Cognome"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:paddingTop="16dp"
+        android:gravity="center" />
+
+    <!-- Campo Nome -->
+    <EditText
+        android:id="@+id/editNome"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nome"
+        android:inputType="textPersonName"
+        android:layout_marginTop="24dp"
+        android:padding="12dp" />
+
+    <!-- Campo Cognome -->
+    <EditText
+        android:id="@+id/editCognome"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Cognome"
+        android:inputType="textPersonName"
+        android:layout_marginTop="12dp"
+        android:padding="12dp" />
+
+    <!-- Pulsante Salva -->
+    <Button
+        android:id="@+id/btnSalvaDati"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Salva Dati"
+        android:textColor="@android:color/white"
+        android:backgroundTint="@color/purple_700"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="32dp" />
+
+    <!-- Pulsante Modifica -->
+    <Button
+        android:id="@+id/btnModificaDati"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Modifica Dati"
+        android:textColor="@android:color/white"
+        android:backgroundTint="@color/purple_700"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="32dp" />
+
+</LinearLayout>
