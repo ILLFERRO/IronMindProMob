@@ -7,11 +7,12 @@
     android:background="#4B0082">
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar_profilo_eta"
+        android:id="@+id/toolbar_profilo_eta_data_di_nascita"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="#4B0082"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
+        android:elevation="4dp"
+        android:titleTextColor="@android:color/white"/>
 
     <TextView
         android:id="@+id/titoloProfiloEta"

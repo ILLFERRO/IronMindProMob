@@ -21,7 +21,7 @@ class ProfiloEtaDataDiNascitaActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profilo_eta_data_di_nascita)
 
-        val toolbar = findViewById<Toolbar>(R.id.toolbar_profilo_eta)
+        val toolbar = findViewById<Toolbar>(R.id.toolbar_profilo_eta_data_di_nascita)
         setSupportActionBar(toolbar)
         supportActionBar?.apply {
             title = "Età e Data di Nascita"

@@ -10,8 +10,9 @@
         android:id="@+id/toolbar_profilo_sesso"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimary"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
+        android:background="#4B0082"
+        android:elevation="4dp"
+        android:titleTextColor="@android:color/white"/>
 
     <TextView
         android:id="@+id/titoloProfiloSesso"

@@ -21,7 +21,7 @@ class ProfiloNomeCognomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profilo_nome_cognome)
 
-        val toolbar = findViewById<Toolbar>(R.id.toolbar_profilo_nome)
+        val toolbar = findViewById<Toolbar>(R.id.toolbar_profilo_nome_cognome)
         setSupportActionBar(toolbar)
         supportActionBar?.apply {
             title = "Nome e Cognome"

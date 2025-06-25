@@ -59,6 +59,11 @@ class SettingsActivity : AppCompatActivity() {
             startActivity(Intent(this, ProfiloSessoActivity::class.java))
         }
 
+        //Profilo Peso & Altezza
+        findViewById<TextView>(R.id.peso_altezza_profilo).setOnClickListener {
+            startActivity(Intent(this, ProfiloPesoAltezzaActivity::class.java))
+        }
+
         //Backup & Ripristino
         findViewById<TextView>(R.id.backup_ripristino).setOnClickListener {
             startActivity(Intent(this, BackupRipristinoActivity::class.java))

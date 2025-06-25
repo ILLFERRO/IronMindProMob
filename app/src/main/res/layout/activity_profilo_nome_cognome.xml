@@ -9,11 +9,12 @@
 
     <!-- Toolbar -->
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar_profilo_nome"
+        android:id="@+id/toolbar_profilo_nome_cognome"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="?attr/actionBarSize"
         android:background="#4B0082"
-        android:theme="@color/white" />
+        android:elevation="4dp"
+        android:titleTextColor="@android:color/white"/>
 
     <!-- Titolo Schermata -->
     <TextView
