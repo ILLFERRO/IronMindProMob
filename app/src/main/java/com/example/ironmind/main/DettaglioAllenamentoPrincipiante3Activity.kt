@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import com.example.ironmind.R
 import android.content.Intent
+import android.widget.Button
 import androidx.cardview.widget.CardView
 
 class DettaglioAllenamentoPrincipiante3Activity : AppCompatActivity() {
@@ -51,6 +52,32 @@ class DettaglioAllenamentoPrincipiante3Activity : AppCompatActivity() {
 
         toolbarPrincipianteDettaglio3.setNavigationOnClickListener {
             onBackPressedDispatcher.onBackPressed()
+        }
+
+        // Pulsante per avviare allenamento dinamico
+        findViewById<Button>(R.id.btnCominciaAllenamento).setOnClickListener {
+            val esercizi = arrayListOf(
+                Esercizio("Squat Con Bilanciere", "3x15"),
+                Esercizio("Tirata Stretta", "3x12"),
+                Esercizio("Leg Curl (Macchina)", "3x15"),
+                Esercizio("Calfe Raise Alla Leg Press", "3x20"),
+                Esercizio("Cyclette o Tapis Roulant", "10 minuti (res. leggera)")
+            )
+
+            val nomeScheda = "Principiante 3"
+
+            // Salva la scheda nei dati temporanei
+            SchedaManager.schedePersonalizzate[nomeScheda] = esercizi
+            SchedaManager.salvaScheda(nomeScheda, this)
+
+            // Salva il nome della scheda attiva per recupero al termine
+            getSharedPreferences("settings", MODE_PRIVATE)
+                .edit().putString("scheda_salvata_nome", nomeScheda).apply()
+
+            // Avvia schermata di allenamento dinamico
+            val intent = Intent(this, AllenamentoDinamicoUI::class.java)
+            intent.putExtra("nomeScheda", nomeScheda)
+            startActivity(intent)
         }
     }
 }
