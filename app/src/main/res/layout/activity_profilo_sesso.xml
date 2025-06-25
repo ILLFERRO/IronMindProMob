@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layoutProfiloSesso"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#4B0082">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar_profilo_sesso"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <TextView
+        android:id="@+id/titoloProfiloSesso"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Sesso"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:layout_marginTop="24dp"
+        android:padding="24dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Seleziona il tuo sesso"
+        android:textSize="16sp"
+        android:textColor="@color/black"
+        android:layout_marginTop="8dp"
+        android:padding="24dp"/>
+
+    <RadioGroup
+        android:id="@+id/radioGroupSesso"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="24dp"
+        android:layout_marginTop="24dp">
+
+        <RadioButton
+            android:id="@+id/radioUomo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Uomo" />
+
+        <RadioButton
+            android:id="@+id/radioDonna"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Donna" />
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/buttonSalvaSesso"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Salva Dati"
+        android:layout_marginTop="24dp" />
+</LinearLayout>

@@ -62,6 +62,19 @@
                 android:clickable="true"
                 android:focusable="true" />
 
+            <!-- Voce Sesso Profilo --> -->
+            <TextView
+                android:id="@+id/sesso_profilo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Sesso"
+                android:padding="12dp"
+                android:textSize="16sp"
+                android:textColor="#FFFFFF"
+                android:background="?attr/selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true" />
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"

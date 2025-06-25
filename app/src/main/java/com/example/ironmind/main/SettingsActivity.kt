@@ -54,6 +54,11 @@ class SettingsActivity : AppCompatActivity() {
             startActivity(Intent(this, ProfiloEtaDataDiNascitaActivity::class.java))
         }
 
+        //Profilo Sesso
+        findViewById<TextView>(R.id.sesso_profilo).setOnClickListener {
+            startActivity(Intent(this, ProfiloSessoActivity::class.java))
+        }
+
         //Backup & Ripristino
         findViewById<TextView>(R.id.backup_ripristino).setOnClickListener {
             startActivity(Intent(this, BackupRipristinoActivity::class.java))
