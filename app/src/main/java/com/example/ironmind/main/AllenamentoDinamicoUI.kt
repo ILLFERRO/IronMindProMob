@@ -211,7 +211,6 @@ class AllenamentoDinamicoUI : AppCompatActivity() {
     private fun aggiungiCardSet(peso: Float = 10f, ripetizioni: Int = 10) {
         val setView = LayoutInflater.from(this).inflate(R.layout.item_set_allenamento, layoutContainer, false)
 
-        val titoloSet = setView.findViewById<TextView>(R.id.txtNumeroSet)
         val valoreRip = setView.findViewById<TextView>(R.id.txtRipetizioni)
         val valorePeso = setView.findViewById<TextView>(R.id.txtPeso)
         val btnRipPiù = setView.findViewById<Button>(R.id.btnAumentaRipetizioni)
@@ -222,34 +221,76 @@ class AllenamentoDinamicoUI : AppCompatActivity() {
         val btnConcludiSet = setView.findViewById<Button>(R.id.btnConcludiSet)
         val timerText = setView.findViewById<TextView>(R.id.timerSetTextView)
 
-        val setNumero = layoutContainer.childCount + 1
-        titoloSet.text = "Set $setNumero"
         valoreRip.text = ripetizioni.toString()
         valorePeso.text = String.format("%.1f kg", peso)
 
+        val esercizioCorrente = scheda[esercizioCorrenteIndex]
+
+        // 🔹 Aggiungi nuovi valori alle liste (in posizione finale)
+        esercizioCorrente.ripetizioniPerSet = esercizioCorrente.ripetizioniPerSet + ripetizioni
+        esercizioCorrente.pesoPerSet = esercizioCorrente.pesoPerSet + peso
+        esercizioCorrente.tempoRecuperoPerSet = esercizioCorrente.tempoRecuperoPerSet + tempoRecuperoSec
+        esercizioCorrente.setCompletati = esercizioCorrente.ripetizioniPerSet.size
+        salvaSchedaCorrente()
+
+        val setIndex = layoutContainer.childCount // posizione attuale del set
+
         btnRipPiù.setOnClickListener {
-            valoreRip.text = (valoreRip.text.toString().toInt() + 1).toString()
+            val nuovoRip = valoreRip.text.toString().toInt() + 1
+            valoreRip.text = nuovoRip.toString()
+            esercizioCorrente.ripetizioniPerSet = esercizioCorrente.ripetizioniPerSet.toMutableList().apply {
+                this[setIndex] = nuovoRip
+            }
+            salvaSchedaCorrente()
         }
 
         btnRipMeno.setOnClickListener {
             val rip = valoreRip.text.toString().toInt()
-            if (rip > 1) valoreRip.text = (rip - 1).toString()
+            if (rip > 1) {
+                val nuovoRip = rip - 1
+                valoreRip.text = nuovoRip.toString()
+                esercizioCorrente.ripetizioniPerSet = esercizioCorrente.ripetizioniPerSet.toMutableList().apply {
+                    this[setIndex] = nuovoRip
+                }
+                salvaSchedaCorrente()
+            }
         }
 
         btnPesoPiù.setOnClickListener {
-            val p = valorePeso.text.toString().toCleanFloat() + pesoIncremento
-            valorePeso.text = String.format("%.1f kg", p)
+            val nuovoPeso = valorePeso.text.toString().toCleanFloat() + pesoIncremento
+            valorePeso.text = String.format("%.1f kg", nuovoPeso)
+            esercizioCorrente.pesoPerSet = esercizioCorrente.pesoPerSet.toMutableList().apply {
+                this[setIndex] = nuovoPeso
+            }
+            salvaSchedaCorrente()
         }
 
         btnPesoMeno.setOnClickListener {
-            val p = valorePeso.text.toString().toCleanFloat()
-            if (p - pesoIncremento >= 0f) {
-                valorePeso.text = String.format("%.1f kg", p - pesoIncremento)
+            val pesoAttuale = valorePeso.text.toString().toCleanFloat()
+            if (pesoAttuale - pesoIncremento >= 0f) {
+                val nuovoPeso = pesoAttuale - pesoIncremento
+                valorePeso.text = String.format("%.1f kg", nuovoPeso)
+                esercizioCorrente.pesoPerSet = esercizioCorrente.pesoPerSet.toMutableList().apply {
+                    this[setIndex] = nuovoPeso
+                }
+                salvaSchedaCorrente()
             }
         }
 
         btnEliminaSet.setOnClickListener {
             layoutContainer.removeView(setView)
+
+            esercizioCorrente.ripetizioniPerSet = esercizioCorrente.ripetizioniPerSet.toMutableList().apply {
+                removeAt(setIndex)
+            }
+            esercizioCorrente.pesoPerSet = esercizioCorrente.pesoPerSet.toMutableList().apply {
+                removeAt(setIndex)
+            }
+            esercizioCorrente.tempoRecuperoPerSet = esercizioCorrente.tempoRecuperoPerSet.toMutableList().apply {
+                removeAt(setIndex)
+            }
+            esercizioCorrente.setCompletati = esercizioCorrente.ripetizioniPerSet.size
+            salvaSchedaCorrente()
         }
 
         btnConcludiSet.setOnClickListener {
@@ -272,5 +313,20 @@ class AllenamentoDinamicoUI : AppCompatActivity() {
         }
 
         layoutContainer.addView(setView)
+    }
+
+    private fun salvaSchedaCorrente() {
+        SchedaManager.schedePersonalizzate[nomeScheda] = scheda
+        SchedaManager.salvaScheda(nomeScheda, this)
+
+        val durataMillis = System.currentTimeMillis() - startTime
+        val durataSec = durataMillis / 1000
+        val totaleSet = scheda.sumOf { it.setCompletati }
+
+        val prefs = getSharedPreferences("allenamento_stats", MODE_PRIVATE)
+        prefs.edit()
+            .putLong("durata_totale_sec", durataSec)
+            .putInt("numero_totale_set", totaleSet)
+            .apply()
     }
 }

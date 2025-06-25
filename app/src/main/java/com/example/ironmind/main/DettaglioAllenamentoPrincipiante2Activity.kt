@@ -56,24 +56,55 @@ class DettaglioAllenamentoPrincipiante2Activity : AppCompatActivity() {
 
         findViewById<Button>(R.id.btnCominciaAllenamento).setOnClickListener {
             val esercizi = arrayListOf(
-                Esercizio("Panca Piana Con Manubri", "3x12"),
-                Esercizio("Rematore Con Manubri", "3x12"),
-                Esercizio("Alzate Laterali Con Macchinario", "3x12"),
-                Esercizio("Russian Twist con manubrio singolo", "3x20 (10 per lato)"),
-                Esercizio("Plank Isometrico", "3x30 sec")
+                Esercizio(
+                    nome = "Panca Piana Con Manubri",
+                    descrizione = "Esercizio per pettorali eseguito con manubri",
+                    setPrevisti = 3,
+                    ripetizioniPreviste = 12,
+                    usaPeso = true,
+                    pesoPredefinito = 12f
+                ),
+                Esercizio(
+                    nome = "Rematore Con Manubri",
+                    descrizione = "Esercizio per dorsali con manubri",
+                    setPrevisti = 3,
+                    ripetizioniPreviste = 12,
+                    usaPeso = true,
+                    pesoPredefinito = 14f
+                ),
+                Esercizio(
+                    nome = "Alzate Laterali Con Macchinario",
+                    descrizione = "Isolamento del deltoide laterale con macchina",
+                    setPrevisti = 3,
+                    ripetizioniPreviste = 12,
+                    usaPeso = true,
+                    pesoPredefinito = 25f
+                ),
+                Esercizio(
+                    nome = "Russian Twist con manubrio singolo",
+                    descrizione = "Esercizio per obliqui con torsione del busto",
+                    setPrevisti = 3,
+                    ripetizioniPreviste = 20, // totali
+                    usaPeso = true,
+                    pesoPredefinito = 6f
+                ),
+                Esercizio(
+                    nome = "Plank Isometrico",
+                    descrizione = "Tenuta isometrica per il core",
+                    setPrevisti = 3,
+                    ripetizioniPreviste = 30, // secondi
+                    usaPeso = false // corpo libero
+                )
             )
 
             val nomeScheda = "Principiante 2"
 
-            // Salva temporaneamente la scheda
             SchedaManager.schedePersonalizzate[nomeScheda] = esercizi
             SchedaManager.salvaScheda(nomeScheda, this)
 
-            // Salva nome per recuperarlo a fine allenamento
             getSharedPreferences("settings", MODE_PRIVATE)
                 .edit().putString("scheda_salvata_nome", nomeScheda).apply()
 
-            // Avvia AllenamentoDinamicoUI
             val intent = Intent(this, AllenamentoDinamicoUI::class.java)
             intent.putExtra("nomeScheda", nomeScheda)
             startActivity(intent)

@@ -26,5 +26,27 @@
             android:layout_height="wrap_content"
             android:text="Descrizione"
             android:textColor="@android:color/black" />
+
+        <TextView
+            android:id="@+id/setCompletati"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Descrizione"
+            android:textColor="@android:color/black" />
+
+        <TextView
+            android:id="@+id/ripetizioni"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Descrizione"
+            android:textColor="@android:color/black" />
+
+        <TextView
+            android:id="@+id/pesoTempo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Descrizione"
+            android:textColor="@android:color/black" />
+
     </LinearLayout>
 </androidx.cardview.widget.CardView>

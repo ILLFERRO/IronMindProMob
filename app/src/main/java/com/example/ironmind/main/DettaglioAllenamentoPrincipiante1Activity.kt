@@ -56,17 +56,51 @@ class DettaglioAllenamentoPrincipiante1Activity : AppCompatActivity() {
         }
 
         findViewById<Button>(R.id.btnCominciaAllenamento).setOnClickListener {
-            val esercizi = arrayListOf<Esercizio>(
-                Esercizio("Chest Press", "3x12"),
-                Esercizio("Lat Machine", "3x12"),
-                Esercizio("Leg Press", "3x15"),
-                Esercizio("Shoulder Press", "3x12"),
-                Esercizio("Crunch Su Tappetino", "3x15")
+            val esercizi = arrayListOf(
+                Esercizio(
+                    nome = "Chest Press",
+                    descrizione = "Esercizio per i pettorali su macchina",
+                    setPrevisti = 3,
+                    ripetizioniPreviste = 12,
+                    usaPeso = true,
+                    pesoPredefinito = 40f
+                ),
+                Esercizio(
+                    nome = "Lat Machine",
+                    descrizione = "Trazioni assistite per dorsali",
+                    setPrevisti = 3,
+                    ripetizioniPreviste = 12,
+                    usaPeso = true,
+                    pesoPredefinito = 35f
+                ),
+                Esercizio(
+                    nome = "Leg Press",
+                    descrizione = "Spinta delle gambe sulla pressa orizzontale",
+                    setPrevisti = 3,
+                    ripetizioniPreviste = 15,
+                    usaPeso = true,
+                    pesoPredefinito = 80f
+                ),
+                Esercizio(
+                    nome = "Shoulder Press",
+                    descrizione = "Spinta sopra la testa per le spalle",
+                    setPrevisti = 3,
+                    ripetizioniPreviste = 12,
+                    usaPeso = true,
+                    pesoPredefinito = 25f
+                ),
+                Esercizio(
+                    nome = "Crunch Su Tappetino",
+                    descrizione = "Addominali a corpo libero",
+                    setPrevisti = 3,
+                    ripetizioniPreviste = 15,
+                    usaPeso = false // corpo libero, quindi tempo recupero
+                )
             )
 
             val nomeScheda = "Principiante 1"
 
-            // Salva temporaneamente questa scheda
+            // Salva temporaneamente la scheda
             SchedaManager.schedePersonalizzate[nomeScheda] = esercizi
             SchedaManager.salvaScheda(nomeScheda, this)
 

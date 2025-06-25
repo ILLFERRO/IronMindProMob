@@ -54,27 +54,57 @@ class DettaglioAllenamentoPrincipiante3Activity : AppCompatActivity() {
             onBackPressedDispatcher.onBackPressed()
         }
 
-        // Pulsante per avviare allenamento dinamico
         findViewById<Button>(R.id.btnCominciaAllenamento).setOnClickListener {
             val esercizi = arrayListOf(
-                Esercizio("Squat Con Bilanciere", "3x15"),
-                Esercizio("Tirata Stretta", "3x12"),
-                Esercizio("Leg Curl (Macchina)", "3x15"),
-                Esercizio("Calfe Raise Alla Leg Press", "3x20"),
-                Esercizio("Cyclette o Tapis Roulant", "10 minuti (res. leggera)")
+                Esercizio(
+                    nome = "Squat Con Bilanciere",
+                    descrizione = "Squat completo con bilanciere su schiena",
+                    setPrevisti = 3,
+                    ripetizioniPreviste = 15,
+                    usaPeso = true,
+                    pesoPredefinito = 50f
+                ),
+                Esercizio(
+                    nome = "Tirata Stretta",
+                    descrizione = "Rematore verticale per schiena e trapezio",
+                    setPrevisti = 3,
+                    ripetizioniPreviste = 12,
+                    usaPeso = true,
+                    pesoPredefinito = 25f
+                ),
+                Esercizio(
+                    nome = "Leg Curl (Macchina)",
+                    descrizione = "Flessori posteriori con macchina da sdraiato",
+                    setPrevisti = 3,
+                    ripetizioniPreviste = 15,
+                    usaPeso = true,
+                    pesoPredefinito = 30f
+                ),
+                Esercizio(
+                    nome = "Calfe Raise Alla Leg Press",
+                    descrizione = "Sollevamento polpacci con pressa orizzontale",
+                    setPrevisti = 3,
+                    ripetizioniPreviste = 20,
+                    usaPeso = true,
+                    pesoPredefinito = 60f
+                ),
+                Esercizio(
+                    nome = "Cyclette o Tapis Roulant",
+                    descrizione = "Attività cardio leggera",
+                    setPrevisti = 1,
+                    ripetizioniPreviste = 10, // minuti
+                    usaPeso = false
+                )
             )
 
             val nomeScheda = "Principiante 3"
 
-            // Salva la scheda nei dati temporanei
             SchedaManager.schedePersonalizzate[nomeScheda] = esercizi
             SchedaManager.salvaScheda(nomeScheda, this)
 
-            // Salva il nome della scheda attiva per recupero al termine
             getSharedPreferences("settings", MODE_PRIVATE)
                 .edit().putString("scheda_salvata_nome", nomeScheda).apply()
 
-            // Avvia schermata di allenamento dinamico
             val intent = Intent(this, AllenamentoDinamicoUI::class.java)
             intent.putExtra("nomeScheda", nomeScheda)
             startActivity(intent)

@@ -2,9 +2,13 @@ package com.example.ironmind.main
 
 import android.content.Context
 import android.util.Log
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 
 object SchedaManager {
     val schedePersonalizzate = mutableMapOf<String, MutableList<Esercizio>>()
+
+    private val gson = Gson()
 
     fun aggiungiEsercizio(nomeScheda: String, esercizio: Esercizio) {
         val lista = schedePersonalizzate.getOrPut(nomeScheda) { mutableListOf() }
@@ -19,17 +23,23 @@ object SchedaManager {
         }
 
         val prefs = context.getSharedPreferences("IronMindPrefs", Context.MODE_PRIVATE)
-        val eserciziSerializzati = prefs.getString("scheda_$nomeScheda", null) ?: return emptyList()
+        val eserciziJson = prefs.getString("scheda_$nomeScheda", null) ?: return emptyList()
 
-        val esercizi = eserciziSerializzati.split(";").mapNotNull { entry ->
-            val parts = entry.split("::")
-            if (parts.size == 2) Esercizio(parts[0], parts[1]) else null
+        val type = object : TypeToken<List<Esercizio>>() {}.type
+        val esercizi = gson.fromJson<List<Esercizio>>(eserciziJson, type)
+
+        // 🔧 Fix per evitare crash se i dati vecchi mancano alcuni campi
+        val eserciziCorretti = esercizi.map { esercizio ->
+            esercizio.copy(
+                ripetizioniPerSet = esercizio.ripetizioniPerSet ?: emptyList(),
+                pesoPerSet = esercizio.pesoPerSet ?: emptyList(),
+                tempoRecuperoPerSet = esercizio.tempoRecuperoPerSet ?: emptyList()
+            )
         }
 
-        schedePersonalizzate[nomeScheda] = esercizi.toMutableList()
-        return esercizi
-
-        Log.d("SchedaManager", "Esercizi caricati per '$nomeScheda': $esercizi")
+        schedePersonalizzate[nomeScheda] = eserciziCorretti.toMutableList()
+        Log.d("SchedaManager", "Esercizi caricati per '$nomeScheda': $eserciziCorretti")
+        return eserciziCorretti
     }
 
     fun salvaScheda(nomeScheda: String, context: Context) {
@@ -37,12 +47,12 @@ object SchedaManager {
         val editor = prefs.edit()
 
         val lista = schedePersonalizzate[nomeScheda] ?: return
-        val eserciziSerializzati = lista.joinToString(";") { "${it.nome}::${it.descrizione}" }
+        val eserciziJson = gson.toJson(lista)
 
-        editor.putString("scheda_$nomeScheda", eserciziSerializzati)
+        editor.putString("scheda_$nomeScheda", eserciziJson)
         editor.apply()
 
-        Log.d("SchedaManager", "Esercizi salvati per '$nomeScheda': $eserciziSerializzati")
+        Log.d("SchedaManager", "Esercizi salvati per '$nomeScheda': $eserciziJson")
     }
 
     fun clearScheda(nomeScheda: String) {
@@ -58,16 +68,6 @@ object SchedaManager {
     }
 
     fun caricaSchedaDaStorage(nomeScheda: String, context: Context) {
-        val prefs = context.getSharedPreferences("IronMindPrefs", Context.MODE_PRIVATE)
-        val eserciziSerializzati = prefs.getString("scheda_$nomeScheda", null) ?: return
-
-        val listaEsercizi = eserciziSerializzati.split(";").mapNotNull {
-            val parti = it.split("::")
-            if (parti.size == 2) {
-                Esercizio(parti[0], parti[1])
-            } else null
-        }
-
-        schedePersonalizzate[nomeScheda] = listaEsercizi.toMutableList()
+        getScheda(nomeScheda, context) // Fa già tutto
     }
 }
