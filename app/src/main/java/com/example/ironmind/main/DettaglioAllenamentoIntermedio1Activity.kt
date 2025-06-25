@@ -2,6 +2,7 @@ package com.example.ironmind.main
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.cardview.widget.CardView
@@ -51,6 +52,30 @@ class DettaglioAllenamentoIntermedio1Activity : AppCompatActivity() {
 
         toolbarIntermedioDettaglio1.setNavigationOnClickListener {
             onBackPressedDispatcher.onBackPressed()
+        }
+
+        // Pulsante Comincia Allenamento
+        findViewById<Button>(R.id.btnCominciaAllenamento).setOnClickListener {
+            val esercizi = arrayListOf(
+                Esercizio("Chest Press", "4x10"),
+                Esercizio("Shoulder Press", "3x12"),
+                Esercizio("Croci Con Manubri Su Panca", "3x12"),
+                Esercizio("Pushdown Tricipiti Cavi", "3x15"),
+                Esercizio("Estensioni Tricipiti Manubrio", "3x12")
+            )
+
+            val nomeScheda = "Intermedio 1"
+
+            // Salva la scheda
+            SchedaManager.schedePersonalizzate[nomeScheda] = esercizi
+            SchedaManager.salvaScheda(nomeScheda, this)
+
+            getSharedPreferences("settings", MODE_PRIVATE)
+                .edit().putString("scheda_salvata_nome", nomeScheda).apply()
+
+            val intent = Intent(this, AllenamentoDinamicoUI::class.java)
+            intent.putExtra("nomeScheda", nomeScheda)
+            startActivity(intent)
         }
     }
 }

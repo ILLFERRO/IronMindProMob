@@ -350,6 +350,16 @@
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
+            <Button
+                android:id="@+id/btnCominciaAllenamento"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Comincia Allenamento"
+                android:textColor="@android:color/white"
+                android:backgroundTint="@color/purple_700"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="32dp" />
+
         </LinearLayout>
     </ScrollView>
 </LinearLayout>
