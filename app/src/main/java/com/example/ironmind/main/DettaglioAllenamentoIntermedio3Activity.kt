@@ -58,11 +58,44 @@ class DettaglioAllenamentoIntermedio3Activity : AppCompatActivity() {
         // Bottone "Comincia Allenamento"
         findViewById<Button>(R.id.btnCominciaAllenamento).setOnClickListener {
             val esercizi = arrayListOf(
-                Esercizio("Leg Press", "4x12"),
-                Esercizio("Leg Curl", "3x15"),
-                Esercizio("Affondi Con Manubri", "3x10 (per gamba)"),
-                Esercizio("Crunch Su Tappetino", "3x20"),
-                Esercizio("Plank", "3x30 (secondi)")
+                Esercizio(
+                    nome = "Leg Press",
+                    descrizione = "4 serie da 12 ripetizioni",
+                    setPrevisti = 4,
+                    ripetizioniPreviste = 12,
+                    usaPeso = true,
+                    pesoPredefinito = 80f
+                ),
+                Esercizio(
+                    nome = "Leg Curl",
+                    descrizione = "3 serie da 15 ripetizioni",
+                    setPrevisti = 3,
+                    ripetizioniPreviste = 15,
+                    usaPeso = true,
+                    pesoPredefinito = 35f
+                ),
+                Esercizio(
+                    nome = "Affondi Con Manubri",
+                    descrizione = "3 serie da 10 ripetizioni per gamba",
+                    setPrevisti = 3,
+                    ripetizioniPreviste = 10,
+                    usaPeso = true,
+                    pesoPredefinito = 15f
+                ),
+                Esercizio(
+                    nome = "Crunch Su Tappetino",
+                    descrizione = "3 serie da 20 ripetizioni",
+                    setPrevisti = 3,
+                    ripetizioniPreviste = 20,
+                    usaPeso = false
+                ),
+                Esercizio(
+                    nome = "Plank",
+                    descrizione = "3 serie da 30 secondi",
+                    setPrevisti = 3,
+                    ripetizioniPreviste = 30,  // usa questo valore come durata in secondi
+                    usaPeso = false
+                )
             )
 
             val nomeScheda = "Intermedio 3"

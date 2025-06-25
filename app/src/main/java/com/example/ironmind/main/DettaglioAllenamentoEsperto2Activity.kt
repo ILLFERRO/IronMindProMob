@@ -57,11 +57,46 @@ class DettaglioAllenamentoEsperto2Activity : AppCompatActivity() {
         // Bottone "Comincia Allenamento"
         findViewById<Button>(R.id.btnCominciaAllenamento).setOnClickListener {
             val esercizi = arrayListOf(
-                Esercizio("Stacco Da Terra Con Bilanciere", "4x6"),
-                Esercizio("Lat Machine Presa Inversa", "4x10"),
-                Esercizio("Rematore Con Bilanciere", "3x8"),
-                Esercizio("Curl Concentrato Manubrio", "3x10"),
-                Esercizio("Curl Su Panca Inclinata", "3x12")
+                Esercizio(
+                    nome = "Stacco Da Terra Con Bilanciere",
+                    descrizione = "4 serie da 6 ripetizioni",
+                    setPrevisti = 4,
+                    ripetizioniPreviste = 6,
+                    usaPeso = true,
+                    pesoPredefinito = 100f
+                ),
+                Esercizio(
+                    nome = "Lat Machine Presa Inversa",
+                    descrizione = "4 serie da 10 ripetizioni",
+                    setPrevisti = 4,
+                    ripetizioniPreviste = 10,
+                    usaPeso = true,
+                    pesoPredefinito = 40f
+                ),
+                Esercizio(
+                    nome = "Rematore Con Bilanciere",
+                    descrizione = "3 serie da 8 ripetizioni",
+                    setPrevisti = 3,
+                    ripetizioniPreviste = 8,
+                    usaPeso = true,
+                    pesoPredefinito = 60f
+                ),
+                Esercizio(
+                    nome = "Curl Concentrato Manubrio",
+                    descrizione = "3 serie da 10 ripetizioni",
+                    setPrevisti = 3,
+                    ripetizioniPreviste = 10,
+                    usaPeso = true,
+                    pesoPredefinito = 12f
+                ),
+                Esercizio(
+                    nome = "Curl Su Panca Inclinata",
+                    descrizione = "3 serie da 12 ripetizioni",
+                    setPrevisti = 3,
+                    ripetizioniPreviste = 12,
+                    usaPeso = true,
+                    pesoPredefinito = 10f
+                )
             )
 
             val nomeScheda = "Esperto 2"

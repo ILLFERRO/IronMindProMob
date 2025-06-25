@@ -56,11 +56,44 @@ class DettaglioAllenamentoEsperto3Activity : AppCompatActivity() {
 
         findViewById<Button>(R.id.btnCominciaAllenamento).setOnClickListener {
             val esercizi = arrayListOf(
-                Esercizio("Squat Con Bilanciere", "4x8"),
-                Esercizio("Affondi Camminati Con Manubri", "3x12 (per gamba)"),
-                Esercizio("Leg Curl Da Sdraiato", "3x15"),
-                Esercizio("Macchina Crunch Con Carico A Piastra", "3x20"),
-                Esercizio("Russian Twist Con Palla Medica", "3x40 (20 + 20)")
+                Esercizio(
+                    nome = "Squat Con Bilanciere",
+                    descrizione = "4 serie da 8 ripetizioni",
+                    setPrevisti = 4,
+                    ripetizioniPreviste = 8,
+                    usaPeso = true,
+                    pesoPredefinito = 90f
+                ),
+                Esercizio(
+                    nome = "Affondi Camminati Con Manubri",
+                    descrizione = "3 serie da 12 ripetizioni per gamba",
+                    setPrevisti = 3,
+                    ripetizioniPreviste = 12,
+                    usaPeso = true,
+                    pesoPredefinito = 15f
+                ),
+                Esercizio(
+                    nome = "Leg Curl Da Sdraiato",
+                    descrizione = "3 serie da 15 ripetizioni",
+                    setPrevisti = 3,
+                    ripetizioniPreviste = 15,
+                    usaPeso = true,
+                    pesoPredefinito = 35f
+                ),
+                Esercizio(
+                    nome = "Macchina Crunch Con Carico A Piastra",
+                    descrizione = "3 serie da 20 ripetizioni",
+                    setPrevisti = 3,
+                    ripetizioniPreviste = 20,
+                    usaPeso = false
+                ),
+                Esercizio(
+                    nome = "Russian Twist Con Palla Medica",
+                    descrizione = "3 serie da 40 ripetizioni (20 per lato)",
+                    setPrevisti = 3,
+                    ripetizioniPreviste = 40,
+                    usaPeso = false
+                )
             )
 
             val nomeScheda = "Esperto 3"

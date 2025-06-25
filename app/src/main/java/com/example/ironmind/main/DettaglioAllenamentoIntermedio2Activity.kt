@@ -57,11 +57,46 @@ class DettaglioAllenamentoIntermedio2Activity : AppCompatActivity() {
         // Comincia Allenamento
         findViewById<Button>(R.id.btnCominciaAllenamento).setOnClickListener {
             val esercizi = arrayListOf(
-                Esercizio("Lat Machine Presa Larga", "4x10"),
-                Esercizio("Rematore Manubrio", "3x12"),
-                Esercizio("Pulley Basso", "3x12"),
-                Esercizio("Curl Manubri", "3x12"),
-                Esercizio("Curl Con Bilanciere EZ", "3x10")
+                Esercizio(
+                    nome = "Lat Machine Presa Larga",
+                    descrizione = "4 serie da 10 ripetizioni",
+                    setPrevisti = 4,
+                    ripetizioniPreviste = 10,
+                    usaPeso = true,
+                    pesoPredefinito = 40f
+                ),
+                Esercizio(
+                    nome = "Rematore Manubrio",
+                    descrizione = "3 serie da 12 ripetizioni",
+                    setPrevisti = 3,
+                    ripetizioniPreviste = 12,
+                    usaPeso = true,
+                    pesoPredefinito = 25f
+                ),
+                Esercizio(
+                    nome = "Pulley Basso",
+                    descrizione = "3 serie da 12 ripetizioni",
+                    setPrevisti = 3,
+                    ripetizioniPreviste = 12,
+                    usaPeso = true,
+                    pesoPredefinito = 30f
+                ),
+                Esercizio(
+                    nome = "Curl Manubri",
+                    descrizione = "3 serie da 12 ripetizioni",
+                    setPrevisti = 3,
+                    ripetizioniPreviste = 12,
+                    usaPeso = true,
+                    pesoPredefinito = 10f
+                ),
+                Esercizio(
+                    nome = "Curl Con Bilanciere EZ",
+                    descrizione = "3 serie da 10 ripetizioni",
+                    setPrevisti = 3,
+                    ripetizioniPreviste = 10,
+                    usaPeso = true,
+                    pesoPredefinito = 15f
+                )
             )
 
             val nomeScheda = "Intermedio 2"

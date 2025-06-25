@@ -57,11 +57,46 @@ class DettaglioAllenamentoIntermedio1Activity : AppCompatActivity() {
         // Pulsante Comincia Allenamento
         findViewById<Button>(R.id.btnCominciaAllenamento).setOnClickListener {
             val esercizi = arrayListOf(
-                Esercizio("Chest Press", "4x10"),
-                Esercizio("Shoulder Press", "3x12"),
-                Esercizio("Croci Con Manubri Su Panca", "3x12"),
-                Esercizio("Pushdown Tricipiti Cavi", "3x15"),
-                Esercizio("Estensioni Tricipiti Manubrio", "3x12")
+                Esercizio(
+                    nome = "Chest Press",
+                    descrizione = "4 serie da 10 ripetizioni",
+                    setPrevisti = 4,
+                    ripetizioniPreviste = 10,
+                    usaPeso = true,
+                    pesoPredefinito = 40f // puoi cambiare il peso come preferisci
+                ),
+                Esercizio(
+                    nome = "Shoulder Press",
+                    descrizione = "3 serie da 12 ripetizioni",
+                    setPrevisti = 3,
+                    ripetizioniPreviste = 12,
+                    usaPeso = true,
+                    pesoPredefinito = 25f
+                ),
+                Esercizio(
+                    nome = "Croci Con Manubri Su Panca",
+                    descrizione = "3 serie da 12 ripetizioni",
+                    setPrevisti = 3,
+                    ripetizioniPreviste = 12,
+                    usaPeso = true,
+                    pesoPredefinito = 10f
+                ),
+                Esercizio(
+                    nome = "Pushdown Tricipiti Cavi",
+                    descrizione = "3 serie da 15 ripetizioni",
+                    setPrevisti = 3,
+                    ripetizioniPreviste = 15,
+                    usaPeso = true,
+                    pesoPredefinito = 20f
+                ),
+                Esercizio(
+                    nome = "Estensioni Tricipiti Manubrio",
+                    descrizione = "3 serie da 12 ripetizioni",
+                    setPrevisti = 3,
+                    ripetizioniPreviste = 12,
+                    usaPeso = true,
+                    pesoPredefinito = 12f
+                )
             )
 
             val nomeScheda = "Intermedio 1"
