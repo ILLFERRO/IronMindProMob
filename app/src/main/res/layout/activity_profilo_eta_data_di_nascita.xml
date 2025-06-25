@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layoutProfiloEta"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#4B0082">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar_profilo_eta"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="#4B0082"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <TextView
+        android:id="@+id/titoloProfiloEta"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Età e Data di Nascita"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:padding = "12dp"
+        android:layout_marginTop="24dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Inserisci età e data di nascita"
+        android:textSize="16sp"
+        android:layout_marginTop="8dp"
+        android:padding = "12dp"/>
+
+    <EditText
+        android:id="@+id/editTextEta"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Età"
+        android:inputType="number"
+        android:layout_marginTop="24dp" />
+
+    <TextView
+        android:id="@+id/textViewDataNascita"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Seleziona data di nascita"
+        android:textSize="16sp"
+        android:textColor="#000000"
+        android:padding="12dp"
+        android:background="@drawable/bordi_bottoni"
+        android:layout_marginTop="16dp" />
+
+    <Button
+        android:id="@+id/buttonSalvaEta"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Salva Dati"
+        android:background="@drawable/bordi_bottoni"
+        android:layout_marginTop="24dp" />
+
+    <Button
+        android:id="@+id/buttonModificaEta"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Modifica Dati"
+        android:background="@drawable/bordi_bottoni"
+        android:layout_marginTop="8dp"
+        android:visibility="gone" />
+</LinearLayout>
