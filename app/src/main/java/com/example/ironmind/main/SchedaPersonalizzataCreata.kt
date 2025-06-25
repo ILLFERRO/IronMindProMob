@@ -3,12 +3,13 @@ package com.example.ironmind.main
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ironmind.R
+import android.content.Intent
+import android.widget.Toast
 
 class SchedaPersonalizzataCreata : AppCompatActivity() {
 
@@ -49,6 +50,23 @@ class SchedaPersonalizzataCreata : AppCompatActivity() {
         // ✅ Bottone Elimina
         btnElimina = findViewById(R.id.btnEliminaScheda)
         btnElimina.setOnClickListener { eliminaScheda() }
+
+        // ✅ Bottone Comincia Allenamento
+        findViewById<Button>(R.id.btnCominciaAllenamento).setOnClickListener {
+            val eserciziSalvati = SchedaManager.getScheda(nomeScheda, this)
+
+            if (eserciziSalvati.isNotEmpty()) {
+                // Salva il nome della scheda per continuità
+                getSharedPreferences("settings", MODE_PRIVATE)
+                    .edit().putString("scheda_salvata_nome", nomeScheda).apply()
+
+                val intent = Intent(this, AllenamentoDinamicoUI::class.java)
+                intent.putExtra("nomeScheda", nomeScheda)
+                startActivity(intent)
+            } else {
+                Toast.makeText(this, "Nessun esercizio trovato per questa scheda", Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 
     private fun eliminaScheda() {

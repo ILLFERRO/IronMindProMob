@@ -187,7 +187,6 @@ class AllenamentoDinamicoUI : AppCompatActivity() {
 
     private fun mostraEsercizio() {
         if (scheda.isEmpty()) {
-            // Protezione: se per qualche motivo chiamata con lista vuota
             Toast.makeText(this, "La scheda è vuota.", Toast.LENGTH_SHORT).show()
             finish()
             return
@@ -205,7 +204,22 @@ class AllenamentoDinamicoUI : AppCompatActivity() {
         tempoRecuperoSec = min * 60 + sec
         aggiornaTestoRecupero()
 
-        repeat(setIniziali) { aggiungiCardSet() }
+        // ✅ Se ci sono set salvati (peso, ripetizioni), li ripristina
+        if (esercizio.pesoPerSet.isNotEmpty() && esercizio.ripetizioniPerSet.isNotEmpty()) {
+            val numSet = minOf(
+                esercizio.pesoPerSet.size,
+                esercizio.ripetizioniPerSet.size
+            )
+
+            for (i in 0 until numSet) {
+                val peso = esercizio.pesoPerSet[i]
+                val rip = esercizio.ripetizioniPerSet[i]
+                aggiungiCardSet(peso, rip)
+            }
+        } else {
+            // ✅ Altrimenti usa i valori di default
+            repeat(setIniziali) { aggiungiCardSet() }
+        }
     }
 
     private fun aggiungiCardSet(peso: Float = 10f, ripetizioni: Int = 10) {
@@ -234,6 +248,7 @@ class AllenamentoDinamicoUI : AppCompatActivity() {
         salvaSchedaCorrente()
 
         val setIndex = layoutContainer.childCount // posizione attuale del set
+        setView.findViewById<TextView>(R.id.txtNumeroSet).text = "Set ${setIndex + 1}"
 
         btnRipPiù.setOnClickListener {
             val nuovoRip = valoreRip.text.toString().toInt() + 1

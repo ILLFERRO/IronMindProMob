@@ -41,6 +41,15 @@
         android:padding="16dp"
         android:clipToPadding="false" />
 
+    <Button
+        android:id="@+id/btnCominciaAllenamento"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Comincia Allenamento"
+        android:textColor="@android:color/white"
+        android:backgroundTint="@color/purple_700"
+        android:layout_margin="16dp" />
+
     <!-- Pulsante Elimina -->
     <Button
         android:id="@+id/btnEliminaScheda"
