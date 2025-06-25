@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/mainLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/dashboard_background"
+    android:padding="16dp">
+
+    <!-- Timer e pulsante Finisci -->
+    <LinearLayout
+        android:id="@+id/timerAndFinishLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical|end"
+        android:layout_marginBottom="12dp">
+
+        <TextView
+            android:id="@+id/timerAllenamento"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="00:00"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/white"
+            android:layout_marginEnd="16dp" />
+
+        <Button
+            android:id="@+id/btnFinisciAllenamento"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Finisci"
+            android:backgroundTint="@color/purple_700"
+            android:textColor="@android:color/white" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/titoloEsercizio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nome Esercizio"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="@android:color/white"
+        android:layout_marginBottom="8dp" />
+
+    <TextView
+        android:id="@+id/timerRecupero"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Recupero: 60s"
+        android:textColor="@android:color/white"
+        android:textSize="16sp"
+        android:layout_marginBottom="16dp" />
+
+    <!-- Scrollable contenitore -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:id="@+id/recyclerViewSet"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="16dp" />
+    </ScrollView>
+
+    <!-- Pulsanti Aggiungi/Prossimo -->
+    <LinearLayout
+        android:id="@+id/layoutBottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="end"
+        android:layout_marginTop="8dp">
+
+        <Button
+            android:id="@+id/btnAggiungiSet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Aggiungi Set"
+            android:layout_marginEnd="8dp"
+            android:backgroundTint="@color/purple_700"
+            android:textColor="@android:color/white" />
+
+        <Button
+            android:id="@+id/btnProssimoEsercizio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Prossimo Esercizio"
+            android:backgroundTint="@color/purple_700"
+            android:textColor="@android:color/white" />
+    </LinearLayout>
+</LinearLayout>

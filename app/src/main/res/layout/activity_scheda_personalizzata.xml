@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/dashboard_background"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Toolbar -->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar_scheda_personalizzata"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="#4B0082"
+        android:title="Scheda Personalizzata"
+        android:titleTextColor="@android:color/white" />
+
+    <!-- Titolo e descrizione -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Esercizi Selezionati"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/black"
+            android:layout_marginBottom="8dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Questa è la tua scheda di allenamento personalizzata. Puoi modificare o rimuovere gli esercizi."
+            android:textColor="@android:color/black" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#80FFFFFF"
+            android:layout_marginVertical="16dp" />
+    </LinearLayout>
+
+    <!-- RecyclerView -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewScheda"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:padding="16dp" />
+
+    <!-- Bottone finale -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnSalvaScheda"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Salva Scheda"
+        android:textStyle="bold"
+        android:textColor="@android:color/white"
+        android:layout_margin="16dp"
+        android:visibility="gone"
+        app:cornerRadius="16dp"
+        app:backgroundTint="#4B0082" />
+
+    <!-- Bottone finale -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnCominciaAllenamento"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Comincia Allenamento"
+        android:textStyle="bold"
+        android:textColor="@android:color/white"
+        android:layout_margin="16dp"
+        android:visibility="gone"
+        app:cornerRadius="16dp"
+        app:backgroundTint="#4B0082" />
+</LinearLayout>

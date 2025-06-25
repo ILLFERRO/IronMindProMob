@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/dashboard_background"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Toolbar con freccia indietro -->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar_pushdown_tricipiti_cavi"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="#4B0082"
+        android:title="PushDown Tricipiti Cavi"
+        android:titleTextColor="@android:color/white" />
+
+    <!-- Contenuto scorrevole -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- GIF o video -->
+            <VideoView
+                android:id="@+id/PushDown_Tricipiti_Cavi_Video"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginBottom="16dp" />
+
+            <!-- Titolo esercizio -->
+            <TextView
+                android:id="@+id/titoloPushDownTricipitiCavi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="PushDown Tricipiti Cavi"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/white"
+                android:layout_marginBottom="8dp" />
+
+            <!-- Descrizione esercizio -->
+            <TextView
+                android:id="@+id/descrizionePushDownTricipitiCavi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Il PushDown è un esercizio iconico per lo sviluppo dei tricipiti, eseguito alla macchina con cavo alto e una barra dritta o corda. Si parte con i gomiti aderenti ai fianchi e si spinge il carico verso il basso fino a completa estensione del braccio, mantenendo un buon controllo del movimento. È molto efficace per isolare i tricipiti brachiali, in particolare il capo laterale e mediale, ed è facilmente modulabile in intensità. La variante con la corda consente di enfatizzare la contrazione finale separando le mani verso l’esterno, migliorando l’attivazione del capo laterale. Ideale sia per principianti che avanzati, permette di lavorare in sicurezza e senza carichi eccessivi su spalle o gomiti."
+                android:textColor="@android:color/white"
+                android:layout_marginBottom="24dp" />
+
+            <!-- Immagine muscoli coinvolti -->
+            <ImageView
+                android:id="@+id/imgMuscoliCoinvoltiPushDownTricipitiCavi"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/muscoli_pushdown_tricipiti_cavi"
+                android:layout_marginBottom="16dp" />
+
+            <!-- Titolo sezione muscoli -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Muscoli Coinvolti PushDown Tricipiti Cavi"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/white"
+                android:layout_marginBottom="8dp" />
+
+            <!-- Descrizione muscoli -->
+            <TextView
+                android:id="@+id/descrizioneMuscoliPushDownTricipitiCavi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="• Muscoli principali: tricipiti brachiali (soprattutto capo laterale e mediale)\n• Muscoli secondari: anconeo\n• Muscoli terziari: muscoli dell’avambraccio (stabilizzazione), deltoide posteriore (stabilizzazione scapolare)"
+                android:textColor="@android:color/white"
+                android:layout_marginBottom="24dp" />
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

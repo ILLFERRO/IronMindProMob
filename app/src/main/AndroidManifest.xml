@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.ironmind">
+
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="IronMind"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.IronMind">
+        <activity
+            android:name=".main.AllenamentoCompletato"
+            android:exported="false" />
+        <activity
+            android:name=".main.SchedaPersonalizzataCreata"
+            android:exported="false" />
+        <activity
+            android:name=".main.AllenamentoDinamicoUI"
+            android:exported="false" />
+        <activity
+            android:name=".main.SchedaPersonalizzataActivity"
+            android:exported="false" />
+        <activity
+            android:name=".main.EserciziPerGruppoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".main.SchedaGruppiMuscolariActivity"
+            android:exported="false" />
+        <activity
+            android:name=".main.DettaglioPremioActivity"
+            android:exported="false" />
+        <activity
+            android:name=".main.PremiPersonaliActivity"
+            android:exported="false" />
+        <activity
+            android:name=".main.PremiDisponibiliCompletiActivity"
+            android:exported="false" />
+        <activity
+            android:name=".main.RussianTwistPallaMedicaActivity"
+            android:exported="false" />
+        <activity
+            android:name=".main.MacchinaCrunchCaricoPiastraActivity"
+            android:exported="false" />
+        <activity
+            android:name=".main.LegCurlSdraiatoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".main.CurlManubriPancaInclinataActivity"
+            android:exported="false" />
+        <activity
+            android:name=".main.CurlConcentratoManubrioActivity"
+            android:exported="false" />
+        <activity
+            android:name=".main.RematoreBilanciereActivity"
+            android:exported="false" />
+        <activity
+            android:name=".main.LatMachinePresaInversaActivity"
+            android:exported="false" />
+        <activity
+            android:name=".main.StaccoDaTerraBilanciereActivity"
+            android:exported="false" />
+        <activity
+            android:name=".main.DipParalleleAssistitiActivity"
+            android:exported="false" />
+        <activity
+            android:name=".main.PancaPianaBilanciereActivity"
+            android:exported="false" />
+        <activity
+            android:name=".main.AffondiManubriActivity"
+            android:exported="false" />
+        <activity
+            android:name=".main.CurlBilanciereEzActivity"
+            android:exported="false" />
+        <activity
+            android:name=".main.CurlManubriActivity"
+            android:exported="false" />
+        <activity
+            android:name=".main.PulleyBassoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".main.EstensioniTricipitiManubrioActivity"
+            android:exported="false" />
+        <activity
+            android:name=".main.PushDownTricipitiCaviActivity"
+            android:exported="false" />
+        <activity
+            android:name=".main.CrociManubriPancaActivity"
+            android:exported="false" />
+        <activity
+            android:name=".main.CycletteTapisRoulantActivity"
+            android:exported="false" />
+        <activity
+            android:name=".main.CalfRaiseAllaLegPressActivity"
+            android:exported="false" />
+        <activity
+            android:name=".main.LegCurlActivity"
+            android:exported="false" />
+        <activity
+            android:name=".main.TirataStrettaActivity"
+            android:exported="false" />
+        <activity
+            android:name=".main.SquatBilanciereActivity"
+            android:exported="false" />
+        <activity
+            android:name=".main.PlankIsometricoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".main.RussianTwistManubrioActivity"
+            android:exported="false" />
+        <activity
+            android:name=".main.AlzateLateraliActivity"
+            android:exported="false" />
+        <activity
+            android:name=".main.RematoreManubriActivity"
+            android:exported="false" />
+        <activity
+            android:name=".main.PancaPianaManubriActivity"
+            android:exported="false" />
+        <activity
+            android:name=".main.CrunchSulTappetinoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".main.ShoulderPressActivity"
+            android:exported="false" />
+        <activity
+            android:name=".main.LegPressActivity"
+            android:exported="false" />
+        <activity
+            android:name=".main.LatMachineActivity"
+            android:exported="false" />
+        <activity
+            android:name=".main.ChestPressActivity"
+            android:exported="false" />
+        <activity
+            android:name=".main.DettaglioAllenamentoEsperto3Activity"
+            android:exported="false" />
+        <activity
+            android:name=".main.DettaglioAllenamentoEsperto2Activity"
+            android:exported="false" />
+        <activity
+            android:name=".main.DettaglioAllenamentoEsperto1Activity"
+            android:exported="false" />
+        <activity
+            android:name=".main.DettaglioAllenamentoIntermedio3Activity"
+            android:exported="false" />
+        <activity
+            android:name=".main.DettaglioAllenamentoIntermedio2Activity"
+            android:exported="false" />
+        <activity
+            android:name=".main.DettaglioAllenamentoIntermedio1Activity"
+            android:exported="false" />
+        <activity
+            android:name=".main.DettaglioAllenamentoPrincipiante3Activity"
+            android:exported="false" />
+        <activity
+            android:name=".main.DettaglioAllenamentoPrincipiante2Activity"
+            android:exported="false" />
+        <activity
+            android:name=".main.DettaglioAllenamentoPrincipiante1Activity"
+            android:exported="false" />
+        <activity
+            android:name=".main.EspertoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".main.IntermedioActivity"
+            android:exported="false" />
+        <activity
+            android:name=".main.TempoDiRiposoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".main.SetDefaultActivity"
+            android:exported="false" />
+        <activity
+            android:name=".main.SuonaAlTermineActivity"
+            android:exported="false" />
+        <activity
+            android:name=".main.VibraAlTermineActivity"
+            android:exported="false" />
+        <activity
+            android:name=".main.MostraNotificaActivity"
+            android:exported="false" />
+        <activity
+            android:name=".main.SchermoAccesoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".main.IncrementoPesoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".main.DimensioniUnitaActivity"
+            android:exported="false" />
+        <activity
+            android:name=".main.UnitaLunghezzaActivity"
+            android:exported="false" />
+        <activity
+            android:name=".main.UnitaPesoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".main.PromemoriaActivity"
+            android:exported="false" />
+        <activity
+            android:name=".main.ObiettiviActivity"
+            android:exported="false" />
+        <activity
+            android:name=".main.WeekActivity"
+            android:exported="false" />
+        <activity
+            android:name=".main.BackupRipristinoActivity"
+            android:exported="false" /> <!-- <application> configura le impostazioni generali dell'app -->
+        <!-- android:allowBackup="true" permette il backup dei dati su cloud (Google backup) -->
+        <!-- icon e roundIcon sono le icone principali dell'app -->
+        <!-- label è il nome dell'app visibile all'utente -->
+        <!-- supportsRtl="true" supporta la scrittura da destra a sinistra -->
+        <!-- theme è il tema predefinito, definito nel file styles.xml -->
+        <activity
+            android:name=".main.PrincipianteActivity"
+            android:exported="false" /> <!-- name è il nome dell'attività, in questo caso è l'attività PrincipianteActivity (schermata per l'allenamento della scheda di livello principiante) -->
+        <!-- android:exported="false" mi indica che non può essere lanciata da altre app -->
+        <activity
+            android:name=".PredefinedSchedeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".main.MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <!-- Questa è la prima schermata, dove compare il titolo, deve essere visibile dall'esterno, infatti la caratteristica exported="true", in quanto è l'entry point -->
+            <!-- intent-filter specifica che questa è la Launcher Activity (quella che parte all'avvio) -->
+        </activity>
+        <activity
+            android:name=".main.SettingsActivity"
+            android:exported="true" />
+        <activity
+            android:name=".LoginActivity"
+            android:exported="false" />
+        <activity
+            android:name=".main.RegisterActivity"
+            android:exported="false" />
+        <activity
+            android:name=".auth.DashBoardActivity"
+            android:exported="false" />
+    </application>
+
+</manifest>

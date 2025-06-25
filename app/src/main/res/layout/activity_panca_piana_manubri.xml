@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/dashboard_background"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Toolbar con freccia indietro -->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar_panca_piana_manubri"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="#4B0082"
+        android:title="Panca Piana"
+        android:titleTextColor="@android:color/white" />
+
+    <!-- Contenuto scorrevole -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- GIF o video -->
+            <VideoView
+                android:id="@+id/Panca_Piana_Con_Manubri_Video"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginBottom="16dp" />
+
+            <!-- Titolo esercizio -->
+            <TextView
+                android:id="@+id/titoloPancaPianaManubri"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Panca Piana Con Manubri"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/white"
+                android:layout_marginBottom="8dp" />
+
+            <!-- Descrizione esercizio -->
+            <TextView
+                android:id="@+id/descrizioneLegPress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="La panca piana con manubri è un esercizio fondamentale per lo sviluppo del petto, con il vantaggio di lavorare in modo più bilanciato rispetto al bilanciere. Sdraiato su una panca orizzontale, spingi i manubri verso l’alto partendo dal petto e riportandoli poi lentamente verso il basso. L’uso dei manubri costringe ogni lato del corpo a lavorare in modo indipendente, stimolando anche i muscoli stabilizzatori. Inoltre, permette un maggiore arco di movimento, migliorando la contrazione muscolare."
+                android:textColor="@android:color/white"
+                android:layout_marginBottom="24dp" />
+
+            <!-- Immagine muscoli coinvolti -->
+            <ImageView
+                android:id="@+id/imgMuscoliCoinvoltiPancaPianaManubri"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/muscoli_panca_piana_con_manubri"
+                android:layout_marginBottom="16dp" />
+
+            <!-- Titolo sezione muscoli -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Muscoli Coinvolti Panca Piana Con Manubri"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/white"
+                android:layout_marginBottom="8dp" />
+
+            <!-- Descrizione muscoli -->
+            <TextView
+                android:id="@+id/descrizioneMuscoliPancaPianaManubri"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="• Muscoli principali: grande pettorale\n• Muscoli secondari: tricipiti brachiali\n• Muscoli terziari: deltoidi anteriori, muscoli stabilizzatori del core e delle spalle"
+                android:textColor="@android:color/white"
+                android:layout_marginBottom="24dp" />
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

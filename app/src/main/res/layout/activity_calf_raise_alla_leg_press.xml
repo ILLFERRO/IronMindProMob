@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/dashboard_background"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Toolbar con freccia indietro -->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar_calf_raise_leg_press"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="#4B0082"
+        android:title="Calf Raise Alla Leg Press"
+        android:titleTextColor="@android:color/white" />
+
+    <!-- Contenuto scorrevole -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- GIF o video -->
+            <VideoView
+                android:id="@+id/Calf_Raise_Leg_Press_Video"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginBottom="16dp" />
+
+            <!-- Titolo esercizio -->
+            <TextView
+                android:id="@+id/titoloCalfRaiseLegPress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Calf Raise Alla Leg Press"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/white"
+                android:layout_marginBottom="8dp" />
+
+            <!-- Descrizione esercizio -->
+            <TextView
+                android:id="@+id/descrizioneCalfRaiseLegPress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Il Calf Raise alla Leg Press è una variante sicura ed efficace del sollevamento del polpaccio. Sfruttando la piattaforma della pressa, si posizionano solo le punte dei piedi sul bordo inferiore, mantenendo il carico sulle spalle. Il movimento consiste nell’estendere le caviglie spingendo verso l’alto, poi tornare lentamente in basso per allungare bene il muscolo. È particolarmente utile per allenare i polpacci con carichi progressivi, mantenendo una posizione stabile e controllata."
+                android:textColor="@android:color/white"
+                android:layout_marginBottom="24dp" />
+
+            <!-- Immagine muscoli coinvolti -->
+            <ImageView
+                android:id="@+id/imgMuscoliCoinvoltiCalfRaiseLegPress"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/muscoli_calf_raise_leg_press"
+                android:layout_marginBottom="16dp" />
+
+            <!-- Titolo sezione muscoli -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Muscoli Coinvolti Calf Raise Leg Press"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/white"
+                android:layout_marginBottom="8dp" />
+
+            <!-- Descrizione muscoli -->
+            <TextView
+                android:id="@+id/descrizioneMuscoliCalfRaiseLegPress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="• Muscoli principali: gastrocnemio\n• Muscoli secondari: soleo\n• Muscoli terziari: tibiale posteriore, muscoli intrinseci del piede"
+                android:textColor="@android:color/white"
+                android:layout_marginBottom="24dp" />
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

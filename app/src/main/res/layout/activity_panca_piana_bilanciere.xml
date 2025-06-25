@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/dashboard_background"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Toolbar con freccia indietro -->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar_panca_piana_bilanciere"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="#4B0082"
+        android:title="Panca Piana Con Bilanciere"
+        android:titleTextColor="@android:color/white" />
+
+    <!-- Contenuto scorrevole -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- GIF o video -->
+            <VideoView
+                android:id="@+id/Panca_Piana_Con_Bilanciere_Video"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginBottom="16dp" />
+
+            <!-- Titolo esercizio -->
+            <TextView
+                android:id="@+id/titoloPancaPianaBilanciere"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Panca Piana Con Bilanciere"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/white"
+                android:layout_marginBottom="8dp" />
+
+            <!-- Descrizione esercizio -->
+            <TextView
+                android:id="@+id/descrizionePancaPianaBilanciere"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="La Panca Piana con Bilanciere è uno degli esercizi fondamentali per lo sviluppo della forza e della massa della parte superiore del corpo, in particolare del petto. Si esegue sdraiati su una panca orizzontale, afferrando il bilanciere con una presa leggermente più ampia delle spalle e abbassandolo lentamente fino al petto, per poi spingerlo verso l’alto fino a distendere completamente le braccia. Questo movimento multiarticolare stimola fortemente il grande pettorale, ma coinvolge anche spalle e tricipiti, rendendolo un esercizio completo per la parte anteriore del busto. È molto usato in programmi di ipertrofia, forza e powerlifting. È importante curare la tecnica: piedi ben saldi, scapole addotte, traiettoria controllata e una respirazione coordinata aiutano a massimizzare il lavoro muscolare e a prevenire infortuni."
+                android:textColor="@android:color/white"
+                android:layout_marginBottom="24dp" />
+
+            <!-- Immagine muscoli coinvolti -->
+            <ImageView
+                android:id="@+id/imgMuscoliCoinvoltiPancaPianaBilanciere"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/muscoli_panca_piana_bilanciere"
+                android:layout_marginBottom="16dp" />
+
+            <!-- Titolo sezione muscoli -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Muscoli Coinvolti Panca Piana Bilanciere"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/white"
+                android:layout_marginBottom="8dp" />
+
+            <!-- Descrizione muscoli -->
+            <TextView
+                android:id="@+id/descrizioneMuscoliPancaPianaBilanciere"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="• Muscoli principali: grande pettorale\n• Muscoli secondari: tricipiti brachiali, deltoidi anteriori\n• Muscoli terziari: dentato anteriore, flessori del polso, core (per la stabilizzazione)"
+                android:textColor="@android:color/white"
+                android:layout_marginBottom="24dp" />
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

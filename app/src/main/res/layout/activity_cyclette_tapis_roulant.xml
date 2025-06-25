@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/dashboard_background"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Toolbar -->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar_cyclette_tapis_roulant"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="#4B0082"
+        android:title="Cyclette/Tapis Roulant"
+        android:titleTextColor="@android:color/white" />
+
+    <!-- ScrollView unica per tutto il contenuto -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- ===== Sezione Cyclette ===== -->
+
+            <VideoView
+                android:id="@+id/Cyclette_Video"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginBottom="16dp" />
+
+            <TextView
+                android:id="@+id/titoloCyclette"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cyclette"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/white"
+                android:layout_marginBottom="8dp" />
+
+            <TextView
+                android:id="@+id/descrizioneCyclette"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="La Cyclette è un macchinario cardio che simula il movimento della pedalata in bicicletta. È ideale per migliorare la resistenza cardiovascolare in modo controllato e a basso impatto sulle articolazioni, rendendola perfetta anche per principianti, anziani o chi sta recuperando da un infortunio. Durante l’esercizio, le gambe si muovono in un ciclo continuo che stimola il cuore e i polmoni, contribuendo anche al consumo calorico e al dimagrimento. Regolando la resistenza, puoi scegliere se allenarti in modo leggero o più intenso, tonificando e rinforzando le gambe."
+                android:textColor="@android:color/white"
+                android:layout_marginBottom="24dp" />
+
+            <ImageView
+                android:id="@+id/imgMuscoliCoinvoltiCyclette"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/muscoli_cyclette"
+                android:layout_marginBottom="16dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Muscoli Coinvolti Cyclette"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/white"
+                android:layout_marginBottom="8dp" />
+
+            <TextView
+                android:id="@+id/descrizioneMuscoliCyclette"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="• Muscoli principali: quadricipiti, glutei\n• Muscoli secondari: ischiocrurali (bicipite femorale, semitendinoso, semimembranoso), polpacci\n• Muscoli terziari: core (per la stabilizzazione del busto)"
+                android:textColor="@android:color/white"
+                android:layout_marginBottom="24dp" />
+
+            <!-- Linea divisoria -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#80FFFFFF"
+                android:layout_marginVertical="16dp" />
+
+            <!-- ===== Sezione Tapis Roulant ===== -->
+
+            <VideoView
+                android:id="@+id/Tapis_Roulant_Video"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginBottom="16dp" />
+
+            <TextView
+                android:id="@+id/titoloTapisRoulant"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tapis Roulant"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/white"
+                android:layout_marginBottom="8dp" />
+
+            <TextView
+                android:id="@+id/descrizioneTapisRoulant"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Il Tapis Roulant è uno dei macchinari più comuni per l’allenamento cardio indoor. Consente di camminare o correre su una superficie ammortizzata, riducendo lo stress su ginocchia e schiena rispetto all’asfalto. È perfetto per bruciare calorie, migliorare la salute cardiovascolare e rafforzare la resistenza. In base alla velocità e all’inclinazione, può variare l’intensità dell’allenamento, stimolando maggiormente i muscoli delle gambe e migliorando la coordinazione."
+                android:textColor="@android:color/white"
+                android:layout_marginBottom="24dp" />
+
+            <ImageView
+                android:id="@+id/imgMuscoliCoinvoltiTapisRoulant"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/muscoli_tapis_roulant"
+                android:layout_marginBottom="16dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Muscoli Coinvolti Tapis Roulant"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/white"
+                android:layout_marginBottom="8dp" />
+
+            <TextView
+                android:id="@+id/descrizioneMuscoliTapisRoulant"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="• Muscoli principali: quadricipiti, glutei, polpacci\n• Muscoli secondari: ischiocrurali, flessori dell’anca\n• Muscoli terziari: addominali e lombari (per la stabilizzazione)"
+                android:textColor="@android:color/white"
+                android:layout_marginBottom="24dp" />
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#4B0082">  <!-- Viola scuro -->
+
+    <!-- Toolbar -->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar_backup_ripristino"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="#4B0082"
+        android:elevation="4dp"
+        android:titleTextColor="@android:color/white"/>
+
+    <!-- Dati di Backup -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Dati di Backup"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="@android:color/white"
+        android:padding = "12dp"
+        android:layout_marginTop="16dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Crea un file di backup di tutti i tuoi dati. Puoi utilizzare questo file per trasferire i tuoi dati su un altro dispositivo"
+        android:textColor="@android:color/white"
+        android:padding = "12dp"
+        android:layout_marginTop="16dp" />
+
+    <!-- Pulsante Bakcup -->
+    <Button
+        android:id="@+id/BackupButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Backup"
+        android:background="@drawable/bordi_bottoni"
+        android:textColor="@android:color/white" />
+
+    <!-- Linea di separazione tra i due campi -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#CCCCCC" />
+
+    <!-- Ripristina i dati -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ripristina i dati"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="@android:color/white"
+        android:padding = "12dp"
+        android:layout_marginTop="16dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Seleziona un file di backup creato in precedenza e ripristina tutti i tuoi dati"
+        android:textColor="@android:color/white"
+        android:padding = "12dp"
+        android:layout_marginTop="16dp" />
+
+    <!-- Pulsante Ripristino Dati -->
+    <Button
+        android:id="@+id/RipristinoButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ripristino"
+        android:background="@drawable/bordi_bottoni"
+        android:textColor="@android:color/white" />
+
+    <!-- Linea di fine campi-->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#CCCCCC" />
+
+</LinearLayout>

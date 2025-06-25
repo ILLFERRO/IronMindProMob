@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#BB86FC</color>
+    <color name="purple_500">#6200EE</color>
+    <color name="purple_700">#3700B3</color>
+    <color name="teal_200">#03DAC5</color>
+    <color name="teal_700">#018786</color>
+    <color name="black">#000000</color>
+    <color name="white">#FFFFFF</color>
+    <color name="green">#4CAF50</color>
+    <color name="red">#F44336</color>
+
+    <!-- Colore viola scuro per lo sfondo della DashBoard -->
+    <color name="dashboard_background">#4B0082</color> <!-- indigo scuro -->
+
+    <!-- Colore bianco per i testi sopra sfondo viola -->
+    <color name="dashboard_text">#FFFFFF</color>
+
+    <!-- Colore viola per lo sfondo della schermata Impostazioni -->
+    <color name="settings_background">#6A1B9A</color> <!-- Viola acceso Material Design -->
+</resources>

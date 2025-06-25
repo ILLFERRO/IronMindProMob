@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/dashboard_background"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Toolbar con freccia indietro -->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar_lat_machine_presa_inversa"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="#4B0082"
+        android:title="Lat Machine Presa Inversa"
+        android:titleTextColor="@android:color/white" />
+
+    <!-- Contenuto scorrevole -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- GIF o video -->
+            <VideoView
+                android:id="@+id/Lat_Machine_Presa_Inversa_Video"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginBottom="16dp" />
+
+            <!-- Titolo esercizio -->
+            <TextView
+                android:id="@+id/titoloLatMachinePresaInversa"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Lat Machine Presa Inversa"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/white"
+                android:layout_marginBottom="8dp" />
+
+            <!-- Descrizione esercizio -->
+            <TextView
+                android:id="@+id/descrizioneLatMachinePresaInversa"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="La Lat Machine con presa inversa prevede l’uso di una presa supina (palmi verso di sé), e permette di stimolare in modo particolare la parte bassa del dorso e i bicipiti. Seduti con le ginocchia bloccate, si afferra la barra con le mani alla larghezza delle spalle e si tira verso il petto mantenendo i gomiti vicini al corpo. Questo angolo enfatizza il lavoro sul gran dorsale interno e i muscoli delle braccia. È una variante perfetta per chi vuole rinforzare sia la schiena che le braccia in un unico esercizio."
+                android:textColor="@android:color/white"
+                android:layout_marginBottom="24dp" />
+
+            <!-- Immagine muscoli coinvolti -->
+            <ImageView
+                android:id="@+id/imgMuscoliCoinvoltiLatMachinePresaInversa"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/muscoli_lat_machine_presa_inversa"
+                android:layout_marginBottom="16dp" />
+
+            <!-- Titolo sezione muscoli -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Muscoli Coinvolti Lat Machine Presa Inversa"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/white"
+                android:layout_marginBottom="8dp" />
+
+            <!-- Descrizione muscoli -->
+            <TextView
+                android:id="@+id/descrizioneMuscoliLatMachinePresaInversa"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="• Muscoli principali: gran dorsale (porzione interna)\n• Muscoli secondari: bicipiti brachiali, brachiale, brachioradiale\n• Muscoli terziari: deltoidi posteriori, romboidi, trapezio medio"
+                android:textColor="@android:color/white"
+                android:layout_marginBottom="24dp" />
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

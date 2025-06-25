@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/dashboard_background"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Toolbar con freccia indietro -->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar_squat_bilanciere"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="#4B0082"
+        android:title="Squar Con Bilanciere"
+        android:titleTextColor="@android:color/white" />
+
+    <!-- Contenuto scorrevole -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- GIF o video -->
+            <VideoView
+                android:id="@+id/Squat_Bilanciere_Video"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginBottom="16dp" />
+
+            <!-- Titolo esercizio -->
+            <TextView
+                android:id="@+id/titoloSquatBilanciere"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Squat Con Bilanciere"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/white"
+                android:layout_marginBottom="8dp" />
+
+            <!-- Descrizione esercizio -->
+            <TextView
+                android:id="@+id/descrizioneSquatBilanciere"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Lo Squat con bilanciere è uno degli esercizi fondamentali per la forza e lo sviluppo muscolare dell’intero corpo. Viene eseguito con il bilanciere posizionato sulle spalle, dietro la testa, e richiede un buon controllo del movimento e una tecnica precisa. Durante l’esecuzione, si scende piegando le ginocchia e portando i fianchi indietro, mantenendo il busto eretto e il core contratto. La discesa prosegue fino a raggiungere almeno l’altezza delle cosce parallela al suolo (o più in basso, se la mobilità lo consente), per poi risalire spingendo con forza attraverso i talloni. Rispetto alla variante alla multipower, lo squat libero richiede maggiore attivazione dei muscoli stabilizzatori, specialmente del core e della zona lombare, ed è ottimo per sviluppare potenza funzionale, equilibrio e coordinazione."
+                android:textColor="@android:color/white"
+                android:layout_marginBottom="24dp" />
+
+            <!-- Immagine muscoli coinvolti -->
+            <ImageView
+                android:id="@+id/imgMuscoliCoinvoltiSquatBilanciere"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/muscoli_squat_con_bilanciere"
+                android:layout_marginBottom="16dp" />
+
+            <!-- Titolo sezione muscoli -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Muscoli Coinvolti Squat Con Bilanciere"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/white"
+                android:layout_marginBottom="8dp" />
+
+            <!-- Descrizione muscoli -->
+            <TextView
+                android:id="@+id/descrizioneMuscoliSquatBilanciere"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="• Muscoli principali: quadricipiti, glutei\n• Muscoli secondari: ischiocrurali (bicipite femorale, semitendinoso, semimembranoso)\n• Muscoli terziari: core (addominali e lombari), erettori spinali, muscoli dell’equilibrio (polpacci, adduttori, abduttori)"
+                android:textColor="@android:color/white"
+                android:layout_marginBottom="24dp" />
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

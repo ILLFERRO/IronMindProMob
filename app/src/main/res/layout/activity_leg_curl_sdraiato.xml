@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/dashboard_background"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Toolbar con freccia indietro -->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar_leg_curl_sdraiato"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="#4B0082"
+        android:title="Leg Curl Da Sdraiato"
+        android:titleTextColor="@android:color/white" />
+
+    <!-- Contenuto scorrevole -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- GIF o video -->
+            <VideoView
+                android:id="@+id/Leg_Curl_Da_Sdraiato_Video"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginBottom="16dp" />
+
+            <!-- Titolo esercizio -->
+            <TextView
+                android:id="@+id/titoloLegCurlDaSdraiato"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Leg Curl Da Sdraiato"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/white"
+                android:layout_marginBottom="8dp" />
+
+            <!-- Descrizione esercizio -->
+            <TextView
+                android:id="@+id/descrizioneLegCurlDaSdraiato"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Il Leg Curl da Sdraiato è un esercizio mirato per isolare e rafforzare i muscoli posteriori della coscia. Si esegue sdraiati proni (a pancia in giù) su un macchinario apposito, con le caviglie posizionate sotto un rullo imbottito. Il movimento consiste nel flettere le ginocchia, portando i talloni verso i glutei contro la resistenza. Questo esercizio è fondamentale per allenare gli ischiocrurali in isolamento, migliorare l’equilibrio muscolare tra parte anteriore e posteriore della coscia, prevenire infortuni e aumentare la potenza nei movimenti di corsa o salto. La schiena rimane stabile e aderente al supporto, mentre il movimento controllato garantisce la massima efficacia."
+                android:textColor="@android:color/white"
+                android:layout_marginBottom="24dp" />
+
+            <!-- Immagine muscoli coinvolti -->
+            <ImageView
+                android:id="@+id/imgMuscoliCoinvoltiLegCurlDaSdraiato"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/muscoli_leg_curl_sdraiato"
+                android:layout_marginBottom="16dp" />
+
+            <!-- Titolo sezione muscoli -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Muscoli Coinvolti Leg Curl Da Sdraiato"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/white"
+                android:layout_marginBottom="8dp" />
+
+            <!-- Descrizione muscoli -->
+            <TextView
+                android:id="@+id/descrizioneMuscoliLegCurlDaSdraiato"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="• Muscoli principali: ischiocrurali (bicipite femorale, semitendinoso, semimembranoso)\n• Muscoli secondari: gastrocnemio (polpaccio)\n• Muscoli terziari: glutei (stabilizzazione), adduttori (lieve attivazione di supporto)"
+                android:textColor="@android:color/white"
+                android:layout_marginBottom="24dp" />
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

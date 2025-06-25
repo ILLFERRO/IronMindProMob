@@ -1,0 +1,56 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="#4B0082"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar_promemoria"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="#4B0082"
+        android:titleTextColor="@android:color/white" />
+
+    <!-- View vuota -->
+    <LinearLayout
+        android:id="@+id/Viewvuota"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:visibility="gone">
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/immagine_campanella" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Al momento non è presente alcun promemoria"
+            android:textSize="16sp"
+            android:textColor="#FFFFFF"
+            android:layout_marginTop="12dp" />
+    </LinearLayout>
+
+    <!-- RecyclerView dei promemoria -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewPromemoria"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:padding="8dp"
+        android:visibility="gone" />
+
+    <!-- Pulsante aggiungi -->
+    <ImageButton
+        android:id="@+id/button_add_reminder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@android:drawable/ic_input_add"
+        android:layout_gravity="end"
+        android:layout_margin="8dp"
+        android:background="?attr/selectableItemBackgroundBorderless" />
+</LinearLayout>

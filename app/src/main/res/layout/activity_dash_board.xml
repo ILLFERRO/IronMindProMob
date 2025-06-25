@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/dashboard_background"
+    android:fillViewport="true">
+    <!-- Contenitore principale: Scrool View -->
+    <!-- xmlns:app="http://schemas.android.com/apk/res-auto" namespace standard per gli attributi Android -->
+    <!-- android:layout_width/android:layout_height="match_parent" :occupa tutto lo schermo -->
+    <!-- android:fillViewport="true" forza il contenuto a riempire tutto lo spazio -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+        <!-- android:orientation="vertical" tutto l'orientamento è in verticale -->
+        <!-- android:layout_width="match_parent" occupa tutto lo spazio disponibile -->
+        <!-- android:layout_height="wrap_content" adatta l'altezza al contenuto -->
+        <!-- android:padding="16dp" inserisce lo spazio interno su tutti i lati di 16dp -->
+
+        <!-- Intestazione: titolo + icone -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="16dp">
+            <!-- android:gravity="center_vertical" allinea il contenuto interno verticalmente al centro del contenitore -->
+            <!-- android:layout_marginBottom="16dp" è un margine al di sotto del contenuto per separare le sezioni (di 16dp) -->
+
+            <TextView
+                android:id="@+id/appTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="IronMind"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:textColor="@color/dashboard_text" />
+            <!-- android:layout_width="0dp" indica che la larghezza dipende da android:layout_weight="1", cioè si occupa tutto lo spazio orizzontale disponibile rispetto agli altri elementi nella riga -->
+
+            <ImageView
+                android:id="@+id/Immagine_premi"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/immagine_premi"
+                android:contentDescription="Premi"
+                android:layout_marginEnd="12dp" />
+            <!-- android:src="@drawable/immagine_premi" indica l'immagine da visualizzare presente nella cartella res/drawable -->
+            <!-- android:contentDescription="Premi" descrizione testuale per accessibilità -->
+            <!-- android:layout_marginEnd="12dp" spazio di 12dp a destra dell'icona -->
+
+            <ImageView
+                android:id="@+id/Immagine_impostazioni"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/immagine_impostazioni"
+                android:contentDescription="Impostazioni" />
+        </LinearLayout>
+
+        <!-- Calendario -->
+        <LinearLayout
+            android:id="@+id/calendarContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="24dp"
+            android:padding="8dp" />
+
+        <!-- CardView: Schede Predefinite -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/predefinedCardsSection"
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            android:layout_marginBottom="16dp"
+            android:clickable="true"
+            android:foreground="?attr/selectableItemBackground"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="6dp">
+            <!-- android:clickable="true" rende cliccabile la card -->
+            <!-- android:foreground="?attr/selectableItemBackground" applica un effetto visivo al tocco. Prende lo stile del tema corrente -->
+            <!-- app:cardCornerRadius="16dp" Angoli arrotondati della card -->
+            <!-- app:cardElevation="6dp" Ombra sotto la card -->
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/immagine_schede" />
+                <!-- android:scaleType="centerCrop" L’immagine viene centrata e ritagliata per riempire tutto lo spazio mantenendo le proporzioni. Taglia eventuali bordi per non lasciare spazi vuoti. -->
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#66000000" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Schede Predefinite"
+                    android:textColor="@android:color/white"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:layout_centerInParent="true" />
+                <!-- android:layout_centerInParent="true" Solo in RelativeLayout: centra il testo sia orizzontalmente che verticalmente nel contenitore padre. -->
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- CardView: Crea Scheda Personalizzata -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/customCardsSection"
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            android:layout_marginBottom="16dp"
+            android:clickable="true"
+            android:foreground="?attr/selectableItemBackground"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="6dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/immagine_schede" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#66000000" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Crea Scheda Personalizzata"
+                    android:textColor="@android:color/white"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:layout_centerInParent="true" />
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- Gruppo titolo + riga divisoria per "Le mie schede" -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp">
+
+            <TextView
+                android:id="@+id/titoloMieSchede"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Le mie schede"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/white"
+                android:visibility="visible" />
+
+            <View
+                android:id="@+id/dividerLine"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#CCCCCC" />
+        </LinearLayout>
+
+        <!-- Contenitore dinamico per le mie schede -->
+        <LinearLayout
+            android:id="@+id/sezioneMieSchede"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone" />
+
+        <!-- Contatore bandiera -->
+        <LinearLayout
+            android:id="@+id/flagCounterLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="end|center_vertical"
+            android:layout_gravity="end"
+            android:layout_marginBottom="32dp">
+
+            <ImageView
+                android:id="@+id/Immagine_bandierina"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/immagine_bandierina"
+                android:contentDescription="Bandiera" />
+
+            <TextView
+                android:id="@+id/workoutProgressText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Allenamenti completati: "
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@color/dashboard_text"
+                android:layout_marginStart="8dp" />
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

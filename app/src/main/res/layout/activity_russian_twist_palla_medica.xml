@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/dashboard_background"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Toolbar con freccia indietro -->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar_russian_twist_palla_medica"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="#4B0082"
+        android:title="Russian Twist Palla Medica"
+        android:titleTextColor="@android:color/white" />
+
+    <!-- Contenuto scorrevole -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- GIF o video -->
+            <VideoView
+                android:id="@+id/Russian_Twist_Palla_Medica_Video"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginBottom="16dp" />
+
+            <!-- Titolo esercizio -->
+            <TextView
+                android:id="@+id/titoloRussianTwistPallaMedica"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Russian Twist Palla Medica"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/white"
+                android:layout_marginBottom="8dp" />
+
+            <!-- Descrizione esercizio -->
+            <TextView
+                android:id="@+id/descrizioneRussianTwistPallaMedica"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Il Russian Twist con Palla Medica è un esercizio a corpo libero, spesso eseguito con un sovraccarico leggero come una palla medica, che mira a rafforzare i muscoli obliqui e l'intera zona del core. Si esegue da seduti, con il busto leggermente inclinato all’indietro, le gambe sollevate o poggiate a terra, e la palla tenuta tra le mani. Il movimento consiste nel ruotare il busto da un lato all’altro, portando la palla medica verso il fianco, senza muovere le gambe. Questo esercizio richiede controllo, equilibrio e coordinazione, attivando fortemente i muscoli addominali profondi e migliorando la stabilità del tronco. È particolarmente utile per migliorare la forza rotazionale, importante in molti sport e nella vita quotidiana. Aumentando la velocità o il carico, può essere adattato a diversi livelli di difficoltà."
+                android:textColor="@android:color/white"
+                android:layout_marginBottom="24dp" />
+
+            <!-- Immagine muscoli coinvolti -->
+            <ImageView
+                android:id="@+id/imgMuscoliCoinvoltiRussianTwistPallaMedica"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/muscoli_russian_twist_palla_medica"
+                android:layout_marginBottom="16dp" />
+
+            <!-- Titolo sezione muscoli -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Muscoli Coinvolti Russian Twist Palla Medica"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/white"
+                android:layout_marginBottom="8dp" />
+
+            <!-- Descrizione muscoli -->
+            <TextView
+                android:id="@+id/descrizioneMuscoliRussianTwistPallaMedica"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="• Muscoli principali: obliqui interni ed esterni\n• Muscoli secondari: retto dell’addome, trasverso dell’addome\n• Muscoli terziari: flessori dell’anca, erettori spinali (stabilizzazione)"
+                android:textColor="@android:color/white"
+                android:layout_marginBottom="24dp" />
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

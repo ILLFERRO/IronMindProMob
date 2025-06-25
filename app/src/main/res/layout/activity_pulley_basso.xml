@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/dashboard_background"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Toolbar con freccia indietro -->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar_pulley_basso"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="#4B0082"
+        android:title="Pulley Basso"
+        android:titleTextColor="@android:color/white" />
+
+    <!-- Contenuto scorrevole -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- GIF o video -->
+            <VideoView
+                android:id="@+id/Pulley_Basso_Video"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginBottom="16dp" />
+
+            <!-- Titolo esercizio -->
+            <TextView
+                android:id="@+id/titoloPulleyBasso"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pulley Basso"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/white"
+                android:layout_marginBottom="8dp" />
+
+            <!-- Descrizione esercizio -->
+            <TextView
+                android:id="@+id/descrizionePulleyBasso"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Il Pulley Basso è uno degli esercizi fondamentali per lo sviluppo della schiena, in particolare della sua parte centrale. Si esegue seduti alla macchina con cavo basso, afferrando una maniglia (spesso triangolare) e tirandola verso l’addome mantenendo il busto dritto e i gomiti vicini al corpo. Il movimento imita una remata orizzontale, perfetta per rafforzare i romboidi e il gran dorsale, migliorando lo spessore dorsale e la postura. È essenziale concentrarsi sulla contrazione scapolare alla fine del movimento e non usare troppo slancio col busto. Ideale per allenare la schiena in modo controllato, anche in combinazione con esercizi a presa larga come la Lat Machine."
+                android:textColor="@android:color/white"
+                android:layout_marginBottom="24dp" />
+
+            <!-- Immagine muscoli coinvolti -->
+            <ImageView
+                android:id="@+id/imgMuscoliCoinvoltiPulleyBasso"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/muscoli_pulley_basso"
+                android:layout_marginBottom="16dp" />
+
+            <!-- Titolo sezione muscoli -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Muscoli Coinvolti Pulley Basso"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/white"
+                android:layout_marginBottom="8dp" />
+
+            <!-- Descrizione muscoli -->
+            <TextView
+                android:id="@+id/descrizioneMuscoliPulleyBasso"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="• Muscoli principali: gran dorsale, romboidi\n• Muscoli secondari: bicipiti brachiali, brachiale, deltoidi posteriori\n• Muscoli terziari: trapezio medio e inferiore, estensori spinali"
+                android:textColor="@android:color/white"
+                android:layout_marginBottom="24dp" />
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

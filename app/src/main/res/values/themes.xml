@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.IronMind" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="android:windowBackground">@color/purple_500</item>
+    </style>
+</resources>
+<!-- definiamo uno stile personalizzato (tema globale) che controlla l'aspetto visivo delle Activity -->
+<!-- <style name="Theme.IronMind" parent="Theme.MaterialComponents.Light.NoActionBar"> Crea un tema personalizzato chiamato Theme.IronMind, uso tema Material Design chiaro, senza ActionBar, includendo tutte le funzionalità di MaterialComponents -->
+<!-- <item name="android:windowBackground">@color/purple_500</item> Imposta il colore di sfondo principale della finestra (schermata). -->

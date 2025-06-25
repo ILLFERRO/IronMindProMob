@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/dashboard_background"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Toolbar con freccia indietro -->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar_estensioni_tricipiti_manubri"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="#4B0082"
+        android:title="Estensioni Tricipiti Manubri"
+        android:titleTextColor="@android:color/white" />
+
+    <!-- Contenuto scorrevole -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- GIF o video -->
+            <VideoView
+                android:id="@+id/Estensioni_Tricipiti_Manubri_Video"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginBottom="16dp" />
+
+            <!-- Titolo esercizio -->
+            <TextView
+                android:id="@+id/titoloEstensioniTricipitiManubri"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Estensioni Tricipiti Manubri"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/white"
+                android:layout_marginBottom="8dp" />
+
+            <!-- Descrizione esercizio -->
+            <TextView
+                android:id="@+id/descrizioneEstensioniTricipitiManubri"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Le estensioni tricipiti sopra la testa sono un esercizio di isolamento per il tricipite eseguito con un manubrio tenuto con entrambe le mani. Da seduti o in piedi, si solleva il manubrio sopra la testa e lo si abbassa dietro la nuca piegando i gomiti, per poi risalire estendendo completamente le braccia.  Questo movimento enfatizza il capo lungo del tricipite, che si inserisce sulla scapola e lavora intensamente quando il braccio è in posizione sopraelevata. L’esercizio richiede anche una buona mobilità delle spalle e controllo del core per mantenere la posizione. È ottimo per dare spessore al braccio e migliorare la forza nella parte posteriore del braccio."
+                android:textColor="@android:color/white"
+                android:layout_marginBottom="24dp" />
+
+            <!-- Immagine muscoli coinvolti -->
+            <ImageView
+                android:id="@+id/imgMuscoliCoinvoltiEstensioniTricipitiManubri"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/muscoli_estensioni_tricipiti_manubrio"
+                android:layout_marginBottom="16dp" />
+
+            <!-- Titolo sezione muscoli -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Muscoli Coinvolti Estensioni Tricipiti Manubri"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/white"
+                android:layout_marginBottom="8dp" />
+
+            <!-- Descrizione muscoli -->
+            <TextView
+                android:id="@+id/descrizioneMuscoliEstensioniTricipitiManubri"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="• Muscoli principali: tricipiti brachiali (soprattutto capo lungo)\n• Muscoli secondari: anconeo\n• Muscoli terziari: trapezio superiore, stabilizzatori del core e della colonna"
+                android:textColor="@android:color/white"
+                android:layout_marginBottom="24dp" />
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

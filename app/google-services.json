@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "259519574887",
+    "project_id": "iron-mind-8ce40",
+    "storage_bucket": "iron-mind-8ce40.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:259519574887:android:55a007ffa3059e77e1b5c2",
+        "android_client_info": {
+          "package_name": "com.example.ironmind"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDPNTXOrlUJcy0-THcUryCkZdAitXV_890"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

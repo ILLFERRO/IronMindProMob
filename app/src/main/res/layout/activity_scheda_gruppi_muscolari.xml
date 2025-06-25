@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/dashboard_background"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Toolbar con freccia indietro -->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar_scheda_gruppi_muscolari"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="#4B0082"
+        android:title="Scheda Gruppi Muscolari"
+        android:titleTextColor="@android:color/white" />
+
+    <!-- Titolo + descrizione + linea -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Schermata Gruppi Muscolari"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/white"
+            android:layout_marginBottom="8dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="In questa schermata troverai tutti i gruppi muscolari/zone del corpo disponibili. Per visualizzare gli esercizi cliccare sull'apposita sezione. Dopo aver cliccato sulla sezione si aprirà una nuova schermata che conterrà tutti gli esercizi disponibili e selezionabili per il tuo allenamento per quel determinato/a gruppo muscolare/zona del corpo."
+            android:textColor="@android:color/white"
+            android:layout_marginBottom="8dp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#80FFFFFF"
+            android:layout_marginVertical="16dp" />
+    </LinearLayout>
+
+    <!-- RecyclerView per la lista gruppi muscolari -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewGruppi"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:padding="8dp" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnVaiASchedaPersonalizzata"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Visualizza Scheda"
+        android:textColor="@android:color/white"
+        android:textStyle="bold"
+        android:layout_margin="16dp"
+        android:visibility="gone"
+        app:cornerRadius="16dp"
+        app:backgroundTint="#4B0082" />
+
+</LinearLayout>

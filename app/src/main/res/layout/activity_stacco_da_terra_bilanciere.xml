@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/dashboard_background"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Toolbar con freccia indietro -->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar_stacco_terra_bilanciere"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="#4B0082"
+        android:title="Stacco Da Terra Con Bilanciere"
+        android:titleTextColor="@android:color/white" />
+
+    <!-- Contenuto scorrevole -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- GIF o video -->
+            <VideoView
+                android:id="@+id/Stacco_Da_Terra_Con_Bilanciere_Video"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginBottom="16dp" />
+
+            <!-- Titolo esercizio -->
+            <TextView
+                android:id="@+id/titoloStaccoDaTerraBilanciere"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Stacco Da Terra Con Bilanciere"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/white"
+                android:layout_marginBottom="8dp" />
+
+            <!-- Descrizione esercizio -->
+            <TextView
+                android:id="@+id/descrizioneStaccoDaTerraBilanciere"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Lo Stacco da Terra è uno degli esercizi più completi ed efficaci per costruire forza e massa muscolare. Si esegue sollevando un bilanciere da terra fino alla posizione eretta, mantenendo la schiena dritta e spingendo con le gambe e i glutei. Coinvolge gran parte del corpo, ed è centrale in programmi di forza e powerlifting. La fase di spinta inizia con il lavoro delle gambe, mentre il core e la schiena stabilizzano il busto. La chiusura del movimento è affidata ai glutei e alla schiena alta. È fondamentale curare la tecnica per evitare infortuni, mantenendo la schiena neutra, il bilanciere vicino al corpo e la spinta dai talloni."
+                android:textColor="@android:color/white"
+                android:layout_marginBottom="24dp" />
+
+            <!-- Immagine muscoli coinvolti -->
+            <ImageView
+                android:id="@+id/imgMuscoliCoinvoltiStaccoDaTerraBilanciere"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/muscoli_stacco_terra_bilanciere"
+                android:layout_marginBottom="16dp" />
+
+            <!-- Titolo sezione muscoli -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Muscoli Coinvolti Stacco Da Terra Con Bilanciere"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/white"
+                android:layout_marginBottom="8dp" />
+
+            <!-- Descrizione muscoli -->
+            <TextView
+                android:id="@+id/descrizioneMuscoliStaccoDaTerraBilanciere"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="• Muscoli principali: glutei, ischiocrurali (bicipite femorale, semitendinoso, semimembranoso), erettori spinali\n• Muscoli secondari: quadricipiti, dorsali, trapezio\n• Muscoli terziari: avambracci (presa), deltoidi posteriori, core"
+                android:textColor="@android:color/white"
+                android:layout_marginBottom="24dp" />
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/dashboard_background"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Toolbar con freccia indietro -->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar_alzate_laterali"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="#4B0082"
+        android:title="Alzate Laterali"
+        android:titleTextColor="@android:color/white" />
+
+    <!-- Contenuto scorrevole -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- GIF o video -->
+            <VideoView
+                android:id="@+id/Alzate_Laterali_Video"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginBottom="16dp" />
+
+            <!-- Titolo esercizio -->
+            <TextView
+                android:id="@+id/titoloAlzateLaterali"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Alzate Laterali"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/white"
+                android:layout_marginBottom="8dp" />
+
+            <!-- Descrizione esercizio -->
+            <TextView
+                android:id="@+id/descrizioneAlzateLaterali"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Le alzate laterali alla macchina sono un esercizio isolante perfetto per sviluppare la parte laterale delle spalle in modo sicuro e controllato. Seduto sulla macchina, con i gomiti appoggiati sui supporti o le braccia in linea con le impugnature laterali, si esegue un sollevamento simultaneo verso l’alto fino all’altezza delle spalle. Grazie al movimento guidato, l’esercizio permette un’esecuzione precisa, riducendo il rischio di compensazioni e aiutando a concentrare il lavoro sul deltoide laterale. È l’ideale per chi vuole migliorare la forma delle spalle, ottenere una silhouette più ampia nella parte alta del corpo e rafforzare il cingolo scapolare."
+                android:textColor="@android:color/white"
+                android:layout_marginBottom="24dp" />
+
+            <!-- Immagine muscoli coinvolti -->
+            <ImageView
+                android:id="@+id/imgMuscoliCoinvoltiAlzateLaterali"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/muscoli_alzate_laterali_macchina"
+                android:layout_marginBottom="16dp" />
+
+            <!-- Titolo sezione muscoli -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Muscoli Coinvolti Alzate Laterali"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/white"
+                android:layout_marginBottom="8dp" />
+
+            <!-- Descrizione muscoli -->
+            <TextView
+                android:id="@+id/descrizioneMuscoliAlzateLaterali"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="• Muscoli principali: deltoide laterale\n• Muscoli secondari: deltoide anteriore e posteriore, trapezio superiore\n• Muscoli terziari: muscoli stabilizzatori della cuffia dei rotatori"
+                android:textColor="@android:color/white"
+                android:layout_marginBottom="24dp" />
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

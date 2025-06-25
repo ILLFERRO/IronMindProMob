@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/dashboard_background"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Toolbar con freccia indietro -->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar_affondi_manubri"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="#4B0082"
+        android:title="Affondi Manubri"
+        android:titleTextColor="@android:color/white" />
+
+    <!-- Contenuto scorrevole -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- GIF o video -->
+            <VideoView
+                android:id="@+id/Affondi_Manubri_Video"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginBottom="16dp" />
+
+            <!-- Titolo esercizio -->
+            <TextView
+                android:id="@+id/titoloAffondiManubri"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Affondi Manubri"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/white"
+                android:layout_marginBottom="8dp" />
+
+            <!-- Descrizione esercizio -->
+            <TextView
+                android:id="@+id/descrizioneAffondiManubri"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Gli Affondi con Manubri sono un esercizio molto efficace per rafforzare e tonificare le gambe e i glutei. Si eseguono in piedi, con un manubrio per mano, facendo un passo in avanti e flettendo entrambe le ginocchia fino a formare due angoli di circa 90°, poi si ritorna in posizione eretta. Questo movimento unilaterale permette di allenare ogni gamba separatamente, migliorando l’equilibrio muscolare e la coordinazione. Gli affondi sollecitano intensamente i quadricipiti e i glutei, ma coinvolgono anche tutta la muscolatura della parte inferiore del corpo per stabilizzare il movimento, soprattutto se eseguiti con carichi. Sono ottimi anche per migliorare la propriocezione e rinforzare i muscoli stabilizzatori delle anche e delle ginocchia."
+                android:textColor="@android:color/white"
+                android:layout_marginBottom="24dp" />
+
+            <!-- Immagine muscoli coinvolti -->
+            <ImageView
+                android:id="@+id/imgMuscoliCoinvoltiAffondiManubri"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/muscoli_affondi_manubri"
+                android:layout_marginBottom="16dp" />
+
+            <!-- Titolo sezione muscoli -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Muscoli Coinvolti Affondi Manubri"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/white"
+                android:layout_marginBottom="8dp" />
+
+            <!-- Descrizione muscoli -->
+            <TextView
+                android:id="@+id/descrizioneMuscoliAffondiManubri"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="• Muscoli principali: quadricipiti, glutei\n• Muscoli secondari: ischiocrurali (bicipite femorale, semitendinoso, semimembranoso), polpacci\n• Muscoli terziari: core (addominali e lombari per la stabilizzazione), abduttori e adduttori delle cosce"
+                android:textColor="@android:color/white"
+                android:layout_marginBottom="24dp" />
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

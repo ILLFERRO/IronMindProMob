@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/dashboard_background"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Toolbar con freccia indietro -->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar_dip_parallele_assistiti"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="#4B0082"
+        android:title="Dip Alle Parallele Assistiti"
+        android:titleTextColor="@android:color/white" />
+
+    <!-- Contenuto scorrevole -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- GIF o video -->
+            <VideoView
+                android:id="@+id/Dip_Alle_Parallele_Assistiti_Video"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginBottom="16dp" />
+
+            <!-- Titolo esercizio -->
+            <TextView
+                android:id="@+id/titoloDipParalleleAssistiti"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Dip Alle Parallele Assistiti"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/white"
+                android:layout_marginBottom="8dp" />
+
+            <!-- Descrizione esercizio -->
+            <TextView
+                android:id="@+id/descrizioneDipParalleleAssistiti"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="I Dip Assistiti alle Parallele sono un ottimo esercizio per rinforzare pettorali, tricipiti e spalle, ma in una variante più controllata e accessibile grazie al supporto di un macchinario che alleggerisce parte del peso corporeo. Ci si posiziona tra due parallele, afferrando le maniglie e appoggiando le ginocchia o i piedi sulla pedana assistita. Da qui, si scende lentamente flettendo i gomiti fino a portare le spalle appena sotto i gomiti, poi si spinge verso l’alto fino all’estensione completa delle braccia. Questo esercizio è perfetto per imparare la versione a corpo libero, sviluppare forza nei muscoli spingenti e migliorare la mobilità articolare. È spesso inserito nei programmi di progressione verso trazioni e dips liberi."
+                android:textColor="@android:color/white"
+                android:layout_marginBottom="24dp" />
+
+            <!-- Immagine muscoli coinvolti -->
+            <ImageView
+                android:id="@+id/imgMuscoliCoinvoltiDipParalleleAssistiti"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/muscoli_dip_parallele_assistiti"
+                android:layout_marginBottom="16dp" />
+
+            <!-- Titolo sezione muscoli -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Muscoli Coinvolti Dip Parallele Assistiti"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/white"
+                android:layout_marginBottom="8dp" />
+
+            <!-- Descrizione muscoli -->
+            <TextView
+                android:id="@+id/descrizioneMuscoliDipParalleleAssistiti"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="• Muscoli principali: grande pettorale, tricipiti brachiali\n• Muscoli secondari: deltoidi anteriori, grande rotondo\n• Muscoli terziari: core (per la stabilizzazione), romboidi, avambracci"
+                android:textColor="@android:color/white"
+                android:layout_marginBottom="24dp" />
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/dashboard_background"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Toolbar con freccia indietro -->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar_croci_manubri_panca"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="#4B0082"
+        android:title="Croci Con Manubri Su Panca"
+        android:titleTextColor="@android:color/white" />
+
+    <!-- Contenuto scorrevole -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- GIF o video -->
+            <VideoView
+                android:id="@+id/Croci_Manubri_Panca_Video"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginBottom="16dp" />
+
+            <!-- Titolo esercizio -->
+            <TextView
+                android:id="@+id/titoloCrociManubriPanca"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Croci Con Manubri Su Panca"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/white"
+                android:layout_marginBottom="8dp" />
+
+            <!-- Descrizione esercizio -->
+            <TextView
+                android:id="@+id/descrizioneCrociManubriPanca"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Le croci con manubri sono un esercizio di isolamento che mira a sviluppare e scolpire il petto, concentrandosi sull’apertura e la chiusura del torace. Eseguite su una panca (solitamente piana o inclinata), consistono nell’aprire le braccia lateralmente mantenendole leggermente flesse, per poi richiuderle in un movimento controllato simile a un abbraccio. È un esercizio che enfatizza l’allungamento e la contrazione del grande pettorale, offrendo un’estensione maggiore rispetto alla panca piana con bilanciere. La versione inclinata tende a coinvolgere maggiormente la porzione clavicolare del petto (parte alta). Essendo a basso carico rispetto a esercizi multiarticolari, è ideale da inserire come complemento o finisher nei workout per il petto."
+                android:textColor="@android:color/white"
+                android:layout_marginBottom="24dp" />
+
+            <!-- Immagine muscoli coinvolti -->
+            <ImageView
+                android:id="@+id/imgMuscoliCoinvoltiCrociManubriPanca"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/muscoli_croci_panca"
+                android:layout_marginBottom="16dp" />
+
+            <!-- Titolo sezione muscoli -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Muscoli Coinvolti Croci Con Manubri Su Panca"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/white"
+                android:layout_marginBottom="8dp" />
+
+            <!-- Descrizione muscoli -->
+            <TextView
+                android:id="@+id/descrizioneMuscoliCrociManubriPanca"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="• Muscoli principali: grande pettorale\n• Muscoli secondari: deltoide anteriore\n• Muscoli terziari: bicipiti brachiali (stabilizzazione), muscoli stabilizzatori scapolari"
+                android:textColor="@android:color/white"
+                android:layout_marginBottom="24dp" />
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

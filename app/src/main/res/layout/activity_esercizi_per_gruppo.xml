@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@color/dashboard_background"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <!-- Toolbar -->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar_esercizi_per_gruppo"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="#4B0082"
+        android:title="Esercizi"
+        android:titleTextColor="@android:color/white" />
+
+    <!-- Titolo del gruppo muscolare -->
+    <TextView
+        android:id="@+id/titoloGruppo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Titolo Gruppo Muscolare"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="@android:color/white"
+        android:layout_marginTop="16dp"
+        android:padding="16dp"/>
+
+    <!-- Descrizione del gruppo muscolare -->
+    <TextView
+        android:id="@+id/descrizioneGruppo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Descrizione del gruppo muscolare selezionato."
+        android:textColor="@android:color/white"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="8dp"
+        android:padding="16dp"/>
+
+    <!-- Linea divisoria -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#80FFFFFF"
+        android:layout_marginBottom="8dp" />
+
+    <!-- RecyclerView con esercizi -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewEsercizi"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:padding="4dp" />
+
+</LinearLayout>

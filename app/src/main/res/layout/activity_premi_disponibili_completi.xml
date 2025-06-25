@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/dashboard_background">
+
+    <!-- Toolbar -->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar_premi_disponibili"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="#4B0082"
+        android:title="Premi e Badge"
+        android:titleTextColor="@android:color/white" />
+
+    <!-- Sezione titolo + descrizione -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Titolo -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Schermata Premi Disponibili"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/white"
+            android:layout_marginBottom="8dp" />
+
+        <!-- Descrizione -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="In questa schermata troverai tutti i premi disponibili. Per visualizzare i premi personali raggiunti, clicca sul bottone VISUALIZZA I MIEI PREMI."
+            android:textColor="@android:color/white"
+            android:layout_marginBottom="8dp" />
+
+        <!-- Linea divisoria -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#80FFFFFF"
+            android:layout_marginVertical="16dp" />
+    </LinearLayout>
+
+    <!-- Lista dei premi disponibili -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewPremi"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:padding="16dp" />
+
+    <!-- Pulsante per aprire la schermata "I miei premi" -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnVaiAiMieiPremi"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Visualizza i miei premi"
+        android:textStyle="bold"
+        android:layout_margin="16dp"
+        android:textColor="@android:color/white"
+        app:cornerRadius="16dp"
+        app:backgroundTint="#4B0082" />
+</LinearLayout>
