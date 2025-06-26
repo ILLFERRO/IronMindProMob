@@ -57,38 +57,6 @@
                 android:textColor="@android:color/white"
                 android:layout_marginBottom="16dp" />
 
-            <!-- Statistiche -->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Statistiche"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:textColor="@android:color/white"
-                android:layout_marginBottom="8dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Sessioni completate: 0"
-                android:textColor="@android:color/white"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Tempo totale: 0 min"
-                android:textColor="@android:color/white"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Durata media: 0 min"
-                android:textColor="@android:color/white"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Set totali: 0"
-                android:textColor="@android:color/white"/>
-            <!-- Grafico volume medio (puoi aggiungerlo più avanti con una libreria come MPAndroidChart) -->
-
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
