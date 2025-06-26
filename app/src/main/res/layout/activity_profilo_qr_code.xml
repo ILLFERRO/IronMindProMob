@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layoutQrCode"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#4B0082">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar_qr_code"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="#4B0082"
+        android:elevation="4dp"
+        android:titleTextColor="@android:color/white" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Genera il tuo codice QR per accedere alla palestra"
+        android:padding = "12dp"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        android:layout_marginTop="24dp"
+        android:gravity="center" />
+
+    <Button
+        android:id="@+id/btnGeneraQr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Genera Codice QR"
+        android:layout_gravity="center"
+        android:layout_marginTop="16dp" />
+
+    <ImageView
+        android:id="@+id/imageQrCode"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="32dp" />
+</LinearLayout>

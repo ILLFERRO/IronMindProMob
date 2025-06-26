@@ -64,6 +64,11 @@ class SettingsActivity : AppCompatActivity() {
             startActivity(Intent(this, ProfiloPesoAltezzaActivity::class.java))
         }
 
+        //profilo QrCode
+        findViewById<TextView>(R.id.qr_code_profilo).setOnClickListener {
+            startActivity(Intent(this, ProfiloQrCodeActivity::class.java))
+        }
+
         //Backup & Ripristino
         findViewById<TextView>(R.id.backup_ripristino).setOnClickListener {
             startActivity(Intent(this, BackupRipristinoActivity::class.java))
