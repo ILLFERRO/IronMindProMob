@@ -416,6 +416,24 @@
                 android:textColor="@android:color/white"
                 android:layout_marginTop="16dp"/>
 
+            <Button
+                android:id="@+id/btn_reset_statistiche"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Ripristina statistiche allenamento"
+                android:backgroundTint="@color/purple_700"
+                android:textColor="@android:color/white"
+                android:layout_marginTop="8dp"/>
+
+            <Button
+                android:id="@+id/btn_reset_premi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Ripristina premi"
+                android:backgroundTint="@color/purple_700"
+                android:textColor="@android:color/white"
+                android:layout_marginTop="8dp"/>
+
         </LinearLayout>
     </ScrollView>
 

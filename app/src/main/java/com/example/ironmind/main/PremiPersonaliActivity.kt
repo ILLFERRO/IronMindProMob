@@ -1,6 +1,5 @@
 package com.example.ironmind.main
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.LinearLayout
@@ -33,6 +32,10 @@ class PremiPersonaliActivity : AppCompatActivity() {
         recyclerView.layoutManager = LinearLayoutManager(this)
 
         // Otteniamo solo i premi sbloccati
+        val premiPrefs = getSharedPreferences("premi_sbloccati", MODE_PRIVATE)
+        PremiRepository.listaPremi.forEach {
+            it.sbloccato = premiPrefs.getBoolean(it.titolo, false)
+        }
         val mieiPremi = PremiRepository.listaPremi.filter { it.sbloccato }
 
         val emptyState = findViewById<LinearLayout>(R.id.emptyStateContainer)

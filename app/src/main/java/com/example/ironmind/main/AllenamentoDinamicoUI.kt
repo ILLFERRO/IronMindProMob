@@ -7,7 +7,9 @@ import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.example.ironmind.R
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Handler
+import android.util.Log
 import android.view.View
 
 fun String.toCleanFloat(): Float {
@@ -107,6 +109,27 @@ class AllenamentoDinamicoUI : AppCompatActivity() {
                 }
             }
 
+            val prefsStats = getSharedPreferences("allenamento_stats", MODE_PRIVATE)
+            val schedeCompletate = prefsStats.getStringSet("schede_completate", mutableSetOf())?.toMutableSet() ?: mutableSetOf()
+
+            if (!schedeCompletate.contains(nomeScheda)) {
+                Log.d("DEBUG_SALVATAGGIO", "Finisci: sto salvando la scheda: $nomeScheda")
+                schedeCompletate.add(nomeScheda)
+                prefsStats.edit().putStringSet("schede_completate", schedeCompletate).apply()
+            } else {
+                Log.d("DEBUG_SALVATAGGIO", "Finisci: scheda già salvata: $nomeScheda")
+            }
+
+            // ✅ Pulisce schede errate
+            val schedeValide = setOf(
+                "Principiante 1", "Principiante 2", "Principiante 3",
+                "Intermedio 1", "Intermedio 2", "Intermedio 3",
+                "Esperto 1", "Esperto 2", "Esperto 3"
+            )
+            pulisciSchedeCompletate(prefsStats, schedeValide)
+
+            aggiornaEControllaPremi()
+
             val intentAllenamentoCompletato = Intent(this, AllenamentoCompletato::class.java)
             intentAllenamentoCompletato.putExtra("eserciziCompletati", ArrayList(eserciziCompletati))
             startActivity(intentAllenamentoCompletato)
@@ -145,6 +168,27 @@ class AllenamentoDinamicoUI : AppCompatActivity() {
             if (!eserciziCompletati.contains(scheda[esercizioCorrenteIndex])) {
                 eserciziCompletati.add(scheda[esercizioCorrenteIndex])
             }
+
+            // 🔥 Salva la scheda completata
+            val prefsStats = getSharedPreferences("allenamento_stats", MODE_PRIVATE)
+            val schedeCompletate = prefsStats.getStringSet("schede_completate", mutableSetOf())?.toMutableSet() ?: mutableSetOf()
+            if (!schedeCompletate.contains(nomeScheda)) {
+                Log.d("DEBUG_SALVATAGGIO", "Sto salvando la scheda: $nomeScheda")
+                schedeCompletate.add(nomeScheda)
+                prefsStats.edit().putStringSet("schede_completate", schedeCompletate).apply()
+            } else {
+                Log.d("DEBUG_SALVATAGGIO", "Scheda già salvata: $nomeScheda")
+            }
+
+            // ✅ Pulisce eventuali schede errate salvate in passato
+            val schedeValide = setOf(
+                "Principiante 1", "Principiante 2", "Principiante 3",
+                "Intermedio 1", "Intermedio 2", "Intermedio 3",
+                "Esperto 1", "Esperto 2", "Esperto 3"
+            )
+            pulisciSchedeCompletate(prefsStats, schedeValide)
+
+            aggiornaEControllaPremi()
 
             val intentAllenamentoCompletato = Intent(this, AllenamentoCompletato::class.java)
             intentAllenamentoCompletato.putExtra("eserciziCompletati", ArrayList(eserciziCompletati))
@@ -343,5 +387,95 @@ class AllenamentoDinamicoUI : AppCompatActivity() {
             .putLong("durata_totale_sec", durataSec)
             .putInt("numero_totale_set", totaleSet)
             .apply()
+    }
+
+    private fun aggiornaEControllaPremi() {
+        val prefs = getSharedPreferences("allenamento_stats", MODE_PRIVATE)
+        val editor = prefs.edit()
+
+        // Statistiche totali
+        val allenamenti = prefs.getInt("allenamenti_totali", 0) + 1
+        val serie = prefs.getInt("serie_totali", 0) + scheda.sumOf { it.setCompletati }
+        val ripetizioni = prefs.getInt("ripetizioni_totali", 0) + scheda.sumOf { it.ripetizioniPerSet.sum() }
+        val pesoTotale = prefs.getFloat("peso_totale", 0f) + scheda.sumOf { it.pesoPerSet.sumOf { peso -> peso.toDouble() } }.toFloat()
+
+        editor.putInt("allenamenti_totali", allenamenti)
+        editor.putInt("serie_totali", serie)
+        editor.putInt("ripetizioni_totali", ripetizioni)
+        editor.putFloat("peso_totale", pesoTotale)
+        editor.apply()
+
+        val premiPrefs = getSharedPreferences("premi_sbloccati", MODE_PRIVATE)
+        val premiEditor = premiPrefs.edit()
+
+        // Aggiorna le date degli allenamenti
+        val allenamentoDates = prefs.getStringSet("allenamento_date", emptySet())?.toMutableSet() ?: mutableSetOf()
+        val oggi = java.time.LocalDate.now()
+        val formatter = java.time.format.DateTimeFormatter.ISO_DATE
+        allenamentoDates.add(oggi.format(formatter))
+        prefs.edit().putStringSet("allenamento_date", allenamentoDates).apply()
+
+        // Calcola settimana attuale
+        val currentWeek = oggi.get(java.time.temporal.IsoFields.WEEK_OF_WEEK_BASED_YEAR)
+        val currentYear = oggi.year
+
+        // Conta quanti allenamenti in questa settimana (lun-dom)
+        val allenamentiSettimana = allenamentoDates.count { dateStr ->
+            val date = java.time.LocalDate.parse(dateStr, formatter)
+            val week = date.get(java.time.temporal.IsoFields.WEEK_OF_WEEK_BASED_YEAR)
+            val year = date.year
+            week == currentWeek && year == currentYear
+        }
+
+        // Salva settimane attive (almeno 3 allenamenti)
+        val settimaneCon3Allenamenti = prefs.getStringSet("settimane_attive", emptySet())?.toMutableSet() ?: mutableSetOf()
+        if (allenamentiSettimana >= 3) {
+            settimaneCon3Allenamenti.add("$currentYear-$currentWeek")
+            prefs.edit().putStringSet("settimane_attive", settimaneCon3Allenamenti).apply()
+        }
+
+        val settimaneAttiveCount = settimaneCon3Allenamenti.size
+        Log.d("DEBUG_PREMI", "Allenamenti in settimana: $allenamentiSettimana")
+        Log.d("DEBUG_PREMI", "Settimane attive: $settimaneCon3Allenamenti")
+        Log.d("DEBUG_PREMI", "Premio Settimana Attiva sbloccato? ${premiPrefs.getBoolean("Settimana Attiva", false)}")
+        val costanza = settimaneAttiveCount >= 4
+
+        // Controlla schede completate per livelli
+        val schedeCompletate = prefs.getStringSet("schede_completate", emptySet()) ?: emptySet()
+
+        Log.d("DEBUG_SCHEDE", "Schede completate: $schedeCompletate")
+
+        val principianteCompleto = listOf("Principiante 1", "Principiante 2", "Principiante 3").all { it in schedeCompletate }
+        val intermedioCompleto = listOf("Intermedio 1", "Intermedio 2", "Intermedio 3").all { it in schedeCompletate }
+        val espertoCompleto = listOf("Esperto 1", "Esperto 2", "Esperto 3").all { it in schedeCompletate }
+
+        // Sblocca premi
+        PremiRepository.listaPremi.forEach { premio ->
+            if (!premio.sbloccato) {
+                when (premio.titolo) {
+                    "Primo Allenamento" -> if (allenamenti >= 1) premio.sbloccato = true
+                    "Palestrato" -> if (allenamenti >= 100) premio.sbloccato = true
+                    "Serie su Serie" -> if (serie >= 1000) premio.sbloccato = true
+                    "Ripeti" -> if (ripetizioni >= 1000) premio.sbloccato = true
+                    "Sollevatore" -> if (pesoTotale >= 1000f) premio.sbloccato = true
+                    "Settimana Attiva" -> if (settimaneCon3Allenamenti.contains("$currentYear-$currentWeek")) premio.sbloccato = true
+                    "Costanza" -> if (costanza) premio.sbloccato = true
+                    "Principiante!" -> if (principianteCompleto) premio.sbloccato = true
+                    "Intermedio!" -> if (intermedioCompleto) premio.sbloccato = true
+                    "Esperto!" -> if (espertoCompleto) premio.sbloccato = true
+                }
+                if (premio.sbloccato) {
+                    premiEditor.putBoolean(premio.titolo, true)
+                }
+            }
+        }
+
+        premiEditor.apply()
+    }
+
+    private fun pulisciSchedeCompletate(prefsStats: SharedPreferences, schedeValide: Set<String>) {
+        val completate = prefsStats.getStringSet("schede_completate", mutableSetOf())?.toMutableSet() ?: mutableSetOf()
+        val nuoveCompletate = completate.filter { it in schedeValide }.toMutableSet()
+        prefsStats.edit().putStringSet("schede_completate", nuoveCompletate).apply()
     }
 }

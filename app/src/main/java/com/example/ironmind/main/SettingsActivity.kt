@@ -8,6 +8,7 @@ import androidx.appcompat.widget.Toolbar
 import com.example.ironmind.R
 import android.widget.Button
 import android.app.AlertDialog
+import android.widget.Toast
 
 class SettingsActivity : AppCompatActivity() {
 
@@ -186,6 +187,37 @@ class SettingsActivity : AppCompatActivity() {
                 .setNegativeButton("Annulla", null)
                 .show()
         }
+
+        val btnResetStatistiche = findViewById<Button>(R.id.btn_reset_statistiche)
+        btnResetStatistiche.setOnClickListener {
+            AlertDialog.Builder(this)
+                .setTitle("Conferma ripristino")
+                .setMessage("Vuoi davvero cancellare tutte le statistiche degli allenamenti?\nL'azione è irreversibile.")
+                .setPositiveButton("Sì") { _, _ ->
+                    val prefsStats = getSharedPreferences("allenamento_stats", MODE_PRIVATE)
+                    prefsStats.edit().clear().apply()
+                }
+                .setNegativeButton("Annulla", null)
+                .show()
+        }
+
+        val btnResetPremi = findViewById<Button>(R.id.btn_reset_premi)
+        btnResetPremi.setOnClickListener {
+            AlertDialog.Builder(this)
+                .setTitle("Conferma azzeramento premi")
+                .setMessage("Sei sicuro di voler eliminare tutti i premi sbloccati?")
+                .setPositiveButton("Sì") { _, _ ->
+                    val prefsPremi = getSharedPreferences("premi_sbloccati", MODE_PRIVATE)
+                    prefsPremi.edit().clear().apply()
+
+                    // Aggiorno lista in memoria per reflect UI
+                    PremiRepository.listaPremi.forEach { it.sbloccato = false }
+                    Toast.makeText(this, "Premi resettati", Toast.LENGTH_SHORT).show()
+                }
+                .setNegativeButton("Annulla", null)
+                .show()
+        }
+
 
         toolbar.setNavigationOnClickListener {
             onBackPressedDispatcher.onBackPressed()
