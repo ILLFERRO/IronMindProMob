@@ -3,9 +3,9 @@ package com.example.ironmind
 import android.content.Context
 import android.content.Intent
 import androidx.test.core.app.ApplicationProvider
-import androidx.test.core.app.ActivityScenario
+import androidx.test.core.app.ActivityScenario //per lanciare un'Activity in un test
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.Espresso.onView //per cercare e verificare componenti UI
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import com.example.ironmind.main.Esercizio
@@ -16,14 +16,14 @@ import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 
-@RunWith(AndroidJUnit4::class)
-class AllenamentoDinamicoUITest {
+@RunWith(AndroidJUnit4::class) //dice a JUnit di eseguire i test con il runner di Android
+class AllenamentoDinamicoUITestScheda {
 
     private val nomeSchedaTest = "nomeScheda"
 
     @Before
     fun setup() {
-        val context = ApplicationProvider.getApplicationContext<Context>()
+        val context = ApplicationProvider.getApplicationContext<Context>() //prende il context
         val prefs = context.getSharedPreferences("IronMindPrefs", Context.MODE_PRIVATE)
 
         val esercizi = listOf(

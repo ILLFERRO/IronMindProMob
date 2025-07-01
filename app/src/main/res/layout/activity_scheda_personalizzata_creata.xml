@@ -41,6 +41,26 @@
         android:padding="16dp"
         android:clipToPadding="false" />
 
+    <TextView
+        android:id="@+id/txtDataAllenamento"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ultimo allenamento: -"
+        android:textColor="@android:color/white"
+        android:textSize="16sp"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="16dp" />
+
+    <TextView
+        android:id="@+id/txtDurataAllenamento"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Durata: -"
+        android:textColor="@android:color/white"
+        android:textSize="16sp"
+        android:layout_marginTop="4dp"
+        android:layout_marginStart="16dp" />
+
     <Button
         android:id="@+id/btnCominciaAllenamento"
         android:layout_width="match_parent"

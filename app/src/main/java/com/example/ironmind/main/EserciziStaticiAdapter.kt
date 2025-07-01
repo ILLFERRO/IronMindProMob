@@ -62,9 +62,4 @@ class EserciziStaticiAdapter(private var esercizi: List<Esercizio>) :
     }
 
     override fun getItemCount(): Int = esercizi.size
-
-    fun updateList(newList: List<Esercizio>) {
-        esercizi = newList
-        notifyDataSetChanged()
-    }
 }

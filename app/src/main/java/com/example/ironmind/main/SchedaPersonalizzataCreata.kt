@@ -36,6 +36,18 @@ class SchedaPersonalizzataCreata : AppCompatActivity() {
 
         // ✅ Titolo Scheda
         findViewById<TextView>(R.id.titoloScheda).text = nomeScheda
+        // ✅ Recupera tempo totale e data ultimo allenamento
+        val prefsStats = getSharedPreferences("allenamento_stats", MODE_PRIVATE)
+        val durataSec = prefsStats.getLong("durata_totale_sec_$nomeScheda", 0L)
+        val dataAllenamento = prefsStats.getString("data_ultimo_allenamento_$nomeScheda", "N/D")
+
+        val minuti = durataSec / 60
+        val secondi = durataSec % 60
+        val durataFormattata = String.format("%02d:%02d", minuti, secondi)
+
+        // ✅ Mostra nella UI (supponendo che tu aggiunga due TextView nel layout)
+        findViewById<TextView>(R.id.txtDataAllenamento).text = "Ultimo allenamento: $dataAllenamento"
+        findViewById<TextView>(R.id.txtDurataAllenamento).text = "Durata: $durataFormattata"
 
         // ✅ Carica dati da memoria
         SchedaManager.caricaSchedaDaStorage(nomeScheda, this)

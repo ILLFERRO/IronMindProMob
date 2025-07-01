@@ -32,7 +32,7 @@ object RecuperoTimerManager {
 
             val builder = NotificationCompat.Builder(context, CHANNEL_ID)
                 .setSmallIcon(R.drawable.ic_launcher_foreground)
-                .setContentTitle("Recupero in corso")
+                .setContentTitle("Recupero: ")
                 .setContentText("Tempo restante: ${formatTime(durataSecondi)}")
                 .setOngoing(true)
                 .setPriority(NotificationCompat.PRIORITY_LOW)

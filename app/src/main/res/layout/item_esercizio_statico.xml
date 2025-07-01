@@ -31,21 +31,21 @@
             android:id="@+id/setCompletati"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Descrizione"
+            android:text="Set Completati"
             android:textColor="@android:color/black" />
 
         <TextView
             android:id="@+id/ripetizioni"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Descrizione"
+            android:text="Ripetizioni"
             android:textColor="@android:color/black" />
 
         <TextView
             android:id="@+id/pesoTempo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Descrizione"
+            android:text="PesoTempo"
             android:textColor="@android:color/black" />
 
     </LinearLayout>
