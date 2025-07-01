@@ -17,28 +17,28 @@ object SchedaManager {
         }
     }
 
-    fun getScheda(nomeScheda: String, context: Context): List<Esercizio> { //Context serve a dare un contesto all'app, cioè una classe che dia risorse e funzioni di Android tipo SharedPreferences, Risorse, File di Sistema, questa funzione restituisce la lista di esercizi associati al nome di una scheda di allenamento. I dati sono letti da SharedPreferences se non sono già in memoria.
-        schedePersonalizzate[nomeScheda]?.let { //controlla se la scheda è già in memoria
-            return it //se è così la ritorna
+    fun getScheda(nomeScheda: String, context: Context? = null): List<Esercizio> {
+        schedePersonalizzate[nomeScheda]?.let {
+            return it
         }
 
-        val prefs = context.getSharedPreferences("IronMindPrefs", Context.MODE_PRIVATE) //Apre le SharedPreferences "IronMindPrefs"
-        val eserciziJson = prefs.getString("scheda_$nomeScheda", null) ?: return emptyList() //cerca una scheda con un certo nome con la chiave "scheda_$nomeScheda", se non la trova resituisce una lista vuota
+        // Se non è in cache e il context è nullo (cioè sei in test), restituisci lista vuota
+        if (context == null) return emptyList()
 
-        //Deserializza il JSON in una lista di oggetti Esercizio
+        val prefs = context.getSharedPreferences("IronMindPrefs", Context.MODE_PRIVATE)
+        val eserciziJson = prefs.getString("scheda_$nomeScheda", null) ?: return emptyList()
+
         val type = object : TypeToken<List<Esercizio>>() {}.type
-        val esercizi = gson.fromJson<List<Esercizio>>(eserciziJson, type) //Usa Gson per convertire il JSON in una vera lista di oggetti Esercizio
+        val esercizi = gson.fromJson<List<Esercizio>>(eserciziJson, type)
 
-        // 🔧 Fix per evitare crash se i dati vecchi mancano alcuni campi
-        val eserciziCorretti = esercizi.map { esercizio -> //Fa un controllo su ogni esercizio per evitare null nei campi lista
-            esercizio.copy( //Usa copy() per creare una copia di ogni oggetto Esercizio con liste vuote al posto dei null
+        val eserciziCorretti = esercizi.map { esercizio ->
+            esercizio.copy(
                 ripetizioniPerSet = esercizio.ripetizioniPerSet,
                 pesoPerSet = esercizio.pesoPerSet,
                 tempoRecuperoPerSet = esercizio.tempoRecuperoPerSet
             )
         }
 
-        //salva la lista in memoria e la restituisce
         schedePersonalizzate[nomeScheda] = eserciziCorretti.toMutableList()
         Log.d("SchedaManager", "Esercizi caricati per '$nomeScheda': $eserciziCorretti")
         return eserciziCorretti
