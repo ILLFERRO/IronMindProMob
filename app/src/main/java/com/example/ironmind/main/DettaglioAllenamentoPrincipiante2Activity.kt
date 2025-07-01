@@ -99,11 +99,13 @@ class DettaglioAllenamentoPrincipiante2Activity : AppCompatActivity() {
 
             val nomeScheda = "Principiante 2"
 
+            //Salvo la scheda temporaneamente
             SchedaManager.schedePersonalizzate[nomeScheda] = esercizi
             SchedaManager.salvaScheda(nomeScheda, this)
 
-            getSharedPreferences("settings", MODE_PRIVATE)
-                .edit().putString("scheda_salvata_nome", nomeScheda).apply()
+            //Salvo la scheda anche in Shared Preferences
+            val prefs = getSharedPreferences("settings", MODE_PRIVATE)
+            prefs.edit().putString("scheda_salvata_nome", nomeScheda).apply()
 
             val intent = Intent(this, AllenamentoDinamicoUI::class.java)
             intent.putExtra("nomeScheda", nomeScheda)

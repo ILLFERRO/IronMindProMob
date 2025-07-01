@@ -11,13 +11,15 @@ import android.content.SharedPreferences
 import android.os.Handler
 import android.util.Log
 import android.view.View
+import androidx.core.content.ContextCompat
 
-fun String.toCleanFloat(): Float {
+fun String.toCleanFloat(): Float { //estensione classe String, converte una stringa in un numero (float) pulito
     return this.replace(" kg", "").replace(",", ".").trim().toFloat()
 }
 
 class AllenamentoDinamicoUI : AppCompatActivity() {
 
+    //definizione variabili
     private lateinit var layoutContainer: LinearLayout
     private val eserciziCompletati = mutableListOf<Esercizio>()
     private lateinit var titoloEsercizio: TextView
@@ -45,21 +47,22 @@ class AllenamentoDinamicoUI : AppCompatActivity() {
         setContentView(R.layout.activity_allenamento_dinamico_ui)
 
         //Timer
-        startTime = System.currentTimeMillis()
+        startTime = System.currentTimeMillis() //inizializzazione, salva il tempo in millisecondi
         timerTextView = findViewById(R.id.timerAllenamento)
         btnFinisciAllenamento = findViewById(R.id.btnFinisciAllenamento)
 
-        handler = Handler(mainLooper)
-        runnable = object : Runnable {
+        //setup dell'handler e del runnable
+        handler = Handler(mainLooper) //creo handler collegato al thread principale per eseguire codice ripetutamente
+        runnable = object : Runnable { //conta il tempo trascorso in millisecondi e lo trasforma in secondi e minuti
             override fun run() {
                 val elapsed = System.currentTimeMillis() - startTime
                 val minutes = (elapsed / 1000) / 60
                 val seconds = (elapsed / 1000) % 60
-                timerTextView.text = String.format("%02d:%02d", minutes, seconds)
-                handler.postDelayed(this, 1000)
+                timerTextView.text = String.format("%02d:%02d", minutes, seconds) //qui aggiorna la TextView
+                handler.postDelayed(this, 1000) //ogni secondo viene richiamato
             }
         }
-        handler.post(runnable)
+        handler.post(runnable) //avvia esecuzione runnable per la prima volta
 
         // Recupera nome scheda
         val preferenzes = getSharedPreferences("settings", MODE_PRIVATE)
@@ -77,6 +80,7 @@ class AllenamentoDinamicoUI : AppCompatActivity() {
             return
         }
 
+        //variabili allenamento
         layoutContainer = findViewById(R.id.recyclerViewSet)
         titoloEsercizio = findViewById(R.id.titoloEsercizio)
         tempoRecupero = findViewById(R.id.timerRecupero)
@@ -85,8 +89,8 @@ class AllenamentoDinamicoUI : AppCompatActivity() {
         btnTerminaAllenamento = Button(this).apply {
             text = "Termina Allenamento"
             visibility = Button.GONE
-            setBackgroundColor(resources.getColor(R.color.purple_700))
-            setTextColor(resources.getColor(android.R.color.white))
+            setBackgroundColor(ContextCompat.getColor(context, R.color.purple_700))
+            setTextColor(ContextCompat.getColor(context, android.R.color.white))
         }
 
         findViewById<LinearLayout>(R.id.layoutBottom).addView(btnTerminaAllenamento)
@@ -99,7 +103,9 @@ class AllenamentoDinamicoUI : AppCompatActivity() {
 
         aggiornaTestoRecupero()
 
-        tempoRecupero.setOnClickListener { mostraDialogModificaRecupero() }
+        tempoRecupero.setOnClickListener {
+            mostraDialogModificaRecupero()
+        }
 
         btnFinisciAllenamento.setOnClickListener {
             for (i in 0..esercizioCorrenteIndex) {
@@ -260,7 +266,7 @@ class AllenamentoDinamicoUI : AppCompatActivity() {
                 val rip = esercizio.ripetizioniPerSet[i]
                 aggiungiCardSet(peso, rip)
             }
-        } else {
+         } else {
             // ✅ Altrimenti usa i valori di default
             repeat(setIniziali) { aggiungiCardSet() }
         }
@@ -284,7 +290,7 @@ class AllenamentoDinamicoUI : AppCompatActivity() {
 
         val esercizioCorrente = scheda[esercizioCorrenteIndex]
 
-        // 🔹 Aggiungi nuovi valori alle liste (in posizione finale)
+        //Aggiungi nuovi valori alle liste (in posizione finale)
         esercizioCorrente.ripetizioniPerSet = esercizioCorrente.ripetizioniPerSet + ripetizioni
         esercizioCorrente.pesoPerSet = esercizioCorrente.pesoPerSet + peso
         esercizioCorrente.tempoRecuperoPerSet = esercizioCorrente.tempoRecuperoPerSet + tempoRecuperoSec

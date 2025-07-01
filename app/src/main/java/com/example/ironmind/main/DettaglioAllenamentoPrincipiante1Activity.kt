@@ -110,7 +110,7 @@ class DettaglioAllenamentoPrincipiante1Activity : AppCompatActivity() {
 
             // Avvia AllenamentoDinamicoUI
             val intent = Intent(this, AllenamentoDinamicoUI::class.java)
-            intent.putExtra("nomeScheda", nomeScheda)
+            intent.putExtra("nomeScheda", nomeScheda) //trasferisce stringa nomeScheda da un'Activity a un altra tramite intent
             startActivity(intent)
         }
     }

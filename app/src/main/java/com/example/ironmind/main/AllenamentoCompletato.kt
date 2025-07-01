@@ -16,7 +16,8 @@ class AllenamentoCompletato : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_allenamento_completato)
 
-        eserciziCompletati = intent.getSerializableExtra("eserciziCompletati") as? ArrayList<Esercizio> ?: arrayListOf()
+        @Suppress("DEPRECATION")
+        eserciziCompletati = intent.getSerializableExtra("eserciziCompletati") as? ArrayList<Esercizio> ?: arrayListOf() //recupero i dati passati da un'altra Activity. Cerco nell'Intent un dato serializzato chiamato eserciziCompletati, se non esiste lo trasformo in un ArrayList vuoto
 
         val btnSalva = findViewById<Button>(R.id.btnSalvaScheda)
 
@@ -74,9 +75,9 @@ class AllenamentoCompletato : AppCompatActivity() {
     }
 
     private fun salvaSchedaNome(nomeScheda: String) {
-        val prefs = getSharedPreferences("IronMindPrefs", MODE_PRIVATE)
+        val prefs = getSharedPreferences("IronMindPrefs", MODE_PRIVATE) //apre SharedPreferences chiamate IronMindPrefs
         val editor = prefs.edit()
-        val set = prefs.getStringSet("mieSchedeNomi", mutableSetOf())?.toMutableSet() ?: mutableSetOf()
+        val set = prefs.getStringSet("mieSchedeNomi", mutableSetOf())?.toMutableSet() ?: mutableSetOf() //legge l'insieme (set) dei nomi delle schede già salvate con chiave mieSchedeNomi. Se non trova niente creo un set vuoto ed uso MutableSet perchè il set letto dalle preferenze non è direttamente modificabile
         set.add(nomeScheda)
         editor.putStringSet("mieSchedeNomi", set)
         editor.apply()

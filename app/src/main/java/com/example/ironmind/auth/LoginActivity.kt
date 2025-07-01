@@ -17,25 +17,26 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
+        //Definisco le TextView
         val btnLogin = findViewById<Button>(R.id.btnLogin)
         val etEmail = findViewById<EditText>(R.id.etEmail)
         val etPassword = findViewById<EditText>(R.id.etPassword)
         val tvRegisterLink = findViewById<TextView>(R.id.tvRegisterLink)
-        val forgotPasswordText = findViewById<TextView>(R.id.forgotPasswordText) // nuovo TextView
+        val forgotPasswordText = findViewById<TextView>(R.id.forgotPasswordText)
 
         auth = FirebaseAuth.getInstance() //inizializza una istanza di firebase
 
         btnLogin.setOnClickListener {
             val email = etEmail.text.toString().trim() //inserisco email, .text accede al contenuto scritto dall'utente, .toString converte quel contenuto in una stringa mentre .trim rimuove eventuali spazi prima/dopo
-            val password = etPassword.text.toString().trim() //inserisco password
+            val password = etPassword.text.toString().trim() //inserisco password e fa la stessa cosa
 
+            //Controlla se uno dei due campi è vuoto
             if (email.isEmpty() || password.isEmpty()) {
                 Toast.makeText(this, "Inserisci email e password", Toast.LENGTH_SHORT).show()
-                return@setOnClickListener
+                return@setOnClickListener //ritorna la funzione di setOnClickListener se mancano così da non uscire dall'onCreate, quindi mi impedisce il login
             }
-            // controlla che io abbia inserito nei campi email e password, rispettivamente email e password e mostra a schermo il messaggio, in stile popup "Inserisci email e password", se mancano poi ritorna il setOnCliCkListener perchè così non esco dalla funzione onCreate ma impedisce solamente il login in quanto i dati non sono validi
 
-            auth.signInWithEmailAndPassword(email, password).addOnCompleteListener { //si tenta di fare login con le credenziali fornite, restituisce un oggetto Task<AuthResult>, che rappresenta un'operazione asincrona.
+            auth.signInWithEmailAndPassword(email, password).addOnCompleteListener { //si tenta di fare login con le credenziali fornite
                 if (it.isSuccessful) {
                     startActivity(Intent(this, DashBoardActivity::class.java))
                     finish()
@@ -56,9 +57,9 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun showPasswordResetDialog() {
+        //qui creo un AlertDialog con il titolo di "Recupera password"
         val builder = AlertDialog.Builder(this)
         builder.setTitle("Recupera password")
-        //qui creo un AlertDialog con il titolo di Recupera password
 
         val input = EditText(this) //creo dinamicamente un campo di testo (EditText) all'interno del popup
         input.hint = "Inserisci la tua email" //testo di guida

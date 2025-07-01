@@ -104,8 +104,8 @@ class DettaglioAllenamentoIntermedio3Activity : AppCompatActivity() {
             SchedaManager.schedePersonalizzate[nomeScheda] = esercizi
             SchedaManager.salvaScheda(nomeScheda, this)
 
-            getSharedPreferences("settings", MODE_PRIVATE)
-                .edit().putString("scheda_salvata_nome", nomeScheda).apply()
+            val prefs = getSharedPreferences("settings", MODE_PRIVATE)
+            prefs.edit().putString("scheda_salvata_nome", nomeScheda).apply()
 
             val intent = Intent(this, AllenamentoDinamicoUI::class.java)
             intent.putExtra("nomeScheda", nomeScheda)

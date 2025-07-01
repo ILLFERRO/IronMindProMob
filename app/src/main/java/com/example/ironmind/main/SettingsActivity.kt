@@ -9,17 +9,13 @@ import com.example.ironmind.R
 import android.widget.Button
 import android.app.AlertDialog
 import android.widget.Toast
+import android.app.Activity
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 
 class SettingsActivity : AppCompatActivity() {
 
-    companion object {
-        const val REQUEST_CODE_START_WEEK = 1001
-        const val REQUEST_CODE_WEEKLY_GOAL = 1002
-        const val REQUEST_CODE_WEIGHT_UNIT = 1003
-        const val REQUEST_CODE_LENGHT_UNIT = 1004
-        const val REQUEST_CODE_DIMENSION_UNIT = 1005
-    }
-
+    //Definisco le TextView
     private lateinit var startWeekTextView: TextView
     private lateinit var startTrainingDayTextView: TextView
     private lateinit var startWeightTextView: TextView
@@ -33,6 +29,12 @@ class SettingsActivity : AppCompatActivity() {
     private lateinit var DefaultSetsTextView: TextView
     private lateinit var DefaultTempoDiRiposoTextView: TextView
 
+    //Definisco i launcher
+    private lateinit var startWeekLauncher: ActivityResultLauncher<Intent>
+    private lateinit var startTrainingDayLauncher: ActivityResultLauncher<Intent>
+    private lateinit var startWeightLauncher: ActivityResultLauncher<Intent>
+    private lateinit var startLenghtLauncher: ActivityResultLauncher<Intent>
+    private lateinit var startDimensionLauncher: ActivityResultLauncher<Intent>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -78,25 +80,49 @@ class SettingsActivity : AppCompatActivity() {
         // Primo giorno della settimana
         startWeekTextView = findViewById(R.id.startWeek)
         updateStartWeekText()
+
+        // Inizializzazione del launcher
+        startWeekLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == Activity.RESULT_OK) {
+                updateStartWeekText() // ricarica il giorno selezionato
+            }
+        }
+
         startWeekTextView.setOnClickListener {
             val intentWeek = Intent(this, WeekActivity::class.java)
-            startActivityForResult(intentWeek, REQUEST_CODE_START_WEEK)
+            startWeekLauncher.launch(intentWeek)
         }
 
         // Obiettivo settimanale
         startTrainingDayTextView = findViewById(R.id.weeklyGoal)
         updateStartTrainingText()
+
+        //Inizializzazione del launcher
+        startTrainingDayLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == Activity.RESULT_OK) {
+                updateStartTrainingText() // ricarica il giorno selezionato
+            }
+        }
+
         startTrainingDayTextView.setOnClickListener {
             val intentTraining = Intent(this, ObiettiviActivity::class.java)
-            startActivityForResult(intentTraining, REQUEST_CODE_WEEKLY_GOAL)
+            startTrainingDayLauncher.launch(intentTraining)
         }
 
         // Unità di peso
         startWeightTextView = findViewById(R.id.weightUnit)
         updateStartWeight()
+
+        //Inizializzazione del launcher
+        startWeightLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){ result ->
+            if(result.resultCode == Activity.RESULT_OK){
+                updateStartWeight()
+            }
+        }
+
         startWeightTextView.setOnClickListener {
             val intentWeight = Intent(this, UnitaPesoActivity::class.java)
-            startActivityForResult(intentWeight, REQUEST_CODE_WEIGHT_UNIT)
+            startWeightLauncher.launch((intentWeight))
         }
 
         // Promemoria (solo startActivity, non serve risultato)
@@ -107,17 +133,33 @@ class SettingsActivity : AppCompatActivity() {
         //Unita di Lunghezza
         startLenghtTextView = findViewById(R.id.lengthUnit)
         updateStartLenght()
+
+        //Inizializzione del launcher
+        startLenghtLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){ result ->
+            if(result.resultCode == Activity.RESULT_OK){
+                updateStartLenght()
+            }
+        }
+
         startLenghtTextView.setOnClickListener {
             val intentLenght = Intent(this, UnitaLunghezzaActivity::class.java)
-            startActivityForResult(intentLenght, REQUEST_CODE_LENGHT_UNIT)
+            startLenghtLauncher.launch(intentLenght)
         }
 
         //Unita di Dimensione
         startDimensionTextView = findViewById(R.id.sizeUnit)
         updateStartDimension()
+
+        //inizializzazione del launcher
+        startDimensionLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){ result ->
+            if(result.resultCode == Activity.RESULT_OK){
+                updateStartDimension()
+            }
+        }
+
         startDimensionTextView.setOnClickListener {
             val intentDimension = Intent(this, DimensioniUnitaActivity::class.java)
-            startActivityForResult(intentDimension, REQUEST_CODE_DIMENSION_UNIT)
+            startDimensionLauncher.launch(intentDimension)
         }
 
         //Incremento di peso
@@ -224,22 +266,9 @@ class SettingsActivity : AppCompatActivity() {
         }
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (resultCode == RESULT_OK) {
-            when (requestCode) {
-                REQUEST_CODE_START_WEEK -> updateStartWeekText()
-                REQUEST_CODE_WEEKLY_GOAL -> updateStartTrainingText()
-                REQUEST_CODE_WEIGHT_UNIT -> updateStartWeight()
-                REQUEST_CODE_LENGHT_UNIT -> updateStartLenght()
-                REQUEST_CODE_DIMENSION_UNIT -> updateStartDimension()
-            }
-        }
-    }
-
     private fun updateStartWeekText() {
         val preferenzeWeek = getSharedPreferences("settings", MODE_PRIVATE)
-        val savedDayName = preferenzeWeek.getString("start_week_day_text", "Lunedì")
+        val savedDayName = preferenzeWeek.getString("start_week_day_text", "Lunedì") //prende la stringa salvata tramite chiave start_week_day_text, se non trova niente scrive Lunedì di default
         startWeekTextView.text = "Primo giorno della settimana: $savedDayName"
     }
 
@@ -318,7 +347,7 @@ class SettingsActivity : AppCompatActivity() {
         DefaultTempoDiRiposoTextView.text = "Tempo di riposo: ${minuti}:${String.format("%02d", secondi)}"
     }
 
-    override fun onResume() {
+    override fun onResume() { //serve per aggiornare dinamicamente un'Activity
         super.onResume()
         updateStartWeekText()
         updateStartTrainingText()

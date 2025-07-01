@@ -18,8 +18,8 @@ object RecuperoTimerManager {
     fun avviaTimer(
         context: Context,
         durataSecondi: Int,
-        onTick: ((tempoRimanente: Int) -> Unit)? = null,
-        onFinish: (() -> Unit)? = null
+        onTick: ((tempoRimanente: Int) -> Unit)? = null, //parametro opzionale, accetta un intero e non restituisce niente, eseguito ogni secondo per aggiornare il tempo rimanente
+        onFinish: (() -> Unit)? = null //eseguita al termine quando finisce il timer
     ) {
         val prefs = context.getSharedPreferences("settings", Context.MODE_PRIVATE)
 
@@ -103,22 +103,22 @@ object RecuperoTimerManager {
         }
     }
 
-    private fun creaCanaleNotifiche(context: Context) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+    private fun creaCanaleNotifiche(context: Context) { //crea un canale di notifiche per poter inviare notifiche
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) { //solo da Android 8.0 in poi
             val channel = NotificationChannel(
-                CHANNEL_ID,
-                "Timer di Recupero",
-                NotificationManager.IMPORTANCE_LOW
+                CHANNEL_ID, //con il suo id canale
+                "Timer di Recupero", //nome "Timer di recupero"
+                NotificationManager.IMPORTANCE_LOW //priorità bassa, vibrazione
             )
-            channel.description = "Notifiche per il timer del tempo di recupero"
-            val manager = context.getSystemService(NotificationManager::class.java)
-            manager.createNotificationChannel(channel)
+            channel.description = "Notifiche per il timer del tempo di recupero" //descrizione del canale
+            val manager = context.getSystemService(NotificationManager::class.java) //ottengo servizio di sistema che gestisce le notifiche
+            manager.createNotificationChannel(channel) //registra il canale nel sistema
         }
     }
 
-    private fun formatTime(secondi: Int): String {
-        val min = secondi / 60
-        val sec = secondi % 60
-        return "%02d:%02d".format(min, sec)
+    private fun formatTime(secondi: Int): String { //formatta il numero di secondi in tipo min:sec e lo converte in stringa
+        val min = secondi / 60 //calcola i minuti interi
+        val sec = secondi % 60 //calcola i secondi rimanenti tramite modulo
+        return "%02d:%02d".format(min, sec) //ritorna una stringa con due cifre sia per minuto che per secondo
     }
 }

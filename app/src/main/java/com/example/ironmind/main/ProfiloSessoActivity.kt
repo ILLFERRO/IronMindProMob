@@ -8,6 +8,7 @@ import com.example.ironmind.R
 
 class ProfiloSessoActivity : AppCompatActivity() {
 
+    //definisco variabili RadioGroup, RadioButton e Button
     private lateinit var radioGroup: RadioGroup
     private lateinit var radioUomo: RadioButton
     private lateinit var radioDonna: RadioButton
@@ -42,13 +43,13 @@ class ProfiloSessoActivity : AppCompatActivity() {
         }
 
         buttonSalva.setOnClickListener {
-            val selectedId = radioGroup.checkedRadioButtonId
-            if (selectedId == -1) {
+            val selectedId = radioGroup.checkedRadioButtonId //recupero l'id del radiobutton
+            if (selectedId == -1) { //se nessun pulsante è stato cliccato l'id selezionato sarà -1
                 Toast.makeText(this, "Seleziona un'opzione", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
-            val sessoSelezionato = when (selectedId) {
+            val sessoSelezionato = when (selectedId) { //quando ha trovato un id
                 R.id.radioUomo -> "Uomo"
                 R.id.radioDonna -> "Donna"
                 else -> ""

@@ -22,12 +22,9 @@ class PredefinedSchedeActivity : AppCompatActivity() {
             title = "Schede Predefinite"
         }
 
-        //supportActionBar?.setDisplayHomeAsUpEnabled(true)
-
         toolbarSchedePredefinite.setNavigationOnClickListener {
-            onBackPressedDispatcher.onBackPressed() //questo è il nuovo metodo per gestire meglio la freccia indietro, prima si usava solo onBackPressed() che infatti viene barrato (perchè deprecato)
+            onBackPressedDispatcher.onBackPressed() //questo è il nuovo metodo per gestire meglio la freccia indietro, prima si usava solo onBackPressed() che infatti viene barrato (perchè deprecato). Quando clicco sulla freccia torno alla schermata precedente
         }
-        //quando clicco sulla freccia torno alla schermata precedente
 
         // Card cliccabili
         findViewById<CardView>(R.id.cardPrincipiante).setOnClickListener {

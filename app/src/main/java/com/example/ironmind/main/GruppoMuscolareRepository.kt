@@ -1,7 +1,6 @@
 package com.example.ironmind.main
 
 import com.example.ironmind.R
-import com.example.ironmind.main.GruppoMuscolare
 
 object GruppiMuscolariRepository {
     val listaGruppi = listOf(

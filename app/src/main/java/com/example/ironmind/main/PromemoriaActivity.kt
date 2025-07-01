@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ironmind.R
+import androidx.appcompat.widget.Toolbar
 
 class PromemoriaActivity : AppCompatActivity() {
 
@@ -20,11 +21,14 @@ class PromemoriaActivity : AppCompatActivity() {
         setContentView(R.layout.activity_promemoria)
 
         // Toolbar
-        val toolbar: androidx.appcompat.widget.Toolbar = findViewById(R.id.toolbar_promemoria)
-        toolbar.title = "Promemoria"
-        setSupportActionBar(toolbar)
+        val toolbarPromemoria = findViewById<Toolbar>(R.id.toolbar_promemoria)
+        toolbarPromemoria.title = "Promemoria"
+        setSupportActionBar(toolbarPromemoria)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        toolbar.setNavigationOnClickListener { finish() }
+
+        toolbarPromemoria.setNavigationOnClickListener {
+            onBackPressedDispatcher.onBackPressed()
+        }
 
         // Carica i promemoria
         listaPromemoria = PromemoriaManager.carica(this)
@@ -60,9 +64,9 @@ class PromemoriaActivity : AppCompatActivity() {
 
         // Popola lo spinner con i giorni della settimana
         val giorni = resources.getStringArray(R.array.giorni_settimana)
-        val adapterGiorni = ArrayAdapter(this, android.R.layout.simple_spinner_item, giorni)
-        adapterGiorni.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        spinnerGiorno.adapter = adapterGiorni
+        val adapterGiorni = ArrayAdapter(this, android.R.layout.simple_spinner_item, giorni) //creo un adapter che collega i dati (i giorni) alla vista dello spinner
+        adapterGiorni.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item) //imposta come viene visualizzato l'elenco a discesa quando l'utente clicca sullo spinner
+        spinnerGiorno.adapter = adapterGiorni //assegna l'adapter allo spinner
 
         // Variabile per tenere traccia dell'ora scelta
         var oraSelezionata = "08:30"  // default
@@ -113,9 +117,9 @@ class PromemoriaActivity : AppCompatActivity() {
                 }
 
                 PromemoriaManager.salva(this, listaPromemoria)
-                adapter.notifyDataSetChanged()
+                adapter.notifyDataSetChanged() //notifica ogni observer al cambiare dei dati
                 aggiornaVisibilitaVistaVuota()
-                dialog.dismiss()
+                dialog.dismiss() //rimuove il dialog
             } else {
                 Toast.makeText(this, "Inserisci un nome valido", Toast.LENGTH_SHORT).show()
             }

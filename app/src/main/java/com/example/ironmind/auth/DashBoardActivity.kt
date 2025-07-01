@@ -48,7 +48,7 @@ class DashBoardActivity : AppCompatActivity() {
 
         // Contatore (testo completo con bandierina)
         workoutProgressText = findViewById(R.id.workoutProgressText) //inizializzo il testo del contatore degli allenamenti
-        updateWorkoutProgress() //metodo che mi fa l'upgrade del mio contatore (ancora vuoto)
+        updateWorkoutProgress()
 
         // Card: schede: definisco le card
         val predefinedCard = findViewById<CardView>(R.id.predefinedCardsSection)
@@ -86,11 +86,11 @@ class DashBoardActivity : AppCompatActivity() {
     // Funzione per aggiornare il testo del contatore allenamenti
     private fun updateWorkoutProgress() {
         val prefs = getSharedPreferences("settings", MODE_PRIVATE)
-        val completati = prefs.getInt("allenamenti_completati", 0)
-        val obiettivo = prefs.getInt("obiettivo_settimanale", 3)
+        val completati = prefs.getInt("allenamenti_completati", 0) //legge quanti allenamenti settimanali sono stati completati tramite la chiave allenamenti_completati e se non ne trova, mette 0
+        val obiettivo = prefs.getInt("obiettivo_settimanale", 3) //legge l'obiettivo settimanale tramite la chiave obiettivo_settimanale, se non lo trova, mette 3 di default
 
         val testoContatore = "Allenamenti Settimanali Completati: $completati / $obiettivo"
-        findViewById<TextView>(R.id.workoutProgressText).text = testoContatore
+        findViewById<TextView>(R.id.workoutProgressText).text = testoContatore //mette la scritta qui sopra in base ai risultati ottenuti
     }
 
     private fun setupCalendar() {
@@ -140,10 +140,10 @@ class DashBoardActivity : AppCompatActivity() {
     private fun mostraLeMieSchede() {
         val prefs = getSharedPreferences("IronMindPrefs", MODE_PRIVATE)
 
-        val schedaPrincipianteAttiva = prefs.getBoolean("schedaPrincipianteAttiva", false)
+        val schedaPrincipianteAttiva = prefs.getBoolean("schedaPrincipianteAttiva", false) //legge un valore booleano con chiave "schedaPrincipianteAttiva" e torna false se la chiave non esiste
         val schedaIntermedioAttiva = prefs.getBoolean("schedaIntermedioAttiva", false)
         val schedaEspertoAttiva = prefs.getBoolean("schedaEspertoAttiva", false)
-        val schedePersonalizzate = prefs.getStringSet("mieSchedeNomi", emptySet()) ?: emptySet()
+        val schedePersonalizzate = prefs.getStringSet("mieSchedeNomi", emptySet()) ?: emptySet() //legge un Set<String> associato alla chiave "mieSchedeNomi", se la chiave non esiste restituisce un Set vuoto
 
         val sezioneMieSchede = findViewById<LinearLayout>(R.id.sezioneMieSchede)
         sezioneMieSchede.removeAllViews()
@@ -152,19 +152,19 @@ class DashBoardActivity : AppCompatActivity() {
         if (schedaPrincipianteAttiva || schedaIntermedioAttiva || schedaEspertoAttiva || schedePersonalizzate.isNotEmpty()) {
             sezioneMieSchede.visibility = View.VISIBLE
 
-            if (schedaPrincipianteAttiva) {
+            if (schedaPrincipianteAttiva) { //controllo se la scheda Princpiante è attiva
                 val card = LayoutInflater.from(this)
-                    .inflate(R.layout.card_scheda_semplice, sezioneMieSchede, false)
-                val titolo = card.findViewById<TextView>(R.id.cardTitle)
+                    .inflate(R.layout.card_scheda_semplice, sezioneMieSchede, false) //crea dinamicamente la CardView a partire dal layout card_scheda_semplice, dove sezioneMieSchede è il mio contenitore
+                val titolo = card.findViewById<TextView>(R.id.cardTitle) //cambio il titolo per ottenere il nuovo titolo: Scheda Principiante
                 titolo.text = "Scheda Principiante"
 
                 card.setOnClickListener {
                     val intent = Intent(this, PrincipianteActivity::class.java)
-                    intent.putExtra("fromMieSchede", true)
+                    intent.putExtra("fromMieSchede", true) //passo anche un valore extra per capire da dove l'ho aperta, in questo caso passa true se l'ho aperta da fromMieSchede
                     startActivity(intent)
                 }
 
-                sezioneMieSchede.addView(card)
+                sezioneMieSchede.addView(card) //aggiunge la CardView al layout padre (sezioneLeMieSchede)
             }
 
             if (schedaIntermedioAttiva) {
@@ -215,7 +215,7 @@ class DashBoardActivity : AppCompatActivity() {
             }
 
         } else {
-            sezioneMieSchede.visibility = View.GONE
+            sezioneMieSchede.visibility = View.GONE //se non c'è nessuna CardView attiva, la sezione non è più visibile, cioè è vuota
         }
     }
 

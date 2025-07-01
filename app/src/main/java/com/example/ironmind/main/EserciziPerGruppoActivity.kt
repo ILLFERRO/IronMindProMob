@@ -7,7 +7,6 @@ import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ironmind.R
-import android.util.Log
 
 class EserciziPerGruppoActivity : AppCompatActivity() {
 
@@ -40,21 +39,20 @@ class EserciziPerGruppoActivity : AppCompatActivity() {
 
         // RecyclerView
         recyclerView = findViewById(R.id.recyclerViewEsercizi)
-        recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerView.layoutManager = LinearLayoutManager(this) //setto il layoutManager che la RecyclerView userà
 
         val listaEsercizi = EserciziRepository.eserciziPerGruppo[gruppoNome] ?: emptyList()
 
-        adapter = EserciziAdapter(nomeScheda, listaEsercizi) { esercizio ->
+        adapter = EserciziAdapter(nomeScheda, listaEsercizi) { esercizio -> //definisco un adapter di nome EserciziAdapter e passo un nomeScheda e la listaEsercizi, e poi definisco una lambda functions che mi definisce cosa succede quando clicco il pulsante accanto all'esercizio
             if (SchedaManager.contiene(nomeScheda, esercizio)) {
                 SchedaManager.rimuoviEsercizio(nomeScheda, esercizio)
             } else {
                 SchedaManager.aggiungiEsercizio(nomeScheda, esercizio)
             }
-            adapter.notifyDataSetChanged()
-            Log.d("DEBUG", "SHC: added? ${SchedaManager.getScheda(nomeScheda, this).size}")
+            adapter.notifyDataSetChanged() //dopo aver modificato la scheda aggiorna la RecyclerView
         }
 
-        recyclerView.adapter = adapter
+        recyclerView.adapter = adapter //assegno adapter alla RecyclerView
     }
 
     override fun onPause() {

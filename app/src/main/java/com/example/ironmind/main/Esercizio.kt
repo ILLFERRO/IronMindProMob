@@ -18,4 +18,4 @@ data class Esercizio(
     var pesoPerSet: List<Float> = emptyList(), // o tempo se corpo libero
     var tempoRecuperoPerSet: List<Int> = emptyList() // solo se corpo libero, in secondi
 
-) : Serializable
+) : Serializable //indica che la data class può essere scritta in un file , salvata nelle SharedPreferences, passata tra Activity tramite Intent oppure inviata su rete o salvata su database

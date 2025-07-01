@@ -37,7 +37,7 @@ class WeekActivity : AppCompatActivity() {
         radioGroup.check(savedRadioId)
 
         //Salvo il giorno con il numero associato
-        radioGroup.setOnCheckedChangeListener { group, checkedId ->
+        radioGroup.setOnCheckedChangeListener { _, checkedId ->
             val numberToDay = mapOf(
                 R.id.radioMonday to Pair(1, "Lunedì"),
                 R.id.radioTuesday to Pair(2, "Martedì"),
