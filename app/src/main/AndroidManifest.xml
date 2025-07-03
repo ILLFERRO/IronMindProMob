@@ -13,6 +13,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.IronMind">
+
+        <receiver android:name=".notifiche.SvegliaReceiver" android:exported="false"/>
+        <receiver android:name=".main.AllarmeRicevitore" android:exported="true" />
+
         <activity
             android:name=".main.ProfiloQrCodeActivity"
             android:exported="false" />
