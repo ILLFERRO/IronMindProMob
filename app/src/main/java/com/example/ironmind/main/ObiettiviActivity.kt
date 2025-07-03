@@ -51,7 +51,7 @@ class ObiettiviActivity : AppCompatActivity() {
                 prefs.edit()
                     .putInt("start_training_day_number", selected.first)
                     .putString("start_training_day", selected.second)
-                    .putInt("obiettivo_settimanale", selected.first) // <-- AGGIUNTA FONDAMENTALE
+                    .putInt("obiettivo_settimanale", selected.first)
                     .apply()
                 setResult(RESULT_OK)
             }

@@ -266,7 +266,7 @@ class AllenamentoDinamicoUI : AppCompatActivity() {
                 val rip = esercizio.ripetizioniPerSet[i]
                 aggiungiCardSet(peso, rip)
             }
-         } else {
+        } else {
             // ✅ Altrimenti usa i valori di default
             repeat(setIniziali) { aggiungiCardSet() }
         }
@@ -301,12 +301,12 @@ class AllenamentoDinamicoUI : AppCompatActivity() {
         setView.findViewById<TextView>(R.id.txtNumeroSet).text = "Set ${setIndex + 1}"
 
         btnRipPiù.setOnClickListener {
-            val nuovoRip = valoreRip.text.toString().toInt() + 1 //legge il valore delle ripetizioni, lo trasforma in Int e poi aumenta di 1
-            valoreRip.text = nuovoRip.toString() //aggiorna la TextView con il nuovo valore
-            esercizioCorrente.ripetizioniPerSet = esercizioCorrente.ripetizioniPerSet.toMutableList().apply { //aggiorna la lista ripetizioniPerSet dell'esercizio corrente, modificando solo il set corrente
+            val nuovoRip = valoreRip.text.toString().toInt() + 1
+            valoreRip.text = nuovoRip.toString()
+            esercizioCorrente.ripetizioniPerSet = esercizioCorrente.ripetizioniPerSet.toMutableList().apply {
                 this[setIndex] = nuovoRip
             }
-            salvaSchedaCorrente() //salvo i nuovi dati
+            salvaSchedaCorrente()
         }
 
         btnRipMeno.setOnClickListener {
@@ -390,8 +390,7 @@ class AllenamentoDinamicoUI : AppCompatActivity() {
 
         val prefs = getSharedPreferences("allenamento_stats", MODE_PRIVATE)
         prefs.edit()
-            .putLong("durata_totale_sec_$nomeScheda", durataSec) //specifica scheda e la sua durata
-            .putString("data_ultimo_allenamento_$nomeScheda", java.time.LocalDate.now().toString()) //aggiungi la data
+            .putLong("durata_totale_sec", durataSec)
             .putInt("numero_totale_set", totaleSet)
             .apply()
     }
@@ -442,10 +441,15 @@ class AllenamentoDinamicoUI : AppCompatActivity() {
         }
 
         val settimaneAttiveCount = settimaneCon3Allenamenti.size
+        Log.d("DEBUG_PREMI", "Allenamenti in settimana: $allenamentiSettimana")
+        Log.d("DEBUG_PREMI", "Settimane attive: $settimaneCon3Allenamenti")
+        Log.d("DEBUG_PREMI", "Premio Settimana Attiva sbloccato? ${premiPrefs.getBoolean("Settimana Attiva", false)}")
         val costanza = settimaneAttiveCount >= 4
 
         // Controlla schede completate per livelli
         val schedeCompletate = prefs.getStringSet("schede_completate", emptySet()) ?: emptySet()
+
+        Log.d("DEBUG_SCHEDE", "Schede completate: $schedeCompletate")
 
         val principianteCompleto = listOf("Principiante 1", "Principiante 2", "Principiante 3").all { it in schedeCompletate }
         val intermedioCompleto = listOf("Intermedio 1", "Intermedio 2", "Intermedio 3").all { it in schedeCompletate }
