@@ -53,27 +53,31 @@ class AllenamentoDinamicoUITestTimer {
     fun testTimerSiAggiorna() {
         val context = ApplicationProvider.getApplicationContext<Context>()
         val intent = Intent(context, AllenamentoDinamicoUI::class.java).apply {
-            putExtra("nomeScheda", nomeSchedaTest) //apro la scheda AllenamentoDinamicoUI passando la chiave nomeScheda con il valore nomeSchedaTest
+            putExtra("nomeScheda", nomeSchedaTest)
         }
 
-        ActivityScenario.launch<AllenamentoDinamicoUI>(intent).use { //lancio l'Activity usando ActivityScenario
+        ActivityScenario.launch<AllenamentoDinamicoUI>(intent).use {
 
             // Verifica che il timer sia visibile
             onView(withId(R.id.timerAllenamento)).check(matches(isDisplayed()))
 
+            // 🔁 Attendi che il ViewModel sia pronto e abbia avviato il timer
+            Thread.sleep(1500) // puoi aumentare a 2000 o 2500 se serve
+
             // Leggi il testo iniziale del timer
             var testoIniziale = ""
-            onView(withId(R.id.timerAllenamento)).perform(object : ViewAction { //trovo nella UI il componente con id timerAllenamento che è una TextView visibile sullo schermo e tramite.perform(object : ViewAction compio un'azione personalizzata su quella View
-                override fun getConstraints() = isDisplayed() //funzione che viene eseguita solo quando la View è visibile, Espresso verifica questa condizione prima di eseguire il codice
-                override fun getDescription() = "Leggi testo timer iniziale" //descrizione dell'azione
-                override fun perform(uiController: androidx.test.espresso.UiController?, view: View?) { //accede direttamente alla View trovata e la casta a TextView, inoltre legge il testo attuale del timer e lo assegna alla variabile testoIniziale
+            onView(withId(R.id.timerAllenamento)).perform(object : ViewAction {
+                override fun getConstraints() = isDisplayed()
+                override fun getDescription() = "Leggi testo timer iniziale"
+                override fun perform(uiController: androidx.test.espresso.UiController?, view: View?) {
                     val tv = view as? TextView
                     testoIniziale = tv?.text.toString()
                 }
             })
 
             // Aspetta un paio di secondi per lasciare aggiornare il timer
-            Thread.sleep(2100)
+            onView(withId(R.id.timerAllenamento)).check(matches(isDisplayed()))  // si assicura che sia visibile
+            Thread.sleep(2000)
 
             // Verifica che il testo del timer sia cambiato (il timer si è aggiornato)
             onView(withId(R.id.timerAllenamento)).check(matches(not(withText(testoIniziale))))
