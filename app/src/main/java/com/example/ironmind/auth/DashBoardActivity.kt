@@ -12,6 +12,7 @@ import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
+import androidx.lifecycle.Observer
 import com.example.ironmind.PredefinedSchedeActivity
 import com.example.ironmind.R
 import com.example.ironmind.main.*
@@ -21,7 +22,6 @@ import java.util.*
 class DashBoardActivity : AppCompatActivity() {
 
     private val viewModel: DashBoardViewModel by viewModels()
-
     private lateinit var workoutProgressText: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,15 +30,10 @@ class DashBoardActivity : AppCompatActivity() {
 
         val settingsIcon = findViewById<ImageView>(R.id.Immagine_impostazioni)
         val rewardsIcon = findViewById<ImageView>(R.id.Immagine_premi)
-        settingsIcon.setOnClickListener {
-            startActivity(Intent(this, SettingsActivity::class.java))
-        }
-        rewardsIcon.setOnClickListener {
-            startActivity(Intent(this, PremiDisponibiliCompletiActivity::class.java))
-        }
+        settingsIcon.setOnClickListener { startActivity(Intent(this, SettingsActivity::class.java)) }
+        rewardsIcon.setOnClickListener { startActivity(Intent(this, PremiDisponibiliCompletiActivity::class.java)) }
 
         workoutProgressText = findViewById(R.id.workoutProgressText)
-        updateWorkoutProgress()
 
         val predefinedCard = findViewById<CardView>(R.id.predefinedCardsSection)
         val customCard = findViewById<CardView>(R.id.customCardsSection)
@@ -58,23 +53,21 @@ class DashBoardActivity : AppCompatActivity() {
         findViewById<TextView>(R.id.titoloMieSchede).visibility = View.VISIBLE
 
         setupCalendar()
-        mostraLeMieSchede()
+        osservaViewModel()
+    }
+
+    private fun osservaViewModel() {
+        viewModel.allenamentiCompletati.observe(this) { updateWorkoutProgress() }
+        viewModel.obiettivo.observe(this) { updateWorkoutProgress() }
+        viewModel.schede.observe(this) { mostraLeMieSchede(it) }
+        viewModel.caricaDati()
     }
 
     private fun updateWorkoutProgress() {
-        viewModel.allenamentiCompletati.observe(this) { completati ->
-            val obiettivo = viewModel.obiettivo.value ?: 3
-            val testoContatore = "Allenamenti Settimanali Completati: $completati / $obiettivo"
-            workoutProgressText.text = testoContatore
-        }
-
-        viewModel.obiettivo.observe(this) { obiettivo ->
-            val completati = viewModel.allenamentiCompletati.value ?: 0
-            val testoContatore = "Allenamenti Settimanali Completati: $completati / $obiettivo"
-            workoutProgressText.text = testoContatore
-        }
-
-        viewModel.caricaDatiContatore()
+        val completati = viewModel.allenamentiCompletati.value ?: 0
+        val obiettivo = viewModel.obiettivo.value ?: 3
+        val testoContatore = "Allenamenti Settimanali Completati: $completati / $obiettivo"
+        workoutProgressText.text = testoContatore
     }
 
     private fun setupCalendar() {
@@ -87,12 +80,10 @@ class DashBoardActivity : AppCompatActivity() {
 
         val dayFormat = SimpleDateFormat("EEE", Locale.getDefault())
         val dateFormat = SimpleDateFormat("d", Locale.getDefault())
-
         val today = Calendar.getInstance()
 
         for (i in 0 until 7) {
             val dayView = LayoutInflater.from(this).inflate(R.layout.calendario_giornaliero, calendarContainer, false)
-
             val dayName = dayView.findViewById<TextView>(R.id.dayNameTextView)
             val dayNumber = dayView.findViewById<TextView>(R.id.dayNumberTextView)
 
@@ -113,95 +104,36 @@ class DashBoardActivity : AppCompatActivity() {
             }
 
             dayNumber.background = bgDrawable
-
             calendarContainer.addView(dayView)
             calendar.add(Calendar.DAY_OF_MONTH, 1)
         }
     }
 
-    private fun mostraLeMieSchede() {
-        val prefs = getSharedPreferences("IronMindPrefs", MODE_PRIVATE)
-
-        val schedaPrincipianteAttiva = prefs.getBoolean("schedaPrincipianteAttiva", false)
-        val schedaIntermedioAttiva = prefs.getBoolean("schedaIntermedioAttiva", false)
-        val schedaEspertoAttiva = prefs.getBoolean("schedaEspertoAttiva", false)
-        val schedePersonalizzate = prefs.getStringSet("mieSchedeNomi", emptySet()) ?: emptySet()
-
+    private fun mostraLeMieSchede(schede: List<Pair<String, () -> Unit>>) {
         val sezioneMieSchede = findViewById<LinearLayout>(R.id.sezioneMieSchede)
         sezioneMieSchede.removeAllViews()
 
-        if (schedaPrincipianteAttiva || schedaIntermedioAttiva || schedaEspertoAttiva || schedePersonalizzate.isNotEmpty()) {
+        if (schede.isNotEmpty()) {
             sezioneMieSchede.visibility = View.VISIBLE
-
-            if (schedaPrincipianteAttiva) {
-                val card = creaSchedaCard("Scheda Principiante") {
-                    startActivity(Intent(this, PrincipianteActivity::class.java).apply {
-                        putExtra("fromMieSchede", true)
-                    })
-                }
+            for ((titolo, azione) in schede) {
+                val card = creaSchedaCard(titolo, azione)
                 sezioneMieSchede.addView(card)
             }
-
-            if (schedaIntermedioAttiva) {
-                val card = creaSchedaCard("Scheda Intermedio") {
-                    startActivity(Intent(this, IntermedioActivity::class.java).apply {
-                        putExtra("fromMieSchede", true)
-                    })
-                }
-                sezioneMieSchede.addView(card)
-            }
-
-            if (schedaEspertoAttiva) {
-                val card = creaSchedaCard("Scheda Esperto") {
-                    startActivity(Intent(this, EspertoActivity::class.java).apply {
-                        putExtra("fromMieSchede", true)
-                    })
-                }
-                sezioneMieSchede.addView(card)
-            }
-
-            for (nomeScheda in schedePersonalizzate) {
-                val card = creaSchedaCard(nomeScheda) {
-                    startActivity(Intent(this, SchedaPersonalizzataCreata::class.java).apply {
-                        putExtra("nomeScheda", nomeScheda)
-                    })
-                }
-                sezioneMieSchede.addView(card)
-            }
-
         } else {
             sezioneMieSchede.visibility = View.GONE
         }
     }
 
     private fun creaSchedaCard(titolo: String, onClick: () -> Unit): View {
-        val card = LayoutInflater.from(this).inflate(R.layout.card_scheda_semplice, null, false)
-
-        // Imposta il titolo
+        val sezioneMieSchede = findViewById<LinearLayout>(R.id.sezioneMieSchede)
+        val card = LayoutInflater.from(this).inflate(R.layout.card_scheda_semplice, sezioneMieSchede, false)
         card.findViewById<TextView>(R.id.cardTitle).text = titolo
-
-        // Imposta click listener
         card.setOnClickListener { onClick() }
-
-        // Forza le dimensioni della card (se non le prende dal layout XML)
-        val layoutParams = LinearLayout.LayoutParams(
-            LinearLayout.LayoutParams.MATCH_PARENT,
-            (180 * resources.displayMetrics.density).toInt()  // 180dp in pixel
-        )
-        layoutParams.setMargins(
-            (8 * resources.displayMetrics.density).toInt(),
-            (8 * resources.displayMetrics.density).toInt(),
-            (8 * resources.displayMetrics.density).toInt(),
-            (8 * resources.displayMetrics.density).toInt()
-        )
-        card.layoutParams = layoutParams
-
         return card
     }
 
     override fun onResume() {
         super.onResume()
-        mostraLeMieSchede()
-        updateWorkoutProgress()
+        viewModel.caricaDati()
     }
 }
