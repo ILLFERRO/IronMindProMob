@@ -12,7 +12,6 @@ import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
-import androidx.lifecycle.Observer
 import com.example.ironmind.PredefinedSchedeActivity
 import com.example.ironmind.R
 import com.example.ironmind.main.*

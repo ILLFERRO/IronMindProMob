@@ -1,20 +1,24 @@
 package com.example.ironmind.main
 
+import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Button
+import android.widget.EditText
+import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ironmind.R
-import android.app.AlertDialog
-import android.widget.EditText
-import android.widget.Toast
-import android.util.Log
+import com.example.ironmind.viewmodel.SchedaPersonalizzataViewModel
 
 class SchedaPersonalizzataActivity : AppCompatActivity() {
+
+    private val viewModel: SchedaPersonalizzataViewModel by viewModels()
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var btnComincia: Button
@@ -34,77 +38,50 @@ class SchedaPersonalizzataActivity : AppCompatActivity() {
         btnComincia = findViewById(R.id.btnCominciaAllenamento)
         recyclerView.layoutManager = LinearLayoutManager(this)
 
-        // ✅ Recupera nome della scheda
         nomeScheda = intent.getStringExtra("nomeScheda") ?: "Scheda Temporanea"
         Log.d("SchedaPersonalizzata", "Nome scheda da intent: $nomeScheda")
 
-        // ✅ Carica la scheda da memoria
-        SchedaManager.caricaSchedaDaStorage(nomeScheda, this)
-
-        val esercizi = SchedaManager.getScheda(nomeScheda, this).toMutableList()
-        Log.d("SchedaPersonalizzata", "Esercizi caricati da storage: ${esercizi.size}")
+        val esercizi = viewModel.caricaScheda(nomeScheda, this)
         adapter = EserciziStaticiAdapter(esercizi)
         recyclerView.adapter = adapter
 
-        val btnSalvaScheda = findViewById<Button>(R.id.btnSalvaScheda)
-        btnSalvaScheda.setOnClickListener {
-            val dialogView = layoutInflater.inflate(R.layout.dialog_salva_scheda, null)
-            val nomeSchedaInput = dialogView.findViewById<EditText>(R.id.nomeSchedaEditText)
+        findViewById<Button>(R.id.btnSalvaScheda).apply {
+            visibility = View.VISIBLE
+            setOnClickListener {
+                val dialogView = layoutInflater.inflate(R.layout.dialog_salva_scheda, null)
+                val input = dialogView.findViewById<EditText>(R.id.nomeSchedaEditText)
 
-            AlertDialog.Builder(this)
-                .setTitle("Salva la tua scheda")
-                .setView(dialogView)
-                .setPositiveButton("Salva") { _, _ ->
-                    val nomeNuovo = nomeSchedaInput.text.toString().trim()
-                    if (nomeNuovo.isNotEmpty()) {
-                        // Ottieni gli esercizi correnti nella scheda temporanea
-                        val eserciziCorrenti = SchedaManager.getScheda(nomeScheda, this)
-
-                        // Aggiorna il manager con il nuovo nome
-                        SchedaManager.schedePersonalizzate[nomeNuovo] = eserciziCorrenti.toMutableList()
-
-                        // Salva la scheda con il nuovo nome
-                        SchedaManager.salvaScheda(nomeNuovo, this)
-
-                        // Aggiorna il nomeScheda locale (quello usato nell'activity)
-                        nomeScheda = nomeNuovo
-
-                        // Salva nome nuovo nelle SharedPreferences
-                        getSharedPreferences("settings", MODE_PRIVATE)
-                            .edit()
-                            .putString("scheda_salvata_nome", nomeNuovo)
-                            .apply()
-
-                        Toast.makeText(this, "Scheda salvata come \"$nomeNuovo\"", Toast.LENGTH_SHORT).show()
-
-                        // Aggiorna l'adapter e la UI se vuoi
-                        aggiornaLista()
-                    } else {
-                        Toast.makeText(this, "Inserisci un nome valido", Toast.LENGTH_SHORT).show()
+                AlertDialog.Builder(this@SchedaPersonalizzataActivity)
+                    .setTitle("Salva la tua scheda")
+                    .setView(dialogView)
+                    .setPositiveButton("Salva") { _, _ ->
+                        val nuovoNome = input.text.toString().trim()
+                        if (nuovoNome.isNotEmpty()) {
+                            val successo = viewModel.salvaSchedaConNome(this@SchedaPersonalizzataActivity, nomeScheda, nuovoNome)
+                            if (successo) {
+                                nomeScheda = nuovoNome
+                                Toast.makeText(this@SchedaPersonalizzataActivity, "Scheda salvata come \"$nuovoNome\"", Toast.LENGTH_SHORT).show()
+                                aggiornaLista()
+                            } else {
+                                Toast.makeText(this@SchedaPersonalizzataActivity, "Errore nel salvataggio", Toast.LENGTH_SHORT).show()
+                            }
+                        } else {
+                            Toast.makeText(this@SchedaPersonalizzataActivity, "Inserisci un nome valido", Toast.LENGTH_SHORT).show()
+                        }
                     }
-                }
-                .setNegativeButton("Annulla", null)
-                .show()
+                    .setNegativeButton("Annulla", null)
+                    .show()
+            }
         }
 
-        btnSalvaScheda.visibility = View.VISIBLE
-        btnComincia.visibility = if (esercizi.isEmpty()) View.GONE else View.VISIBLE
-
-        btnComincia.setOnClickListener {
-            val prefs = getSharedPreferences("settings", MODE_PRIVATE)
-            val nomeSchedaSalvata = prefs.getString("scheda_salvata_nome", null)
-            Log.d("SchedaPersonalizzata", "Nome scheda salvata da prefs: $nomeSchedaSalvata")
-
-            val eserciziCorrenti = SchedaManager.getScheda(nomeSchedaSalvata ?: nomeScheda, this)
-            Log.d("SchedaPersonalizzata", "Esercizi correnti prima di cominciare allenamento: ${eserciziCorrenti.size}")
-
-            val intent = Intent(this, AllenamentoDinamicoUI::class.java)
-            if (!nomeSchedaSalvata.isNullOrEmpty()) {
-                intent.putExtra("nomeScheda", nomeSchedaSalvata)
-            } else {
-                intent.putExtra("nomeScheda", nomeScheda) // usa "Scheda Temporanea"
+        btnComincia.apply {
+            visibility = if (esercizi.isEmpty()) View.GONE else View.VISIBLE
+            setOnClickListener {
+                val nomeSalvato = viewModel.getNomeSchedaSalvata(this@SchedaPersonalizzataActivity)
+                val intent = Intent(this@SchedaPersonalizzataActivity, AllenamentoDinamicoUI::class.java)
+                intent.putExtra("nomeScheda", nomeSalvato ?: nomeScheda)
+                startActivity(intent)
             }
-            startActivity(intent)
         }
     }
 
@@ -114,10 +91,8 @@ class SchedaPersonalizzataActivity : AppCompatActivity() {
     }
 
     private fun aggiornaLista() {
-        SchedaManager.caricaSchedaDaStorage(nomeScheda, this) // ✅ Ricarica anche qui nel dubbio
-        val nuoviEsercizi = SchedaManager.getScheda(nomeScheda, this)
-        Log.d("SchedaPersonalizzata", "Esercizi ricaricati in aggiornaLista: ${nuoviEsercizi.size}")
-        adapter = EserciziStaticiAdapter(nuoviEsercizi.toMutableList())
+        val nuoviEsercizi = viewModel.caricaScheda(nomeScheda, this)
+        adapter = EserciziStaticiAdapter(nuoviEsercizi)
         recyclerView.adapter = adapter
         btnComincia.visibility = if (nuoviEsercizi.isEmpty()) View.GONE else View.VISIBLE
     }

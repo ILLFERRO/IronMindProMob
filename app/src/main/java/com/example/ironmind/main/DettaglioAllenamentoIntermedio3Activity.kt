@@ -3,113 +3,63 @@ package com.example.ironmind.main
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.cardview.widget.CardView
 import com.example.ironmind.R
+import com.example.ironmind.viewmodel.DettaglioAllenamentoIntermedio3ViewModel
 
 class DettaglioAllenamentoIntermedio3Activity : AppCompatActivity() {
+
+    private val viewModel: DettaglioAllenamentoIntermedio3ViewModel by viewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dettaglio_allenamento_intermedio_3)
 
-        val toolbarIntermedioDettaglio3 = findViewById<Toolbar>(R.id.toolbar_dettaglio_Intermedio_3)
-        setSupportActionBar(toolbarIntermedioDettaglio3)
+        val toolbar = findViewById<Toolbar>(R.id.toolbar_dettaglio_Intermedio_3)
+        setSupportActionBar(toolbar)
         supportActionBar?.apply {
             setDisplayHomeAsUpEnabled(true)
             title = "Scheda Allenamento Intermedio 3"
         }
 
-        //Apertura Schermata LegPress
-        findViewById<CardView>(R.id.Card_Esercizio_1_3).setOnClickListener {
-            val intentLegPress = Intent(this, LegPressActivity::class.java)
-            startActivity(intentLegPress)
-        }
-
-        //Apertura Schermata LegCurl
-        findViewById<CardView>(R.id.Card_Esercizio_2_3).setOnClickListener {
-            val intentLegCurl = Intent(this, LegCurlActivity::class.java)
-            startActivity(intentLegCurl)
-        }
-
-
-        //Apertura Schermata AffondiManubri
-        findViewById<CardView>(R.id.Card_Esercizio_3_3).setOnClickListener {
-            val intentAffondiManubri = Intent(this, AffondiManubriActivity::class.java)
-            startActivity(intentAffondiManubri)
-        }
-
-        //Apertura Schermata CrunchSulTappetino
-        findViewById<CardView>(R.id.Card_Esercizio_4_3).setOnClickListener {
-            val intentCrunchSulTappetino = Intent(this, CrunchSulTappetinoActivity::class.java)
-            startActivity(intentCrunchSulTappetino)
-        }
-
-        //Apertura Schermata PlankIsometrico
-        findViewById<CardView>(R.id.Card_Esercizio_5_3).setOnClickListener {
-            val intentPlankIsometrico = Intent(this, PlankIsometricoActivity::class.java)
-            startActivity(intentPlankIsometrico)
-        }
-
-        toolbarIntermedioDettaglio3.setNavigationOnClickListener {
+        toolbar.setNavigationOnClickListener {
             onBackPressedDispatcher.onBackPressed()
         }
 
-        // Bottone "Comincia Allenamento"
-        findViewById<Button>(R.id.btnCominciaAllenamento).setOnClickListener {
-            val esercizi = arrayListOf(
-                Esercizio(
-                    nome = "Leg Press",
-                    descrizione = "4 serie da 12 ripetizioni",
-                    setPrevisti = 4,
-                    ripetizioniPreviste = 12,
-                    usaPeso = true,
-                    pesoPredefinito = 80f
-                ),
-                Esercizio(
-                    nome = "Leg Curl",
-                    descrizione = "3 serie da 15 ripetizioni",
-                    setPrevisti = 3,
-                    ripetizioniPreviste = 15,
-                    usaPeso = true,
-                    pesoPredefinito = 35f
-                ),
-                Esercizio(
-                    nome = "Affondi Con Manubri",
-                    descrizione = "3 serie da 10 ripetizioni per gamba",
-                    setPrevisti = 3,
-                    ripetizioniPreviste = 10,
-                    usaPeso = true,
-                    pesoPredefinito = 15f
-                ),
-                Esercizio(
-                    nome = "Crunch Su Tappetino",
-                    descrizione = "3 serie da 20 ripetizioni",
-                    setPrevisti = 3,
-                    ripetizioniPreviste = 20,
-                    usaPeso = false
-                ),
-                Esercizio(
-                    nome = "Plank",
-                    descrizione = "3 serie da 30 secondi",
-                    setPrevisti = 3,
-                    ripetizioniPreviste = 30,  // usa questo valore come durata in secondi
-                    usaPeso = false
-                )
-            )
+        findViewById<CardView>(R.id.Card_Esercizio_1_3).setOnClickListener {
+            startActivity(Intent(this, LegPressActivity::class.java))
+        }
 
+        findViewById<CardView>(R.id.Card_Esercizio_2_3).setOnClickListener {
+            startActivity(Intent(this, LegCurlActivity::class.java))
+        }
+
+        findViewById<CardView>(R.id.Card_Esercizio_3_3).setOnClickListener {
+            startActivity(Intent(this, AffondiManubriActivity::class.java))
+        }
+
+        findViewById<CardView>(R.id.Card_Esercizio_4_3).setOnClickListener {
+            startActivity(Intent(this, CrunchSulTappetinoActivity::class.java))
+        }
+
+        findViewById<CardView>(R.id.Card_Esercizio_5_3).setOnClickListener {
+            startActivity(Intent(this, PlankIsometricoActivity::class.java))
+        }
+
+                findViewById<Button>(R.id.btnCominciaAllenamento).setOnClickListener {
             val nomeScheda = "Intermedio 3"
+            val esercizi = viewModel.getEsercizi()
+            viewModel.salvaScheda(nomeScheda, esercizi)
 
-            // Salvataggio scheda (implementa SchedaManager a parte)
-            SchedaManager.schedePersonalizzate[nomeScheda] = esercizi
-            SchedaManager.salvaScheda(nomeScheda, this)
+            getSharedPreferences("settings", MODE_PRIVATE)
+                .edit().putString("scheda_salvata_nome", nomeScheda).apply()
 
-            val prefs = getSharedPreferences("settings", MODE_PRIVATE)
-            prefs.edit().putString("scheda_salvata_nome", nomeScheda).apply()
-
-            val intent = Intent(this, AllenamentoDinamicoUI::class.java)
-            intent.putExtra("nomeScheda", nomeScheda)
-            startActivity(intent)
+            startActivity(Intent(this, AllenamentoDinamicoUI::class.java).apply {
+                putExtra("nomeScheda", nomeScheda)
+            })
         }
     }
 }

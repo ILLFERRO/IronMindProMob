@@ -134,34 +134,6 @@
                 android:layout_height="1dp"
                 android:background="#CCCCCC" />
 
-            <!-- Sezione Generali -->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Generali"
-                android:textStyle="bold"
-                android:textSize="18sp"
-                android:textColor="#FFFFFF"
-                android:layout_marginTop="16dp" />
-
-            <!-- Voce Primo giorno della settimana -->
-            <TextView
-                android:id="@+id/startWeek"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Primo giorno della settimana: "
-                android:padding="12dp"
-                android:textSize="16sp"
-                android:textColor="#FFFFFF"
-                android:background="?attr/selectableItemBackground"
-                android:clickable="true"
-                android:focusable="true" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="#CCCCCC" />
-
             <!-- Sezione Obiettivi -->
             <TextView
                 android:layout_width="wrap_content"
@@ -218,60 +190,6 @@
                 android:layout_height="1dp"
                 android:background="#CCCCCC" />
 
-            <!-- Sezione Unità di misura -->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Unità di misura"
-                android:textStyle="bold"
-                android:textSize="18sp"
-                android:textColor="#FFFFFF"
-                android:layout_marginTop="16dp" />
-
-            <!-- Voce Unità di peso -->
-            <TextView
-                android:id="@+id/weightUnit"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Unità di peso: kg"
-                android:padding="12dp"
-                android:textSize="16sp"
-                android:textColor="#FFFFFF"
-                android:background="?attr/selectableItemBackground"
-                android:clickable="true"
-                android:focusable="true" />
-
-            <!-- Voce Unità di lunghezza -->
-            <TextView
-                android:id="@+id/lengthUnit"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Unità di lunghezza: cm"
-                android:padding="12dp"
-                android:textSize="16sp"
-                android:textColor="#FFFFFF"
-                android:background="?attr/selectableItemBackground"
-                android:clickable="true"
-                android:focusable="true" />
-
-            <!-- Voce Dimensioni unità -->
-            <TextView
-                android:id="@+id/sizeUnit"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Dimensioni unità: media"
-                android:padding="12dp"
-                android:textSize="16sp"
-                android:textColor="#FFFFFF"
-                android:background="?attr/selectableItemBackground"
-                android:clickable="true"
-                android:focusable="true" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="#CCCCCC" />
-
             <!-- Sezione Sessione di allenamento -->
             <TextView
                 android:layout_width="wrap_content"
@@ -295,24 +213,12 @@
                 android:clickable="true"
                 android:focusable="true" />
 
-            <!-- Voce Tieni lo schermo acceso -->
-            <TextView
-                android:id="@+id/keepScreenOn"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Tieni lo schermo acceso"
-                android:padding="12dp"
-                android:textSize="16sp"
-                android:textColor="#FFFFFF"
-                android:background="?attr/selectableItemBackground"
-                android:clickable="true"
-                android:focusable="true" />
-
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:background="#CCCCCC" />
 
+            <!-- Sezione Tempo di recupero-->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

@@ -204,28 +204,13 @@
             android:name=".main.MostraNotificaActivity"
             android:exported="false" />
         <activity
-            android:name=".main.SchermoAccesoActivity"
-            android:exported="false" />
-        <activity
             android:name=".main.IncrementoPesoActivity"
-            android:exported="false" />
-        <activity
-            android:name=".main.DimensioniUnitaActivity"
-            android:exported="false" />
-        <activity
-            android:name=".main.UnitaLunghezzaActivity"
-            android:exported="false" />
-        <activity
-            android:name=".main.UnitaPesoActivity"
             android:exported="false" />
         <activity
             android:name=".main.PromemoriaActivity"
             android:exported="false" />
         <activity
             android:name=".main.ObiettiviActivity"
-            android:exported="false" />
-        <activity
-            android:name=".main.WeekActivity"
             android:exported="false" />
         <activity
             android:name=".main.BackupRipristinoActivity"

@@ -1,26 +1,25 @@
 package com.example.ironmind.main
 
+import android.app.Activity
+import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import com.example.ironmind.R
-import android.widget.Button
-import android.app.AlertDialog
-import android.widget.Toast
-import android.app.Activity
-import androidx.activity.result.ActivityResultLauncher
-import androidx.activity.result.contract.ActivityResultContracts
+import com.example.ironmind.viewmodel.SettingsViewModel
 
 class SettingsActivity : AppCompatActivity() {
 
-    //Definisco le TextView
-    private lateinit var startWeekTextView: TextView
+    private val viewModel: SettingsViewModel by viewModels()
+
     private lateinit var startTrainingDayTextView: TextView
-    private lateinit var startWeightTextView: TextView
-    private lateinit var startLenghtTextView: TextView
-    private lateinit var startDimensionTextView: TextView
     private lateinit var weightIncrementTextView: TextView
     private lateinit var KeepScreenActiveTextView: TextView
     private lateinit var ShowNotificationTextView: TextView
@@ -29,12 +28,7 @@ class SettingsActivity : AppCompatActivity() {
     private lateinit var DefaultSetsTextView: TextView
     private lateinit var DefaultTempoDiRiposoTextView: TextView
 
-    //Definisco i launcher
-    private lateinit var startWeekLauncher: ActivityResultLauncher<Intent>
     private lateinit var startTrainingDayLauncher: ActivityResultLauncher<Intent>
-    private lateinit var startWeightLauncher: ActivityResultLauncher<Intent>
-    private lateinit var startLenghtLauncher: ActivityResultLauncher<Intent>
-    private lateinit var startDimensionLauncher: ActivityResultLauncher<Intent>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,60 +41,42 @@ class SettingsActivity : AppCompatActivity() {
             title = "Impostazioni"
         }
 
-        //Profilo Nome & Cognome
+        startTrainingDayTextView = findViewById(R.id.weeklyGoal)
+        weightIncrementTextView = findViewById(R.id.weightIncrement)
+        KeepScreenActiveTextView = findViewById(R.id.showNotification)
+        ShowNotificationTextView = findViewById(R.id.showNotification)
+        VibrateOnFinishTextView = findViewById(R.id.vibrateOnFinish)
+        SoundOnFinishTextView = findViewById(R.id.soundOnFinish)
+        DefaultSetsTextView = findViewById(R.id.defaultSets)
+        DefaultTempoDiRiposoTextView = findViewById(R.id.defaultRestTime)
+
         findViewById<TextView>(R.id.nome_cognome).setOnClickListener {
             startActivity(Intent(this, ProfiloNomeCognomeActivity::class.java))
         }
 
-        //Profilo Età & Data Di Nascita
         findViewById<TextView>(R.id.eta_data_di_nascita).setOnClickListener {
             startActivity(Intent(this, ProfiloEtaDataDiNascitaActivity::class.java))
         }
 
-        //Profilo Sesso
         findViewById<TextView>(R.id.sesso_profilo).setOnClickListener {
             startActivity(Intent(this, ProfiloSessoActivity::class.java))
         }
 
-        //Profilo Peso & Altezza
         findViewById<TextView>(R.id.peso_altezza_profilo).setOnClickListener {
             startActivity(Intent(this, ProfiloPesoAltezzaActivity::class.java))
         }
 
-        //profilo QrCode
         findViewById<TextView>(R.id.qr_code_profilo).setOnClickListener {
             startActivity(Intent(this, ProfiloQrCodeActivity::class.java))
         }
 
-        //Backup & Ripristino
         findViewById<TextView>(R.id.backup_ripristino).setOnClickListener {
             startActivity(Intent(this, BackupRipristinoActivity::class.java))
         }
 
-        // Primo giorno della settimana
-        startWeekTextView = findViewById(R.id.startWeek)
-        updateStartWeekText()
-
-        // Inizializzazione del launcher
-        startWeekLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-            if (result.resultCode == Activity.RESULT_OK) {
-                updateStartWeekText() // ricarica il giorno selezionato
-            }
-        }
-
-        startWeekTextView.setOnClickListener {
-            val intentWeek = Intent(this, WeekActivity::class.java)
-            startWeekLauncher.launch(intentWeek)
-        }
-
-        // Obiettivo settimanale
-        startTrainingDayTextView = findViewById(R.id.weeklyGoal)
-        updateStartTrainingText()
-
-        //Inizializzazione del launcher
         startTrainingDayLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == Activity.RESULT_OK) {
-                updateStartTrainingText() // ricarica il giorno selezionato
+                viewModel.caricaImpostazioni()
             }
         }
 
@@ -109,129 +85,44 @@ class SettingsActivity : AppCompatActivity() {
             startTrainingDayLauncher.launch(intentTraining)
         }
 
-        // Unità di peso
-        startWeightTextView = findViewById(R.id.weightUnit)
-        updateStartWeight()
-
-        //Inizializzazione del launcher
-        startWeightLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){ result ->
-            if(result.resultCode == Activity.RESULT_OK){
-                updateStartWeight()
-            }
-        }
-
-        startWeightTextView.setOnClickListener {
-            val intentWeight = Intent(this, UnitaPesoActivity::class.java)
-            startWeightLauncher.launch((intentWeight))
-        }
-
-        // Promemoria (solo startActivity, non serve risultato)
         findViewById<TextView>(R.id.reminders).setOnClickListener {
             startActivity(Intent(this, PromemoriaActivity::class.java))
         }
 
-        //Unita di Lunghezza
-        startLenghtTextView = findViewById(R.id.lengthUnit)
-        updateStartLenght()
-
-        //Inizializzione del launcher
-        startLenghtLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){ result ->
-            if(result.resultCode == Activity.RESULT_OK){
-                updateStartLenght()
-            }
+        weightIncrementTextView.setOnClickListener {
+            startActivity(Intent(this, IncrementoPesoActivity::class.java))
         }
 
-        startLenghtTextView.setOnClickListener {
-            val intentLenght = Intent(this, UnitaLunghezzaActivity::class.java)
-            startLenghtLauncher.launch(intentLenght)
+        ShowNotificationTextView.setOnClickListener {
+            startActivity(Intent(this, MostraNotificaActivity::class.java))
         }
 
-        //Unita di Dimensione
-        startDimensionTextView = findViewById(R.id.sizeUnit)
-        updateStartDimension()
-
-        //inizializzazione del launcher
-        startDimensionLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){ result ->
-            if(result.resultCode == Activity.RESULT_OK){
-                updateStartDimension()
-            }
+        VibrateOnFinishTextView.setOnClickListener {
+            startActivity(Intent(this, VibraAlTermineActivity::class.java))
         }
 
-        startDimensionTextView.setOnClickListener {
-            val intentDimension = Intent(this, DimensioniUnitaActivity::class.java)
-            startDimensionLauncher.launch(intentDimension)
+        SoundOnFinishTextView.setOnClickListener {
+            startActivity(Intent(this, SuonaAlTermineActivity::class.java))
         }
 
-        //Incremento di peso
-        weightIncrementTextView = findViewById<TextView>(R.id.weightIncrement)
-        updateIncrementWeight()
-        weightIncrementTextView.setOnClickListener{
-            val intentIncrementWeight = Intent(this, IncrementoPesoActivity::class.java)
-            startActivity(intentIncrementWeight)
+        DefaultSetsTextView.setOnClickListener {
+            startActivity(Intent(this, SetDefaultActivity::class.java))
         }
 
-        //Tenere Schermo Acceso
-        KeepScreenActiveTextView = findViewById<TextView>(R.id.keepScreenOn)
-        updateSchermoAccesoSetting()
-        KeepScreenActiveTextView.setOnClickListener{
-            val intentSchermoAcceso = Intent(this, SchermoAccesoActivity::class.java)
-            startActivity(intentSchermoAcceso)
-        }
-
-        //Mostra Notifica
-        ShowNotificationTextView = findViewById<TextView>(R.id.showNotification)
-        updateMostraNotifica()
-        ShowNotificationTextView.setOnClickListener{
-            val intentMostraNotifica = Intent(this, MostraNotificaActivity::class.java)
-            startActivity(intentMostraNotifica)
-        }
-
-        //Vibra Al Termine
-        VibrateOnFinishTextView = findViewById<TextView>(R.id.vibrateOnFinish)
-        updateVibrazionAttiva()
-        VibrateOnFinishTextView.setOnClickListener{
-            val intentVibrazione = Intent(this, VibraAlTermineActivity::class.java)
-            startActivity(intentVibrazione)
-        }
-
-        //Suona Al Termine
-        SoundOnFinishTextView = findViewById<TextView>(R.id.soundOnFinish)
-        updateSuoneriaAttiva()
-        SoundOnFinishTextView.setOnClickListener{
-            val intentSuoneria = Intent(this, SuonaAlTermineActivity::class.java)
-            startActivity(intentSuoneria)
-        }
-
-        //Set Di Default
-        DefaultSetsTextView = findViewById<TextView>(R.id.defaultSets)
-        updateSetDefault()
-        DefaultSetsTextView.setOnClickListener{
-            val intentSetDefault = Intent(this, SetDefaultActivity::class.java)
-            startActivity(intentSetDefault)
-        }
-
-        DefaultTempoDiRiposoTextView = findViewById(R.id.defaultRestTime)
-        updateTempoDiRiposo()
         DefaultTempoDiRiposoTextView.setOnClickListener {
-            val intentTempoDiRiposo = Intent(this, TempoDiRiposoActivity::class.java)
-            startActivity(intentTempoDiRiposo)
+            startActivity(Intent(this, TempoDiRiposoActivity::class.java))
         }
 
-        val btnResetAllenamenti = findViewById<Button>(R.id.btn_reset_allenamenti)
-        btnResetAllenamenti.setOnClickListener {
+        findViewById<Button>(R.id.btn_reset_allenamenti).setOnClickListener {
             AlertDialog.Builder(this)
                 .setTitle("Conferma azzeramento")
                 .setMessage("Sei sicuro di voler azzerare il conteggio degli allenamenti completati?")
-                .setPositiveButton("Sì") { _, _ ->
-                    val prefs = getSharedPreferences("settings", MODE_PRIVATE)
-                    prefs.edit().putInt("allenamenti_completati", 0).apply()
-                }
+                .setPositiveButton("Sì") { _, _ -> viewModel.resetAllenamentiCompletati() }
                 .setNegativeButton("Annulla", null)
                 .show()
         }
 
-        val btnResetStatistiche = findViewById<Button>(R.id.btn_reset_statistiche)
-        btnResetStatistiche.setOnClickListener {
+        findViewById<Button>(R.id.btn_reset_statistiche).setOnClickListener {
             AlertDialog.Builder(this)
                 .setTitle("Conferma ripristino")
                 .setMessage("Vuoi davvero cancellare tutte le statistiche degli allenamenti?\nL'azione è irreversibile.")
@@ -243,16 +134,13 @@ class SettingsActivity : AppCompatActivity() {
                 .show()
         }
 
-        val btnResetPremi = findViewById<Button>(R.id.btn_reset_premi)
-        btnResetPremi.setOnClickListener {
+        findViewById<Button>(R.id.btn_reset_premi).setOnClickListener {
             AlertDialog.Builder(this)
                 .setTitle("Conferma azzeramento premi")
                 .setMessage("Sei sicuro di voler eliminare tutti i premi sbloccati?")
                 .setPositiveButton("Sì") { _, _ ->
                     val prefsPremi = getSharedPreferences("premi_sbloccati", MODE_PRIVATE)
                     prefsPremi.edit().clear().apply()
-
-                    // Aggiorno lista in memoria per reflect UI
                     PremiRepository.listaPremi.forEach { it.sbloccato = false }
                     Toast.makeText(this, "Premi resettati", Toast.LENGTH_SHORT).show()
                 }
@@ -260,106 +148,49 @@ class SettingsActivity : AppCompatActivity() {
                 .show()
         }
 
-
         toolbar.setNavigationOnClickListener {
             onBackPressedDispatcher.onBackPressed()
         }
+
+        viewModel.startTrainingGoal.observe(this) {
+            startTrainingDayTextView.text = "Obiettivo settimanale: $it"
+        }
+
+        viewModel.pesoIncremento.observe(this) {
+            weightIncrementTextView.text = "Incremento di peso: $it kg"
+        }
+
+        viewModel.mostraNotifica.observe(this) {
+            val stato = if (it) "attivo" else "disattivato"
+            ShowNotificationTextView.text = "Mostra Notifica: $stato"
+        }
+
+        viewModel.vibrazioneAttiva.observe(this) {
+            val stato = if (it) "attivo" else "disattivato"
+            VibrateOnFinishTextView.text = "Vibra Al Termine: $stato"
+        }
+
+        viewModel.suoneriaAttiva.observe(this) {
+            val stato = if (it) "attivo" else "disattivato"
+            SoundOnFinishTextView.text = "Suona Al Termine: $stato"
+        }
+
+        viewModel.setDefault.observe(this) {
+            DefaultSetsTextView.text = "Set Di Default: $it"
+        }
+
+        viewModel.tempoRiposo.observe(this) { (minuti, secondi) ->
+            DefaultTempoDiRiposoTextView.text = "Tempo di riposo: ${minuti}:${String.format("%02d", secondi)}"
+        }
+
+        viewModel.schermoAttivo.observe(this) {
+            val stato = if (it) "attivo" else "disattivato"
+            KeepScreenActiveTextView.text = "Tenere schermo acceso: $stato"
+        }
     }
 
-    private fun updateStartWeekText() {
-        val preferenzeWeek = getSharedPreferences("settings", MODE_PRIVATE)
-        val savedDayName = preferenzeWeek.getString("start_week_day_text", "Lunedì") //prende la stringa salvata tramite chiave start_week_day_text, se non trova niente scrive Lunedì di default
-        startWeekTextView.text = "Primo giorno della settimana: $savedDayName"
-    }
-
-    private fun updateStartTrainingText() {
-        val preferenzeTraining = getSharedPreferences("settings", MODE_PRIVATE)
-        val savedGoal = preferenzeTraining.getString("start_training_day", "1 giorno a settimana")
-        startTrainingDayTextView.text = "Obiettivo settimanale: $savedGoal"
-    }
-
-    private fun updateStartWeight() {
-        val preferenzePeso = getSharedPreferences("settings", MODE_PRIVATE)
-        val savedWeight = preferenzePeso.getString("choose_weight_number", "Libbre")
-        startWeightTextView.text = "Unità di peso: $savedWeight"
-    }
-
-    private fun updateStartLenght() {
-        val preferenzeLunghezza = getSharedPreferences("settings", MODE_PRIVATE)
-        val savedLenght = preferenzeLunghezza.getString("choose_length_unit", "Miglia")
-        startLenghtTextView.text = "Unità di lunghezza: $savedLenght"
-    }
-
-    private fun updateStartDimension() {
-        val preferenzeDimensione = getSharedPreferences("settings", MODE_PRIVATE)
-        val savedDimension = preferenzeDimensione.getString("choose_dimension_unit", "Pollici")
-        startDimensionTextView.text = "Unità di dimensione: $savedDimension"
-    }
-
-    private fun updateIncrementWeight(){
-        val preferenzeIncrementoPeso = getSharedPreferences("settings", MODE_PRIVATE)
-        val salvaIncremento = preferenzeIncrementoPeso.getString("peso_incremento", "2.5")
-        weightIncrementTextView.text = "Incremento di peso: $salvaIncremento kg"
-    }
-
-    private fun updateSchermoAccesoSetting() {
-        val preferenzeSchermoAcceso = getSharedPreferences("settings", MODE_PRIVATE)
-        val schermoAccesoStato = preferenzeSchermoAcceso.getBoolean("schermo_acceso_attivo", false)
-
-        val stato = if (schermoAccesoStato) "attivo" else "disattivato"
-        KeepScreenActiveTextView.text = "Tenere schermo acceso: $stato"
-    }
-
-    private fun updateMostraNotifica() {
-        val preferenzeMostraNotifica = getSharedPreferences("settings", MODE_PRIVATE)
-        val mostraNotificaStato = preferenzeMostraNotifica.getBoolean("mostra_notifica", false)
-
-        val stato = if (mostraNotificaStato) "attivo" else "disattivato"
-        ShowNotificationTextView.text = "Mostra Notifica: $stato"
-    }
-
-    private fun updateVibrazionAttiva() {
-        val preferenzeVibrazione = getSharedPreferences("settings", MODE_PRIVATE)
-        val VibrazioneAttivaStato = preferenzeVibrazione.getBoolean("vibrazione_attiva", false)
-
-        val stato = if (VibrazioneAttivaStato) "attivo" else "disattivato"
-        VibrateOnFinishTextView.text = "Vibra Al Termine: $stato"
-    }
-
-    private fun updateSuoneriaAttiva() {
-        val preferenzeSuoneria = getSharedPreferences("settings", MODE_PRIVATE)
-        val SuoneriaAttivaStato = preferenzeSuoneria.getBoolean("suoneria_attiva", false)
-
-        val stato = if (SuoneriaAttivaStato) "attivo" else "disattivato"
-        SoundOnFinishTextView.text = "Suona Al Termine: $stato"
-    }
-
-    private fun updateSetDefault(){
-        val preferenzeSetDefault = getSharedPreferences("settings", MODE_PRIVATE)
-        val salvaSet = preferenzeSetDefault.getString("Set_Default", "3")
-        DefaultSetsTextView.text = "Set Di Default: $salvaSet"
-    }
-
-    private fun updateTempoDiRiposo() {
-        val preferenzeTempoDiRiposo = getSharedPreferences("settings", MODE_PRIVATE)
-        val minuti = preferenzeTempoDiRiposo.getInt("riposo_min", 0)
-        val secondi = preferenzeTempoDiRiposo.getInt("riposo_sec", 30)
-        DefaultTempoDiRiposoTextView.text = "Tempo di riposo: ${minuti}:${String.format("%02d", secondi)}"
-    }
-
-    override fun onResume() { //serve per aggiornare dinamicamente un'Activity
+    override fun onResume() {
         super.onResume()
-        updateStartWeekText()
-        updateStartTrainingText()
-        updateStartWeight()
-        updateStartLenght()
-        updateStartDimension()
-        updateIncrementWeight()
-        updateSchermoAccesoSetting()
-        updateMostraNotifica()
-        updateVibrazionAttiva()
-        updateSuoneriaAttiva()
-        updateSetDefault()
-        updateTempoDiRiposo()
+        viewModel.caricaImpostazioni()
     }
 }
