@@ -242,12 +242,6 @@
             android:name=".main.SettingsActivity"
             android:exported="true" />
         <activity
-            android:name=".LoginActivity"
-            android:exported="false" />
-        <activity
-            android:name=".main.RegisterActivity"
-            android:exported="false" />
-        <activity
             android:name=".auth.DashBoardActivity"
             android:exported="false" />
     </application>

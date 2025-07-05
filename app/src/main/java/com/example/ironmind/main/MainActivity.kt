@@ -6,7 +6,7 @@ import android.os.Bundle //Bunlde usato per salvare/stabilire lo stato dell'avvi
 import android.os.Handler // Usati per ritardare l'esecuzione di codice
 import android.os.Looper // Usati per ritardare l'esecuzione di codice
 import androidx.appcompat.app.AppCompatActivity // AppCompatActivity è la classe base per attività compatibili con il tema e le funzionalità moderne Android
-import com.example.ironmind.LoginActivity
+import com.example.ironmind.auth.DashBoardActivity
 import com.example.ironmind.R
 
 class MainActivity : AppCompatActivity() { //Dichiarazione classe MainActivity, estende AppCompatActivity: le Activity ereditano dalla classe androidx.appcompat.app.AppCompatActivity
@@ -17,7 +17,7 @@ class MainActivity : AppCompatActivity() { //Dichiarazione classe MainActivity, 
 
         Handler(Looper.getMainLooper()).postDelayed({ //Looper.getMainLooper si assicura che il codice venga eseguito nel thread principale
             //postDelayed ritarda l'esecuzione del blocco di 2 secondi, come vediamo sotto con il delayMillis che mi restituisce il delay in millisecondi
-            startActivity(Intent(this, LoginActivity::class.java)) //startActivity mi avvia la LoginActivity
+            startActivity(Intent(this, DashBoardActivity::class.java)) //startActivity mi avvia la DashBoard
             finish() //chiude la MainActivity per non tornare indietro con il tasto back
         }, 2000) // 2 secondi compare il titolo "Iron Mind"
     }
