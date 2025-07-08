@@ -49,7 +49,7 @@ class DettaglioAllenamentoEsperto1Activity : AppCompatActivity() {
             startActivity(Intent(this, DipParalleleAssistitiActivity::class.java))
         }
 
-                findViewById<Button>(R.id.btnCominciaAllenamento).setOnClickListener {
+        findViewById<Button>(R.id.btnCominciaAllenamento).setOnClickListener {
             val nomeScheda = "Esperto 1"
             val esercizi = viewModel.getEsercizi()
             viewModel.salvaScheda(nomeScheda, esercizi)

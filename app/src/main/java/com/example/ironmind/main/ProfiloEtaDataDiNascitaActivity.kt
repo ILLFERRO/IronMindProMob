@@ -85,15 +85,14 @@ class ProfiloEtaDataDiNascitaActivity : AppCompatActivity() {
         val datePicker = DatePickerDialog(
             this,
             { _, year, month, dayOfMonth ->
-                dataNascitaSelezionata = "$dayOfMonth/${month + 1}/$year" //è month + 1 perchè i mesi in Android partono da 0 e non da 1
+                dataNascitaSelezionata = "$dayOfMonth/${month + 1}/$year"
                 textViewDataNascita.text = dataNascitaSelezionata
             },
-            2000, 0, 1 //data preimpostata al 1 gennaio del 2000
+            2000, 0, 1
         )
 
-        // Limita da 1950 a 2010
-        datePicker.datePicker.minDate = Calendar.getInstance().apply { set(1950, 0, 1) }.timeInMillis //qui imposto il minimo per la data
-        datePicker.datePicker.maxDate = Calendar.getInstance().apply { set(2010, 11, 31) }.timeInMillis //e qui il massimo
-        datePicker.show() //Mostra il dialog
+        datePicker.datePicker.minDate = Calendar.getInstance().apply { set(1950, 0, 1) }.timeInMillis
+        datePicker.datePicker.maxDate = Calendar.getInstance().apply { set(2010, 11, 31) }.timeInMillis
+        datePicker.show()
     }
 }

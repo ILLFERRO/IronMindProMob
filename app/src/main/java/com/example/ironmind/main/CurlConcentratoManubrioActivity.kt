@@ -26,12 +26,10 @@ class CurlConcentratoManubrioActivity: AppCompatActivity() {
             }
         }
 
-        // Configura VideoView con loop
         videoCurlConcentratoManubrioView = findViewById(R.id.Curl_Concentrato_Con_Manubrio_Video)
         val videoUri = Uri.parse("android.resource://${packageName}/${R.raw.curl_concentrato_manubrio}")
         videoCurlConcentratoManubrioView.setVideoURI(videoUri)
 
-        // Loop del video
         videoCurlConcentratoManubrioView.setOnPreparedListener { mediaPlayer ->
             mediaPlayer.isLooping = true
             videoCurlConcentratoManubrioView.start()

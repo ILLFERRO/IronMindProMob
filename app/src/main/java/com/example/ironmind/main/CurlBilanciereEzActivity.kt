@@ -26,12 +26,10 @@ class CurlBilanciereEzActivity: AppCompatActivity() {
             }
         }
 
-        // Configura VideoView con loop
         videoCurlBilanciereEZView = findViewById(R.id.Curl_Bilanciere_EZ_Video)
         val videoUri = Uri.parse("android.resource://${packageName}/${R.raw.curl_bilanciere_ez}")
         videoCurlBilanciereEZView.setVideoURI(videoUri)
 
-        // Loop del video
         videoCurlBilanciereEZView.setOnPreparedListener { mediaPlayer ->
             mediaPlayer.isLooping = true
             videoCurlBilanciereEZView.start()

@@ -43,7 +43,6 @@ class AllenamentoCompletato : AppCompatActivity() {
                 finish()
             }
         } else {
-            // Scheda temporanea → mostra dialog per assegnare un nome
             val dialogView = layoutInflater.inflate(R.layout.dialog_salva_scheda, null)
             val nomeSchedaInput = dialogView.findViewById<EditText>(R.id.nomeSchedaEditText)
 

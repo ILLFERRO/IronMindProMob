@@ -49,7 +49,7 @@ class DettaglioAllenamentoIntermedio3Activity : AppCompatActivity() {
             startActivity(Intent(this, PlankIsometricoActivity::class.java))
         }
 
-                findViewById<Button>(R.id.btnCominciaAllenamento).setOnClickListener {
+        findViewById<Button>(R.id.btnCominciaAllenamento).setOnClickListener {
             val nomeScheda = "Intermedio 3"
             val esercizi = viewModel.getEsercizi()
             viewModel.salvaScheda(nomeScheda, esercizi)

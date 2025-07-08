@@ -26,12 +26,10 @@ class CrociManubriPancaActivity: AppCompatActivity() {
             }
         }
 
-        // Configura VideoView con loop
         videoCrociManubriPancaView = findViewById(R.id.Croci_Manubri_Panca_Video)
         val videoUri = Uri.parse("android.resource://${packageName}/${R.raw.croci_panca}")
         videoCrociManubriPancaView.setVideoURI(videoUri)
 
-        // Loop del video
         videoCrociManubriPancaView.setOnPreparedListener { mediaPlayer ->
             mediaPlayer.isLooping = true
             videoCrociManubriPancaView.start()

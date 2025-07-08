@@ -26,12 +26,10 @@ class PlankIsometricoActivity: AppCompatActivity() {
             }
         }
 
-        // Configura VideoView con loop
         videoPlankIsometricoView = findViewById(R.id.Plank_Isometrico_Video)
         val videoUri = Uri.parse("android.resource://${packageName}/${R.raw.plank_isometrico}")
         videoPlankIsometricoView.setVideoURI(videoUri)
 
-        // Loop del video
         videoPlankIsometricoView.setOnPreparedListener { mediaPlayer ->
             mediaPlayer.isLooping = true
             videoPlankIsometricoView.start()

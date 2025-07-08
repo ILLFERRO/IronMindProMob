@@ -27,20 +27,17 @@ class SetDefaultActivity : AppCompatActivity() {
         val editSet = findViewById<EditText>(R.id.input_set_default)
         val saveBtn = findViewById<TextView>(R.id.save_button)
 
-        // 1. Recupera il valore salvato all'avvio
         val preferenzeSet = getSharedPreferences("settings", MODE_PRIVATE)
         val savedSet = preferenzeSet.getString("Set_Default", "3") ?: "3"
-        editSet.setText(savedSet)  // Imposta il valore nel campo EditText
+        editSet.setText(savedSet)
 
-        // 2. Salva il nuovo valore quando l'utente preme "Salva"
         saveBtn.setOnClickListener {
             val incremento = editSet.text.toString()
 
             if (incremento.isNotEmpty()) {
                 val preferenzeSetDefault = getSharedPreferences("settings", MODE_PRIVATE)
-                preferenzeSetDefault.edit().putString("Set_Default", incremento).apply()  // <- QUESTA È GIUSTA QUI
+                preferenzeSetDefault.edit().putString("Set_Default", incremento).apply()
 
-                // Torna indietro
                 onBackPressedDispatcher.onBackPressed()
             } else {
                 Toast.makeText(this, "Inserisci un valore", Toast.LENGTH_SHORT).show()

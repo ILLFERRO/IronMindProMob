@@ -34,7 +34,7 @@ class VibraAlTermineActivity : AppCompatActivity() {
 
         btnNo.setOnClickListener {
             preferenzeVibrazione.edit().putBoolean("vibrazione_attiva", false).apply()
-            onBackPressedDispatcher.onBackPressed() //serve a simulare la pressione del tasto "Indietro" da parte dell’utente
+            onBackPressedDispatcher.onBackPressed()
         }
     }
 }

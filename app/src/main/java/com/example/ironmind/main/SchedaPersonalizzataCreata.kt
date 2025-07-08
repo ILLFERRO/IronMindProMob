@@ -38,26 +38,22 @@ class SchedaPersonalizzataCreata : AppCompatActivity() {
 
         findViewById<TextView>(R.id.titoloScheda).text = nomeScheda
 
-        // Statistiche
         val (dataAllenamento, durataAllenamento) = viewModel.getStatisticheAllenamento(nomeScheda, this)
         findViewById<TextView>(R.id.txtDataAllenamento).text = "Ultimo allenamento: $dataAllenamento"
         findViewById<TextView>(R.id.txtDurataAllenamento).text = "Durata: $durataAllenamento"
 
-        // RecyclerView
         recyclerView = findViewById(R.id.recyclerViewEsercizi)
         recyclerView.layoutManager = LinearLayoutManager(this)
         val esercizi = viewModel.caricaEsercizi(nomeScheda, this)
         adapter = EserciziStaticiAdapter(esercizi)
         recyclerView.adapter = adapter
 
-        // Elimina
         btnElimina = findViewById(R.id.btnEliminaScheda)
         btnElimina.setOnClickListener {
             viewModel.eliminaScheda(nomeScheda, this)
             finish()
         }
 
-        // Comincia Allenamento
         findViewById<Button>(R.id.btnCominciaAllenamento).setOnClickListener {
             val eserciziSalvati = viewModel.caricaEsercizi(nomeScheda, this)
             if (eserciziSalvati.isNotEmpty()) {

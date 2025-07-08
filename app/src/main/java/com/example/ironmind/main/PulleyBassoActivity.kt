@@ -26,12 +26,10 @@ class PulleyBassoActivity: AppCompatActivity() {
             }
         }
 
-        // Configura VideoView con loop
         videoPulleyBassoView = findViewById(R.id.Pulley_Basso_Video)
         val videoUri = Uri.parse("android.resource://${packageName}/${R.raw.pulley_basso}")
         videoPulleyBassoView.setVideoURI(videoUri)
 
-        // Loop del video
         videoPulleyBassoView.setOnPreparedListener { mediaPlayer ->
             mediaPlayer.isLooping = true
             videoPulleyBassoView.start()

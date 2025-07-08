@@ -1,6 +1,3 @@
-<!-- definisco forma grafica personalizzata -->
 <shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="oval">
     <solid android:color="#7B1FA2" /> <!-- viola senza bordo -->
 </shape>
-<!-- forma cerchio/ovale (se View è qudrata allora ho un cerchio, se invece è rettangolare avrò un ovale) -->
-<!-- solid imposta il riempimento pieno della forma -->

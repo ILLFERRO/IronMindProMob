@@ -157,7 +157,7 @@ class AllenamentoDinamicoUI : AppCompatActivity() {
             repeat(viewModel.getSetIniziali()) {
                 viewModel.aggiungiSet(10f, 10, viewModel.tempoRecuperoSec.value ?: 60)
             }
-            mostraEsercizio() // per farli apparire a video
+            mostraEsercizio()
         }
     }
 

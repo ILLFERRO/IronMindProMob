@@ -26,12 +26,10 @@ class PancaPianaBilanciereActivity: AppCompatActivity() {
             }
         }
 
-        // Configura VideoView con loop
         videoPancaPianaBilanciereView = findViewById(R.id.Panca_Piana_Con_Bilanciere_Video)
         val videoUri = Uri.parse("android.resource://${packageName}/${R.raw.panca_piana_bilanciere}")
         videoPancaPianaBilanciereView.setVideoURI(videoUri)
 
-        // Loop del video
         videoPancaPianaBilanciereView.setOnPreparedListener { mediaPlayer ->
             mediaPlayer.isLooping = true
             videoPancaPianaBilanciereView.start()

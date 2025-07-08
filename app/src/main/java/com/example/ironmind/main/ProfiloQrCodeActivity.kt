@@ -25,15 +25,14 @@ class ProfiloQrCodeActivity : AppCompatActivity() {
         val imageQr = findViewById<ImageView>(R.id.imageQrCode)
 
         btnGenera.setOnClickListener {
-            // Puoi usare anche un ID utente, email o token unico se vuoi
             val sharedPrefs = getSharedPreferences("settings", MODE_PRIVATE)
             val nome = sharedPrefs.getString("nome_utente", "Nome")
             val cognome = sharedPrefs.getString("cognome_utente", "Cognome")
             val contenutoQr = "$nome $cognome - IronMind Accesso"
 
-            val encoder = BarcodeEncoder() //creo oggetto di tipo BarcodeEncoder da libreria zxing per generare QrCode
-            val bitmap: Bitmap = encoder.encodeBitmap(contenutoQr, BarcodeFormat.QR_CODE, 400, 400) //genera immagine bitmap di tipo QrCode con il contenuto che gli ho dato, formato QrCode e quelle dimensioni
-            imageQr.setImageBitmap(bitmap) //setto poi l'immagine a quella bitmap
+            val encoder = BarcodeEncoder()
+            val bitmap: Bitmap = encoder.encodeBitmap(contenutoQr, BarcodeFormat.QR_CODE, 400, 400)
+            imageQr.setImageBitmap(bitmap)
         }
     }
 }

@@ -26,12 +26,10 @@ class StaccoDaTerraBilanciereActivity: AppCompatActivity() {
             }
         }
 
-        // Configura VideoView con loop
         videoStaccoDaTerraBilanciereView = findViewById(R.id.Stacco_Da_Terra_Con_Bilanciere_Video)
         val videoUri = Uri.parse("android.resource://${packageName}/${R.raw.stacco_da_terra_con_bilanciere}")
         videoStaccoDaTerraBilanciereView.setVideoURI(videoUri)
 
-        // Loop del video
         videoStaccoDaTerraBilanciereView.setOnPreparedListener { mediaPlayer ->
             mediaPlayer.isLooping = true
             videoStaccoDaTerraBilanciereView.start()

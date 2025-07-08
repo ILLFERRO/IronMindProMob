@@ -26,12 +26,10 @@ class CalfRaiseAllaLegPressActivity: AppCompatActivity() {
             }
         }
 
-        // Configura VideoView con loop
         videoCalfRaiseLegPressView = findViewById(R.id.Calf_Raise_Leg_Press_Video)
         val videoUri = Uri.parse("android.resource://${packageName}/${R.raw.calf_raise_leg_press}")
         videoCalfRaiseLegPressView.setVideoURI(videoUri)
 
-        // Loop del video
         videoCalfRaiseLegPressView.setOnPreparedListener { mediaPlayer ->
             mediaPlayer.isLooping = true
             videoCalfRaiseLegPressView.start()

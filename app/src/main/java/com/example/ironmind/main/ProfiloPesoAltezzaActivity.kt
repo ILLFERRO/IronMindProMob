@@ -30,15 +30,12 @@ class ProfiloPesoAltezzaActivity : AppCompatActivity() {
         numberPickerAltezza = findViewById(R.id.numberPickerAltezza)
         buttonSalva = findViewById(R.id.buttonSalvaPesoAltezza)
 
-        // Peso: da 0 a 250 kg
         numberPickerPeso.minValue = 0
         numberPickerPeso.maxValue = 250
 
-        // Altezza: da 100 a 300 cm
         numberPickerAltezza.minValue = 100
         numberPickerAltezza.maxValue = 300
 
-        // Carica valori precedenti se esistono
         val prefs = getSharedPreferences("settings", MODE_PRIVATE)
         numberPickerPeso.value = prefs.getInt("profilo_peso", 70)
         numberPickerAltezza.value = prefs.getInt("profilo_altezza", 170)

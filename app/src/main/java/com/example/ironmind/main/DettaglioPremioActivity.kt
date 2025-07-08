@@ -23,17 +23,14 @@ class DettaglioPremioActivity : AppCompatActivity() {
             onBackPressedDispatcher.onBackPressed()
         }
 
-        // Prendi i dati dall'intent
         val titolo = intent.getStringExtra("premio_titolo") ?: "Titolo non disponibile"
         val descrizione = intent.getStringExtra("premio_descrizione") ?: "Descrizione non disponibile"
         val iconaRes = intent.getIntExtra("premio_icona", R.drawable.ic_launcher_foreground)
 
-        // Collega le view
         val imgIcona = findViewById<ImageView>(R.id.iconaPremioDettaglio)
         val tvTitolo = findViewById<TextView>(R.id.titoloPremioDettaglio)
         val tvDescrizione = findViewById<TextView>(R.id.descrizionePremioDettaglio)
 
-        // Imposta i dati
         imgIcona.setImageResource(iconaRes)
         tvTitolo.text = titolo
         tvDescrizione.text = descrizione

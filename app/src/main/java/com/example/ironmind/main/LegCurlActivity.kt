@@ -26,12 +26,10 @@ class LegCurlActivity: AppCompatActivity() {
             }
         }
 
-        // Configura VideoView con loop
         videoLegCurlView = findViewById(R.id.Leg_Curl_Video)
         val videoUri = Uri.parse("android.resource://${packageName}/${R.raw.leg_curl}")
         videoLegCurlView.setVideoURI(videoUri)
 
-        // Loop del video
         videoLegCurlView.setOnPreparedListener { mediaPlayer ->
             mediaPlayer.isLooping = true
             videoLegCurlView.start()

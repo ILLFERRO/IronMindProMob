@@ -40,7 +40,6 @@ class MostraNotificaActivity : AppCompatActivity() {
         val preferenzeNotifica = getSharedPreferences("settings", MODE_PRIVATE)
 
         btnSi.setOnClickListener {
-            // Se serve, chiedi permesso
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU &&
                 ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED
             ) {
@@ -50,7 +49,6 @@ class MostraNotificaActivity : AppCompatActivity() {
                     REQUEST_CODE_NOTIFICHE
                 )
             } else {
-                // Salva preferenza e crea canale subito
                 preferenzeNotifica.edit().putBoolean("mostra_notifica", true).apply()
                 creaCanaleNotifiche()
                 onBackPressedDispatcher.onBackPressed()
@@ -63,7 +61,6 @@ class MostraNotificaActivity : AppCompatActivity() {
         }
     }
 
-    // Ricevi esito del permesso richiesto
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (requestCode == REQUEST_CODE_NOTIFICHE) {
@@ -76,7 +73,6 @@ class MostraNotificaActivity : AppCompatActivity() {
         }
     }
 
-    // Crea il canale per la notifica
     private fun creaCanaleNotifiche() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val nome = "Canale Recupero"

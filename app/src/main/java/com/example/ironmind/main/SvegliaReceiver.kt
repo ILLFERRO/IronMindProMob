@@ -27,7 +27,7 @@ class SvegliaReceiver : BroadcastReceiver() {
         val sound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
 
         val notificationBuilder = NotificationCompat.Builder(context, canaleId)
-            .setSmallIcon(R.drawable.icona_notifica) // Aggiungi un'icona valida!
+            .setSmallIcon(R.drawable.icona_notifica)
             .setContentTitle(titolo)
             .setContentText(messaggio)
             .setAutoCancel(true)

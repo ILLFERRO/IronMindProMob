@@ -26,12 +26,10 @@ class DipParalleleAssistitiActivity: AppCompatActivity() {
             }
         }
 
-        // Configura VideoView con loop
         videoDipParalleleAssistitiView = findViewById(R.id.Dip_Alle_Parallele_Assistiti_Video)
         val videoUri = Uri.parse("android.resource://${packageName}/${R.raw.dip_parallele_assistiti}")
         videoDipParalleleAssistitiView.setVideoURI(videoUri)
 
-        // Loop del video
         videoDipParalleleAssistitiView.setOnPreparedListener { mediaPlayer ->
             mediaPlayer.isLooping = true
             videoDipParalleleAssistitiView.start()

@@ -20,7 +20,6 @@ class PromemoriaActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_promemoria)
 
-        // Toolbar
         val toolbarPromemoria = findViewById<Toolbar>(R.id.toolbar_promemoria)
         toolbarPromemoria.title = "Promemoria"
         setSupportActionBar(toolbarPromemoria)
@@ -30,11 +29,9 @@ class PromemoriaActivity : AppCompatActivity() {
             onBackPressedDispatcher.onBackPressed()
         }
 
-        // Carica i promemoria
         listaPromemoria = PromemoriaManager.carica(this)
         prossimoId = (listaPromemoria.maxOfOrNull { it.id } ?: 0) + 1
 
-        // Setup RecyclerView
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerViewPromemoria)
         recyclerView.layoutManager = LinearLayoutManager(this)
         adapter = PromemoriaAdapter(this, listaPromemoria) {
@@ -43,13 +40,11 @@ class PromemoriaActivity : AppCompatActivity() {
         }
         recyclerView.adapter = adapter
 
-        // Pulsante per aggiungere promemoria
         val buttonAdd = findViewById<ImageButton>(R.id.button_add_reminder)
         buttonAdd.setOnClickListener {
             mostraDialogoModifica(null)
         }
 
-        // Mostra o nasconde la vista vuota
         aggiornaVisibilitaVistaVuota()
     }
 
@@ -62,28 +57,23 @@ class PromemoriaActivity : AppCompatActivity() {
         val spinnerGiorno = dialog.findViewById<Spinner>(R.id.etGiorno)
         val btnSalva = dialog.findViewById<Button>(R.id.btnSalva)
 
-        // Popola lo spinner con i giorni della settimana
         val giorni = resources.getStringArray(R.array.giorni_settimana)
-        val adapterGiorni = ArrayAdapter(this, android.R.layout.simple_spinner_item, giorni) //creo un adapter che collega i dati (i giorni) alla vista dello spinner
-        adapterGiorni.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item) //imposta come viene visualizzato l'elenco a discesa quando l'utente clicca sullo spinner
-        spinnerGiorno.adapter = adapterGiorni //assegna l'adapter allo spinner
+        val adapterGiorni = ArrayAdapter(this, android.R.layout.simple_spinner_item, giorni)
+        adapterGiorni.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        spinnerGiorno.adapter = adapterGiorni
 
-        // Variabile per tenere traccia dell'ora scelta
-        var oraSelezionata = "08:30"  // default
+        var oraSelezionata = "08:30"
 
-        // Se modifichi un promemoria esistente, carica i dati
         if (promemoriaEsistente != null) {
             etNome.setText(promemoriaEsistente.nome)
             oraSelezionata = promemoriaEsistente.ora
             etOra.setText(oraSelezionata)
-            // Imposta la selezione dello spinner in base al giorno del promemoria
             val index = giorni.indexOf(promemoriaEsistente.giorno)
             if (index >= 0) spinnerGiorno.setSelection(index)
         } else {
             etOra.setText(oraSelezionata)
         }
 
-        // Imposta il click sulla EditText per aprire TimePicker
         etOra.setOnClickListener {
             val parts = oraSelezionata.split(":")
             val ora = parts[0].toInt()
@@ -117,9 +107,9 @@ class PromemoriaActivity : AppCompatActivity() {
                 }
 
                 PromemoriaManager.salva(this, listaPromemoria)
-                adapter.notifyDataSetChanged() //notifica ogni observer al cambiare dei dati
+                adapter.notifyDataSetChanged()
                 aggiornaVisibilitaVistaVuota()
-                dialog.dismiss() //rimuove il dialog
+                dialog.dismiss()
             } else {
                 Toast.makeText(this, "Inserisci un nome valido", Toast.LENGTH_SHORT).show()
             }
@@ -128,7 +118,6 @@ class PromemoriaActivity : AppCompatActivity() {
         dialog.show()
     }
 
-    // Funzione per mostrare o nascondere la vista vuota
     private fun aggiornaVisibilitaVistaVuota() {
         val viewVuota = findViewById<LinearLayout>(R.id.Viewvuota)
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerViewPromemoria)

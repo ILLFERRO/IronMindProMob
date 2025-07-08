@@ -26,12 +26,10 @@ class LatMachineActivity: AppCompatActivity() {
             }
         }
 
-        // Configura VideoView con loop
         videoLatMachineView = findViewById(R.id.Lat_Machine_Video)
         val videoUri = Uri.parse("android.resource://${packageName}/${R.raw.lat_machine}")
         videoLatMachineView.setVideoURI(videoUri)
 
-        // Loop del video
         videoLatMachineView.setOnPreparedListener { mediaPlayer ->
             mediaPlayer.isLooping = true
             videoLatMachineView.start()

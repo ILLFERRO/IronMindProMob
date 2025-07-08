@@ -14,7 +14,6 @@ class AllarmeRicevitore : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent) {
         val nomePromemoria = intent.getStringExtra("nome") ?: "Promemoria"
 
-        // Intent sicuro con context dell'app
         val openIntent = Intent(context.applicationContext, PromemoriaActivity::class.java)
         openIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
 
@@ -39,7 +38,7 @@ class AllarmeRicevitore : BroadcastReceiver() {
         }
 
         val notification = NotificationCompat.Builder(context, channelId)
-            .setSmallIcon(R.drawable.icona_notifica) // ICONA OBBLIGATORIA
+            .setSmallIcon(R.drawable.icona_notifica)
             .setContentTitle("Promemoria")
             .setContentText("È ora di: $nomePromemoria")
             .setPriority(NotificationCompat.PRIORITY_HIGH)

@@ -26,12 +26,10 @@ class EstensioniTricipitiManubrioActivity: AppCompatActivity() {
             }
         }
 
-        // Configura VideoView con loop
         videoEstensioniTricipitiManubriView = findViewById(R.id.Estensioni_Tricipiti_Manubri_Video)
         val videoUri = Uri.parse("android.resource://${packageName}/${R.raw.estensioni_tricipiti_manubrio}")
         videoEstensioniTricipitiManubriView.setVideoURI(videoUri)
 
-        // Loop del video
         videoEstensioniTricipitiManubriView.setOnPreparedListener { mediaPlayer ->
             mediaPlayer.isLooping = true
             videoEstensioniTricipitiManubriView.start()

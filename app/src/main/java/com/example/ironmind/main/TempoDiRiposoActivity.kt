@@ -28,12 +28,11 @@ class TempoDiRiposoActivity : AppCompatActivity() {
         val btnSalva = findViewById<Button>(R.id.btn_salva)
 
         minutePicker.minValue = 0
-        minutePicker.maxValue = 10  // max 10 minuti
+        minutePicker.maxValue = 10
 
         secondPicker.minValue = 0
         secondPicker.maxValue = 59
 
-        // Recupera valore salvato
         val prefs = getSharedPreferences("settings", MODE_PRIVATE)
         val savedMinutes = prefs.getInt("riposo_min", 0)
         val savedSeconds = prefs.getInt("riposo_sec", 30)

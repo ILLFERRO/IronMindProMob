@@ -49,7 +49,7 @@ class DettaglioAllenamentoIntermedio1Activity : AppCompatActivity() {
             startActivity(Intent(this, EstensioniTricipitiManubrioActivity::class.java))
         }
 
-                findViewById<Button>(R.id.btnCominciaAllenamento).setOnClickListener {
+        findViewById<Button>(R.id.btnCominciaAllenamento).setOnClickListener {
             val nomeScheda = "Intermedio 1"
             val esercizi = viewModel.getEsercizi()
             viewModel.salvaScheda(nomeScheda, esercizi)

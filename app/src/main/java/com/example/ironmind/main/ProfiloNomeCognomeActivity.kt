@@ -11,7 +11,6 @@ import com.example.ironmind.R
 
 class ProfiloNomeCognomeActivity : AppCompatActivity() {
 
-    //Definisco le variabili di EditText, Button e TextView
     private lateinit var editTextNome: EditText
     private lateinit var editTextCognome: EditText
     private lateinit var buttonSalva: Button
@@ -43,14 +42,14 @@ class ProfiloNomeCognomeActivity : AppCompatActivity() {
         val nomeSalvato = prefs.getString("nome", "") ?: ""
         val cognomeSalvato = prefs.getString("cognome", "") ?: ""
 
-        textViewTitolo.text = "Inserisci Nome e Cognome" //la TextView mi dirà "Inserisci Nome e Cognome"
+        textViewTitolo.text = "Inserisci Nome e Cognome"
 
         if (nomeSalvato.isNotEmpty() || cognomeSalvato.isNotEmpty()) {
-            editTextNome.setText(nomeSalvato) //setta l'EditText a quel nome
-            editTextCognome.setText(cognomeSalvato) //qui fa uguale per il cognome
-            buttonModifica.visibility = Button.VISIBLE //mostra il pulsante di modifica come visibile
+            editTextNome.setText(nomeSalvato)
+            editTextCognome.setText(cognomeSalvato)
+            buttonModifica.visibility = Button.VISIBLE
         } else {
-            buttonModifica.visibility = Button.GONE //altrimenti non lo mostra
+            buttonModifica.visibility = Button.GONE
         }
 
         buttonSalva.setOnClickListener {

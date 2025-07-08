@@ -29,7 +29,6 @@ class DettaglioAllenamentoEsperto3Activity : AppCompatActivity() {
             onBackPressedDispatcher.onBackPressed()
         }
 
-        // Card esercizi
         findViewById<CardView>(R.id.Card_Esercizio_1_3).setOnClickListener {
             startActivity(Intent(this, SquatBilanciereActivity::class.java))
         }
@@ -50,8 +49,8 @@ class DettaglioAllenamentoEsperto3Activity : AppCompatActivity() {
             startActivity(Intent(this, RussianTwistPallaMedicaActivity::class.java))
         }
 
-                // Pulsante "Comincia Allenamento"
-                findViewById<Button>(R.id.btnCominciaAllenamento).setOnClickListener {
+
+        findViewById<Button>(R.id.btnCominciaAllenamento).setOnClickListener {
             val nomeScheda = "Esperto 3"
             val esercizi = viewModel.getEsercizi()
             viewModel.salvaScheda(this, nomeScheda, esercizi)

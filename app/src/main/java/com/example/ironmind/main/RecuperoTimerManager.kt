@@ -9,6 +9,7 @@ import android.os.VibrationEffect
 import android.os.Vibrator
 import androidx.core.app.NotificationCompat
 import com.example.ironmind.R
+import android.os.VibratorManager
 
 object RecuperoTimerManager {
 
@@ -18,8 +19,8 @@ object RecuperoTimerManager {
     fun avviaTimer(
         context: Context,
         durataSecondi: Int,
-        onTick: ((tempoRimanente: Int) -> Unit)? = null, //parametro opzionale, accetta un intero e non restituisce niente, eseguito ogni secondo per aggiornare il tempo rimanente
-        onFinish: (() -> Unit)? = null //eseguita al termine quando finisce il timer
+        onTick: ((tempoRimanente: Int) -> Unit)? = null,
+        onFinish: (() -> Unit)? = null
     ) {
         val prefs = context.getSharedPreferences("settings", Context.MODE_PRIVATE)
 
@@ -46,7 +47,6 @@ object RecuperoTimerManager {
                     builder.setContentText("Tempo restante: ${formatTime(secondiRestanti)}")
                     notificationManager.notify(NOTIFICATION_ID, builder.build())
 
-                    // Chiamata al callback se non nullo
                     onTick?.invoke(secondiRestanti)
                 }
 
@@ -54,12 +54,19 @@ object RecuperoTimerManager {
                     notificationManager.cancel(NOTIFICATION_ID)
 
                     if (vibrazioneAttiva) {
-                        val vib = context.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                            vib.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE))
+                        val vibrator = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                            val vibratorManager = context.getSystemService(Context.VIBRATOR_MANAGER_SERVICE) as VibratorManager
+                            vibratorManager.defaultVibrator
                         } else {
                             @Suppress("DEPRECATION")
-                            vib.vibrate(500)
+                            context.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+                        }
+
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                            vibrator.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE))
+                        } else {
+                            @Suppress("DEPRECATION")
+                            vibrator.vibrate(500)
                         }
                     }
 
@@ -69,13 +76,11 @@ object RecuperoTimerManager {
                         ringtone.play()
                     }
 
-                    // Chiamata al callback se non nullo
                     onFinish?.invoke()
                 }
             }.start()
 
         } else {
-            // Se non deve mostrare notifica, facciamo solo il timer interno senza notifiche o vibrazione
             object : CountDownTimer(durataSecondi * 1000L, 1000L) {
                 override fun onTick(millisUntilFinished: Long) {
                     val secondiRestanti = (millisUntilFinished / 1000).toInt()
@@ -84,12 +89,26 @@ object RecuperoTimerManager {
 
                 override fun onFinish() {
                     if (vibrazioneAttiva) {
-                        val vib = context.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                            vib.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE))
+                        val vibrator = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                            val vibratorManager = context.getSystemService(Context.VIBRATOR_MANAGER_SERVICE) as VibratorManager
+                            vibratorManager.defaultVibrator
                         } else {
                             @Suppress("DEPRECATION")
-                            vib.vibrate(500)
+                            context.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+                        }
+
+                        val vibrationEffect = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                            VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE)
+                        } else {
+                            @Suppress("DEPRECATION")
+                            null
+                        }
+
+                        if (vibrationEffect != null) {
+                            vibrator.vibrate(vibrationEffect)
+                        } else {
+                            @Suppress("DEPRECATION")
+                            vibrator.vibrate(500)
                         }
                     }
                     if (suoneriaAttiva) {
@@ -103,22 +122,22 @@ object RecuperoTimerManager {
         }
     }
 
-    private fun creaCanaleNotifiche(context: Context) { //crea un canale di notifiche per poter inviare notifiche
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) { //solo da Android 8.0 in poi
+    private fun creaCanaleNotifiche(context: Context) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val channel = NotificationChannel(
-                CHANNEL_ID, //con il suo id canale
-                "Timer di Recupero", //nome "Timer di recupero"
-                NotificationManager.IMPORTANCE_LOW //priorità bassa, vibrazione
+                CHANNEL_ID,
+                "Timer di Recupero",
+                NotificationManager.IMPORTANCE_LOW
             )
-            channel.description = "Notifiche per il timer del tempo di recupero" //descrizione del canale
-            val manager = context.getSystemService(NotificationManager::class.java) //ottengo servizio di sistema che gestisce le notifiche
-            manager.createNotificationChannel(channel) //registra il canale nel sistema
+            channel.description = "Notifiche per il timer del tempo di recupero"
+            val manager = context.getSystemService(NotificationManager::class.java)
+            manager.createNotificationChannel(channel)
         }
     }
 
-    private fun formatTime(secondi: Int): String { //formatta il numero di secondi in tipo min:sec e lo converte in stringa
-        val min = secondi / 60 //calcola i minuti interi
-        val sec = secondi % 60 //calcola i secondi rimanenti tramite modulo
-        return "%02d:%02d".format(min, sec) //ritorna una stringa con due cifre sia per minuto che per secondo
+    private fun formatTime(secondi: Int): String {
+        val min = secondi / 60
+        val sec = secondi % 60
+        return "%02d:%02d".format(min, sec)
     }
 }

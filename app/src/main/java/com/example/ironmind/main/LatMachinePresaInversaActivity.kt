@@ -26,12 +26,10 @@ class LatMachinePresaInversaActivity: AppCompatActivity() {
             }
         }
 
-        // Configura VideoView con loop
         videoLatMachinePresaInversaView = findViewById(R.id.Lat_Machine_Presa_Inversa_Video)
         val videoUri = Uri.parse("android.resource://${packageName}/${R.raw.lat_machine_presa_inversa}")
         videoLatMachinePresaInversaView.setVideoURI(videoUri)
 
-        // Loop del video
         videoLatMachinePresaInversaView.setOnPreparedListener { mediaPlayer ->
             mediaPlayer.isLooping = true
             videoLatMachinePresaInversaView.start()

@@ -26,12 +26,10 @@ class RussianTwistManubrioActivity: AppCompatActivity() {
             }
         }
 
-        // Configura VideoView con loop
         videoRussianTwistManubriView = findViewById(R.id.Russian_Twist_Con_Manubri_Video)
         val videoUri = Uri.parse("android.resource://${packageName}/${R.raw.russian_twist_con_manubrio}")
         videoRussianTwistManubriView.setVideoURI(videoUri)
 
-        // Loop del video
         videoRussianTwistManubriView.setOnPreparedListener { mediaPlayer ->
             mediaPlayer.isLooping = true
             videoRussianTwistManubriView.start()

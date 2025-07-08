@@ -27,23 +27,19 @@ class CycletteTapisRoulantActivity: AppCompatActivity() {
             }
         }
 
-        // Configura VideoView con loop
         videoCycletteView = findViewById(R.id.Cyclette_Video)
         val videoUriCyclette = Uri.parse("android.resource://${packageName}/${R.raw.cyclette}")
         videoCycletteView.setVideoURI(videoUriCyclette)
 
-        // Configura VideoView con loop
         videoTapisRoulantView = findViewById(R.id.Tapis_Roulant_Video)
         val videoUriTapisRoulant = Uri.parse("android.resource://${packageName}/${R.raw.tapis_roulant}")
         videoTapisRoulantView.setVideoURI(videoUriTapisRoulant)
 
-        // Loop del video
         videoCycletteView.setOnPreparedListener { mediaPlayer ->
             mediaPlayer.isLooping = true
             videoCycletteView.start()
         }
 
-        // Loop del video
         videoTapisRoulantView.setOnPreparedListener { mediaPlayer ->
             mediaPlayer.isLooping = true
             videoTapisRoulantView.start()

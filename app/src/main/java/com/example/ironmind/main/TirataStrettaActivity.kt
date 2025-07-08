@@ -26,12 +26,10 @@ class TirataStrettaActivity: AppCompatActivity() {
             }
         }
 
-        // Configura VideoView con loop
         videoTirataStrettaView = findViewById(R.id.Tirata_Stretta_Video)
         val videoUri = Uri.parse("android.resource://${packageName}/${R.raw.tirata_stretta}")
         videoTirataStrettaView.setVideoURI(videoUri)
 
-        // Loop del video
         videoTirataStrettaView.setOnPreparedListener { mediaPlayer ->
             mediaPlayer.isLooping = true
             videoTirataStrettaView.start()

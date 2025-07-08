@@ -26,12 +26,10 @@ class RematoreBilanciereActivity: AppCompatActivity() {
             }
         }
 
-        // Configura VideoView con loop
         videoRematoreBilanciereView = findViewById(R.id.Rematore_Con_Bilanciere_Video)
         val videoUri = Uri.parse("android.resource://${packageName}/${R.raw.rematore_bilanciere}")
         videoRematoreBilanciereView.setVideoURI(videoUri)
 
-        // Loop del video
         videoRematoreBilanciereView.setOnPreparedListener { mediaPlayer ->
             mediaPlayer.isLooping = true
             videoRematoreBilanciereView.start()

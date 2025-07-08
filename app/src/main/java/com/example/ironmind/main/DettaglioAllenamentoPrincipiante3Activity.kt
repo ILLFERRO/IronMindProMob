@@ -48,7 +48,7 @@ class DettaglioAllenamentoPrincipiante3Activity : AppCompatActivity() {
             startActivity(Intent(this, CycletteTapisRoulantActivity::class.java))
         }
 
-                findViewById<Button>(R.id.btnCominciaAllenamento).setOnClickListener {
+        findViewById<Button>(R.id.btnCominciaAllenamento).setOnClickListener {
             val nomeScheda = "Principiante 3"
             val esercizi = viewModel.getEsercizi()
 

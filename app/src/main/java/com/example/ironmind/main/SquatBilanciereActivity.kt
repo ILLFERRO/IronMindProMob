@@ -26,12 +26,10 @@ class SquatBilanciereActivity: AppCompatActivity() {
             }
         }
 
-        // Configura VideoView con loop
         videoSquatBilanciereView = findViewById(R.id.Squat_Bilanciere_Video)
         val videoUri = Uri.parse("android.resource://${packageName}/${R.raw.squat_con_bilanciere}")
         videoSquatBilanciereView.setVideoURI(videoUri)
 
-        // Loop del video
         videoSquatBilanciereView.setOnPreparedListener { mediaPlayer ->
             mediaPlayer.isLooping = true
             videoSquatBilanciereView.start()

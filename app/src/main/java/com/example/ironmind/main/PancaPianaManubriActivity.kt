@@ -26,12 +26,10 @@ class PancaPianaManubriActivity: AppCompatActivity() {
             }
         }
 
-        // Configura VideoView con loop
         videoPancaPianaManubriView = findViewById(R.id.Panca_Piana_Con_Manubri_Video)
         val videoUri = Uri.parse("android.resource://${packageName}/${R.raw.panca_piana_con_manubri}")
         videoPancaPianaManubriView.setVideoURI(videoUri)
 
-        // Loop del video
         videoPancaPianaManubriView.setOnPreparedListener { mediaPlayer ->
             mediaPlayer.isLooping = true
             videoPancaPianaManubriView.start()

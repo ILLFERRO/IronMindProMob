@@ -29,7 +29,6 @@ class DettaglioAllenamentoEsperto2Activity : AppCompatActivity() {
             onBackPressedDispatcher.onBackPressed()
         }
 
-        // Card esercizi
         findViewById<CardView>(R.id.Card_Esercizio_1_2).setOnClickListener {
             startActivity(Intent(this, StaccoDaTerraBilanciereActivity::class.java))
         }

@@ -5,7 +5,6 @@ import android.widget.*
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
-import androidx.lifecycle.Observer
 import com.example.ironmind.R
 import com.example.ironmind.viewmodel.IncrementoPesoViewModel
 

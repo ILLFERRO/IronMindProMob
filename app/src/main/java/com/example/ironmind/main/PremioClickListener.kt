@@ -1,5 +1,5 @@
 package com.example.ironmind.main
 
-interface PremioClickListener { //definisco interfaccia PremioClickListener che serve a gestire click su un oggetto Premio
+interface PremioClickListener {
     fun onPremioClicked(premio: Premio)
 }

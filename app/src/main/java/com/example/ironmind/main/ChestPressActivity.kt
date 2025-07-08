@@ -26,12 +26,10 @@ class ChestPressActivity : AppCompatActivity() {
             }
         }
 
-        // Configura VideoView con loop
         videoChestPressView = findViewById(R.id.Chest_Press_Video)
         val videoUri = Uri.parse("android.resource://${packageName}/${R.raw.chest_press}")
         videoChestPressView.setVideoURI(videoUri)
 
-        // Loop del video
         videoChestPressView.setOnPreparedListener { mediaPlayer ->
             mediaPlayer.isLooping = true
             videoChestPressView.start()

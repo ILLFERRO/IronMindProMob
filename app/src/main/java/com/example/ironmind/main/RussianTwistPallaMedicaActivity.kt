@@ -26,12 +26,10 @@ class RussianTwistPallaMedicaActivity: AppCompatActivity() {
             }
         }
 
-        // Configura VideoView con loop
         videoRussianTwistPallaMedicaView = findViewById(R.id.Russian_Twist_Palla_Medica_Video)
         val videoUri = Uri.parse("android.resource://${packageName}/${R.raw.russian_twist_palla_medica}")
         videoRussianTwistPallaMedicaView.setVideoURI(videoUri)
 
-        // Loop del video
         videoRussianTwistPallaMedicaView.setOnPreparedListener { mediaPlayer ->
             mediaPlayer.isLooping = true
             videoRussianTwistPallaMedicaView.start()

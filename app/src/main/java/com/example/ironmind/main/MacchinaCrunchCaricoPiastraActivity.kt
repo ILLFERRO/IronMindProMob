@@ -26,12 +26,10 @@ class MacchinaCrunchCaricoPiastraActivity: AppCompatActivity() {
             }
         }
 
-        // Configura VideoView con loop
         videoMacchinaCrunchPiastraView = findViewById(R.id.Macchina_Crunch_Con_Carico_A_Piastra_Video)
         val videoUri = Uri.parse("android.resource://${packageName}/${R.raw.macchina_crunch_carico_piastra}")
         videoMacchinaCrunchPiastraView.setVideoURI(videoUri)
 
-        // Loop del video
         videoMacchinaCrunchPiastraView.setOnPreparedListener { mediaPlayer ->
             mediaPlayer.isLooping = true
             videoMacchinaCrunchPiastraView.start()

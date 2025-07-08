@@ -26,12 +26,10 @@ class PushDownTricipitiCaviActivity: AppCompatActivity() {
             }
         }
 
-        // Configura VideoView con loop
         videoPushDownTricipitiCaviView = findViewById(R.id.PushDown_Tricipiti_Cavi_Video)
         val videoUri = Uri.parse("android.resource://${packageName}/${R.raw.pushdown_tricipiti_cavi}")
         videoPushDownTricipitiCaviView.setVideoURI(videoUri)
 
-        // Loop del video
         videoPushDownTricipitiCaviView.setOnPreparedListener { mediaPlayer ->
             mediaPlayer.isLooping = true
             videoPushDownTricipitiCaviView.start()

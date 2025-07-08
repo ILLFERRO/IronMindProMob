@@ -3,7 +3,6 @@ package com.example.ironmind.main
 import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
@@ -39,7 +38,6 @@ class SchedaPersonalizzataActivity : AppCompatActivity() {
         recyclerView.layoutManager = LinearLayoutManager(this)
 
         nomeScheda = intent.getStringExtra("nomeScheda") ?: "Scheda Temporanea"
-        Log.d("SchedaPersonalizzata", "Nome scheda da intent: $nomeScheda")
 
         val esercizi = viewModel.caricaScheda(nomeScheda, this)
         adapter = EserciziStaticiAdapter(esercizi)

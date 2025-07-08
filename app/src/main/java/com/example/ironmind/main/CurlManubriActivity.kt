@@ -26,12 +26,10 @@ class CurlManubriActivity: AppCompatActivity() {
             }
         }
 
-        // Configura VideoView con loop
         videoCurlManubriView = findViewById(R.id.Curl_Manubri_Video)
         val videoUri = Uri.parse("android.resource://${packageName}/${R.raw.curl_manubri}")
         videoCurlManubriView.setVideoURI(videoUri)
 
-        // Loop del video
         videoCurlManubriView.setOnPreparedListener { mediaPlayer ->
             mediaPlayer.isLooping = true
             videoCurlManubriView.start()

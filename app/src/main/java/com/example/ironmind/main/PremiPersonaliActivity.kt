@@ -31,7 +31,6 @@ class PremiPersonaliActivity : AppCompatActivity() {
         recyclerView = findViewById(R.id.recyclerViewMieiPremi)
         recyclerView.layoutManager = LinearLayoutManager(this)
 
-        // Otteniamo solo i premi sbloccati
         val premiPrefs = getSharedPreferences("premi_sbloccati", MODE_PRIVATE)
         PremiRepository.listaPremi.forEach {
             it.sbloccato = premiPrefs.getBoolean(it.titolo, false)

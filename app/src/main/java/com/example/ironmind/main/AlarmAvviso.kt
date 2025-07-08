@@ -38,11 +38,8 @@ object AlarmAvviso {
                     calendar.timeInMillis,
                     pendingIntent
                 )
-            } else {
-                // Qui potresti avvisare l'utente o indirizzarlo alle impostazioni
             }
         } else {
-            // Android < 12: imposta normalmente
             alarmManager.setExactAndAllowWhileIdle(
                 AlarmManager.RTC_WAKEUP,
                 calendar.timeInMillis,

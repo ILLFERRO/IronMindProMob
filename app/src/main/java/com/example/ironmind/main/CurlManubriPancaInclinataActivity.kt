@@ -26,12 +26,10 @@ class CurlManubriPancaInclinataActivity: AppCompatActivity() {
             }
         }
 
-        // Configura VideoView con loop
         videoCurlManubriPancaInclinataView = findViewById(R.id.Curl_Con_Manubri_Su_Panca_Inclinata_Video)
         val videoUri = Uri.parse("android.resource://${packageName}/${R.raw.curl_panca_inclinata}")
         videoCurlManubriPancaInclinataView.setVideoURI(videoUri)
 
-        // Loop del video
         videoCurlManubriPancaInclinataView.setOnPreparedListener { mediaPlayer ->
             mediaPlayer.isLooping = true
             videoCurlManubriPancaInclinataView.start()

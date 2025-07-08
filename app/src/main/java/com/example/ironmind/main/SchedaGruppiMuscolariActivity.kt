@@ -12,7 +12,7 @@ import com.example.ironmind.R
 
 class SchedaGruppiMuscolariActivity : AppCompatActivity() {
 
-    private val nomeScheda = "Scheda Temporanea" // nome unificato della scheda
+    private val nomeScheda = "Scheda Temporanea"
     private lateinit var btnVaiScheda: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,27 +26,23 @@ class SchedaGruppiMuscolariActivity : AppCompatActivity() {
             title = "Scheda Gruppi Muscolari"
         }
 
-        // RecyclerView
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerViewGruppi)
         recyclerView.layoutManager = LinearLayoutManager(this)
 
-        // Adapter
         val adapter = GruppiMuscolariAdapter(GruppiMuscolariRepository.listaGruppi) { gruppo ->
             val intent = Intent(this, EserciziPerGruppoActivity::class.java)
             intent.putExtra("gruppo_nome", gruppo.nome)
             intent.putExtra("gruppo_descrizione", gruppo.descrizione)
-            intent.putExtra("nomeScheda", nomeScheda) // passa il nome coerente
+            intent.putExtra("nomeScheda", nomeScheda)
             startActivity(intent)
         }
         recyclerView.adapter = adapter
 
-        // Pulsante Vai alla Scheda
         btnVaiScheda = findViewById(R.id.btnVaiASchedaPersonalizzata)
 
         btnVaiScheda.setOnClickListener {
             val nomeScheda = "Scheda Temporanea"
 
-            // Ottieni gli esercizi selezionati
             val eserciziSelezionati = SchedaManager.getScheda(nomeScheda, this)
 
             if (eserciziSelezionati.isNotEmpty()) {
@@ -54,7 +50,6 @@ class SchedaGruppiMuscolariActivity : AppCompatActivity() {
                 SchedaManager.salvaScheda(nomeScheda, this)
             }
 
-            // ✅ SALVA IL NOME DELLA SCHEDA NEI SETTINGS
             val prefs = getSharedPreferences("settings", MODE_PRIVATE)
             prefs.edit().putString("scheda_salvata_nome", nomeScheda).apply()
 

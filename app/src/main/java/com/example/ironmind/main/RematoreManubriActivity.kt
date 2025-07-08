@@ -26,12 +26,10 @@ class RematoreManubriActivity: AppCompatActivity() {
             }
         }
 
-        // Configura VideoView con loop
         videoRematoreManubriView = findViewById(R.id.Rematore_Con_Manubri_Video)
         val videoUri = Uri.parse("android.resource://${packageName}/${R.raw.rematore_con_manubri}")
         videoRematoreManubriView.setVideoURI(videoUri)
 
-        // Loop del video
         videoRematoreManubriView.setOnPreparedListener { mediaPlayer ->
             mediaPlayer.isLooping = true
             videoRematoreManubriView.start()

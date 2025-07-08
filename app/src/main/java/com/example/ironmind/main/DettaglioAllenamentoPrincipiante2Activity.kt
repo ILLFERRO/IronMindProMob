@@ -28,7 +28,6 @@ class DettaglioAllenamentoPrincipiante2Activity : AppCompatActivity() {
             onBackPressedDispatcher.onBackPressed()
         }
 
-        // Navigazione verso schermate esercizi
         findViewById<CardView>(R.id.Card_Esercizio_1_2).setOnClickListener {
             startActivity(Intent(this, PancaPianaManubriActivity::class.java))
         }
@@ -49,8 +48,7 @@ class DettaglioAllenamentoPrincipiante2Activity : AppCompatActivity() {
             startActivity(Intent(this, PlankIsometricoActivity::class.java))
         }
 
-                // Inizio Allenamento
-                findViewById<Button>(R.id.btnCominciaAllenamento).setOnClickListener {
+        findViewById<Button>(R.id.btnCominciaAllenamento).setOnClickListener {
             val nomeScheda = "Principiante 2"
             val esercizi = viewModel.getEsercizi()
 
