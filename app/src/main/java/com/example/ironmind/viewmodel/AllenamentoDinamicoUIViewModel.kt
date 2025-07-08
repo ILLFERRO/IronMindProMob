@@ -4,9 +4,9 @@ import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
 import androidx.lifecycle.*
-import com.example.ironmind.main.Esercizio
-import com.example.ironmind.main.PremiRepository
-import com.example.ironmind.main.SchedaManager
+import com.example.ironmind.Model.Esercizio
+import com.example.ironmind.Repository.PremiRepository
+import com.example.ironmind.Utils.SchedaManager
 import kotlinx.coroutines.*
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter

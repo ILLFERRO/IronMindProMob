@@ -1,6 +1,7 @@
-package com.example.ironmind.main
+package com.example.ironmind.Activity
 
 import androidx.lifecycle.ViewModel
+import com.example.ironmind.Model.Esercizio
 
 class DettaglioAllenamentoPrincipiante2ViewModel : ViewModel() {
 

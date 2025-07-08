@@ -8,8 +8,8 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.espresso.assertion.ViewAssertions.matches
-import com.example.ironmind.main.Esercizio
-import com.example.ironmind.main.SchedaManager
+import com.example.ironmind.Model.Esercizio
+import com.example.ironmind.Utils.SchedaManager
 import com.example.ironmind.view.AllenamentoDinamicoUI
 import com.google.gson.Gson
 import org.junit.Before

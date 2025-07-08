@@ -5,7 +5,7 @@
     android:background="#4B0082"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".main.ProfiloNomeCognomeActivity">
+    tools:context=".Activity.ProfiloNomeCognomeActivity">
 
     <!-- Toolbar -->
     <androidx.appcompat.widget.Toolbar

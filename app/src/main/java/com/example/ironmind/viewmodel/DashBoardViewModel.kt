@@ -6,7 +6,10 @@ import android.content.SharedPreferences
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.example.ironmind.main.*
+import com.example.ironmind.view.EspertoActivity
+import com.example.ironmind.view.IntermedioActivity
+import com.example.ironmind.view.PrincipianteActivity
+import com.example.ironmind.view.SchedaPersonalizzataCreata
 
 class DashBoardViewModel(application: Application) : AndroidViewModel(application) {
 

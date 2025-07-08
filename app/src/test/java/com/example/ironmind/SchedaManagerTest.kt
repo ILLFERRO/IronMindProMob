@@ -1,7 +1,7 @@
 package com.example.ironmind
 
-import com.example.ironmind.main.Esercizio
-import com.example.ironmind.main.SchedaManager
+import com.example.ironmind.Model.Esercizio
+import com.example.ironmind.Utils.SchedaManager
 import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Test

@@ -3,8 +3,8 @@ package com.example.ironmind.viewmodel
 import android.content.Context
 import android.content.SharedPreferences
 import androidx.lifecycle.ViewModel
-import com.example.ironmind.main.Esercizio
-import com.example.ironmind.main.SchedaManager
+import com.example.ironmind.Model.Esercizio
+import com.example.ironmind.Utils.SchedaManager
 
 class SchedaPersonalizzataViewModel : ViewModel() {
 

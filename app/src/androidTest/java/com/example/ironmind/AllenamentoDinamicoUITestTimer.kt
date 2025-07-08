@@ -16,8 +16,8 @@ import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 import com.example.ironmind.view.AllenamentoDinamicoUI
-import com.example.ironmind.main.Esercizio
-import com.example.ironmind.main.SchedaManager
+import com.example.ironmind.Model.Esercizio
+import com.example.ironmind.Utils.SchedaManager
 import com.google.gson.Gson
 
 @RunWith(AndroidJUnit4::class)

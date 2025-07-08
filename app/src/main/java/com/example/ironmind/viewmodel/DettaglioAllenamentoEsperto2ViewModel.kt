@@ -2,8 +2,8 @@ package com.example.ironmind.viewmodel
 
 import android.content.Context
 import androidx.lifecycle.ViewModel
-import com.example.ironmind.main.Esercizio
-import com.example.ironmind.main.SchedaManager
+import com.example.ironmind.Model.Esercizio
+import com.example.ironmind.Utils.SchedaManager
 
 class DettaglioAllenamentoEsperto2ViewModel : ViewModel() {
 
