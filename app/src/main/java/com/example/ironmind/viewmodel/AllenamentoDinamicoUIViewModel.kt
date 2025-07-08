@@ -78,10 +78,9 @@ class AllenamentoDinamicoUIViewModel(application: Application) : AndroidViewMode
         val elapsedSeconds = ((System.currentTimeMillis() - startTime) / 1000)
         val totaleSet = lista.sumOf { it.setCompletati }
 
-        // Salva durata per nomeScheda
         statsPrefs.edit()
-            .putLong("durata_totale_sec", elapsedSeconds) // statistica globale
-            .putLong("durata_$nome", elapsedSeconds)       // statistica per scheda
+            .putLong("durata_totale_sec", elapsedSeconds)
+            .putLong("durata_$nome", elapsedSeconds)
             .putInt("numero_totale_set", totaleSet)
             .apply()
     }
@@ -108,7 +107,6 @@ class AllenamentoDinamicoUIViewModel(application: Application) : AndroidViewMode
             putFloat("peso_totale", pesoTotale)
             putStringSet("allenamento_date", allenamentoDates)
 
-            // Salva ultima data anche per la scheda
             putString("ultima_data_$nome", oggi.format(formatter))
             apply()
         }
@@ -255,12 +253,10 @@ class AllenamentoDinamicoUIViewModel(application: Application) : AndroidViewMode
         val settimaneAttiveCount = settimaneCon3Allenamenti.size
         val costanza = settimaneAttiveCount >= 4
 
-        // 🔥 AGGIUNTA: salva il nome della scheda come completata
         val schedeCompletate = statsPrefs.getStringSet("schede_completate", emptySet())?.toMutableSet() ?: mutableSetOf()
         schedeCompletate.add(nome)
         editor.putStringSet("schede_completate", schedeCompletate)
 
-        // controlla se sono state completate tutte le schede di livello
         val principianteCompleto = listOf("Principiante 1", "Principiante 2", "Principiante 3").all { it in schedeCompletate }
         val intermedioCompleto = listOf("Intermedio 1", "Intermedio 2", "Intermedio 3").all { it in schedeCompletate }
         val espertoCompleto = listOf("Esperto 1", "Esperto 2", "Esperto 3").all { it in schedeCompletate }
