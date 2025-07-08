@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#4B0082">  <!-- Viola scuro -->
+    android:background="#4B0082">
 
     <!-- Toolbar -->
     <androidx.appcompat.widget.Toolbar
@@ -36,7 +36,7 @@
                 android:textColor="#FFFFFF"
                 android:layout_marginTop="16dp" />
 
-            <!-- Voce Nome e Cognome Sezione Profilo --> -->
+            <!-- Voce Nome e Cognome Sezione Profilo -->
             <TextView
                 android:id="@+id/nome_cognome"
                 android:layout_width="match_parent"
@@ -49,7 +49,7 @@
                 android:clickable="true"
                 android:focusable="true" />
 
-            <!-- Voce Età & Data Di Nascita Profilo --> -->
+            <!-- Voce Età & Data Di Nascita Profilo -->
             <TextView
                 android:id="@+id/eta_data_di_nascita"
                 android:layout_width="match_parent"
@@ -62,7 +62,7 @@
                 android:clickable="true"
                 android:focusable="true" />
 
-            <!-- Voce Sesso Profilo --> -->
+            <!-- Voce Sesso Profilo -->
             <TextView
                 android:id="@+id/sesso_profilo"
                 android:layout_width="match_parent"
@@ -75,7 +75,7 @@
                 android:clickable="true"
                 android:focusable="true" />
 
-            <!-- Voce Peso & Altezza Profilo --> -->
+            <!-- Voce Peso & Altezza Profilo -->
             <TextView
                 android:id="@+id/peso_altezza_profilo"
                 android:layout_width="match_parent"
@@ -88,7 +88,7 @@
                 android:clickable="true"
                 android:focusable="true" />
 
-            <!-- Voce QrCode Profilo --> -->
+            <!-- Voce QrCode Profilo -->
             <TextView
                 android:id="@+id/qr_code_profilo"
                 android:layout_width="match_parent"

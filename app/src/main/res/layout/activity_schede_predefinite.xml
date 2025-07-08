@@ -14,13 +14,11 @@
         android:background="#4B0082"
         android:elevation="4dp"
         android:titleTextColor="@android:color/white"/>
-    <!-- android:elevation="4dp" aggiunge un ombra visiva sotto la Toolbar, crea un effetto di profondità -->
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true">
-        <!-- android:fillViewport="true" forza il contenuto a riempire tutto lo spazio visibile della ScroolView -->
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -86,7 +84,6 @@
                         android:textSize="20sp"
                         android:textStyle="bold"
                         android:layout_centerInParent="true" />
-                    <!-- android:layout_centerInParent="true" centra un elemento sia in verticale che in orizzontale rispetto al suo genitore -->
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
 
@@ -110,7 +107,6 @@
                         android:layout_height="match_parent"
                         android:scaleType="centerCrop"
                         android:src="@drawable/immagine_schede" />
-                    <!-- android:scaleType="centerCrop" L’immagine viene centrata e ritagliata per riempire tutto lo spazio mantenendo le proporzioni. Taglia eventuali bordi per non lasciare spazi vuoti. -->
 
                     <View
                         android:layout_width="match_parent"
@@ -125,7 +121,6 @@
                         android:textSize="20sp"
                         android:textStyle="bold"
                         android:layout_centerInParent="true" />
-                    <!--  -->
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
 

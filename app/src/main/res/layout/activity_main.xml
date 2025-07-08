@@ -1,15 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?> <!-- Versione di Xml 1.0 e codifica utf-8 -->
+<?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#4B0082">
-    <!-- ConstraintLayout è il contenitore principale (layout) della schermata -->
-    <!-- xmlns:android è il namespace standard per gli attributi Android-->
-    <!-- xmlns:app namespace per gli attributi di ConstraintLayout -->
-    <!-- android:layout_width/android:layout_height = "match_parent" occupa tutto lo schermo -->
-    <!-- android:background="#4B0082" imposta uno sfondo viola scuro -->
 
     <TextView
         android:id="@+id/tvSplashTitle"
@@ -23,11 +18,4 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"/>
-    <!-- TextView è il centro che appare al centro dello schermo con la scritta android:text="Iron Mind" -->
-    <!-- android:layout_width/android:layout_height vediamo che la larghezza e l'altezza della TextView si adattano al contenuto -->
-    <!-- android:textSize="36sp" è la dimensione del testo -->
-    <!-- android:textColor="@android:color/white" qui vediamo che definiamo il colore del testo come bianco -->
-    <!-- android:textStyle="bold" qui definiamo lo stile grassetto per il testo -->
-    <!-- app:layout_constraintBottom_toBottomOf="parent"/app:layout_constraintTop_toTopOf="parent" 2 vincoli che ancorano il testo al centro verticale -->
-    <!-- app:layout_constraintLeft_toLeftOf="parent"/app:layout_constraintRight_toRightOf="parent" 2 vincoli che ancorano il testo al centro orizzontale -->
 </androidx.constraintlayout.widget.ConstraintLayout>
