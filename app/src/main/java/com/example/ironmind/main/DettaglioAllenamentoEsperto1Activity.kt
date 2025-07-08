@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.cardview.widget.CardView
 import com.example.ironmind.R
+import com.example.ironmind.view.AllenamentoDinamicoUI
 import com.example.ironmind.viewmodel.DettaglioAllenamentoEsperto1ViewModel
 
 class DettaglioAllenamentoEsperto1Activity : AppCompatActivity() {

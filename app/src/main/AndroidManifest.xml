@@ -33,13 +33,13 @@
             android:name=".main.ProfiloNomeCognomeActivity"
             android:exported="false" />
         <activity
-            android:name=".main.AllenamentoCompletato"
+            android:name=".view.AllenamentoCompletato"
             android:exported="false" />
         <activity
             android:name=".main.SchedaPersonalizzataCreata"
             android:exported="false" />
         <activity
-            android:name=".main.AllenamentoDinamicoUI"
+            android:name=".view.AllenamentoDinamicoUI"
             android:exported="false" />
         <activity
             android:name=".main.SchedaPersonalizzataActivity"

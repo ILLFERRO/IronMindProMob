@@ -13,6 +13,7 @@ import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ironmind.R
+import com.example.ironmind.view.AllenamentoDinamicoUI
 import com.example.ironmind.viewmodel.SchedaPersonalizzataViewModel
 
 class SchedaPersonalizzataActivity : AppCompatActivity() {
