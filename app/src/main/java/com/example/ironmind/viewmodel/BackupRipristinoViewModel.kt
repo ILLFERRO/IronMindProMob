@@ -8,14 +8,12 @@ import org.json.JSONObject
 
 class BackupRipristinoViewModel(application: Application) : AndroidViewModel(application) {
 
-    // Funzione per creare la stringa JSON del backup
     fun creaBackupJson(): String {
         val prefs = getApplication<Application>().getSharedPreferences("IronMindPrefs", 0)
         val allPrefs = prefs.all
         return JSONObject(allPrefs).toString()
     }
 
-    // Funzione per salvare il backup su Uri
     fun salvaBackupSuUri(uri: Uri, contentResolver: ContentResolver, onResult: (success: Boolean) -> Unit) {
         val json = creaBackupJson()
         try {
@@ -43,7 +41,7 @@ class BackupRipristinoViewModel(application: Application) : AndroidViewModel(app
                         is Float -> editor.putFloat(key, value)
                         is Long -> editor.putLong(key, value)
                         is String -> editor.putString(key, value)
-                        else -> {} // Ignora tipi non supportati
+                        else -> {}
                     }
                 }
                 editor.apply()

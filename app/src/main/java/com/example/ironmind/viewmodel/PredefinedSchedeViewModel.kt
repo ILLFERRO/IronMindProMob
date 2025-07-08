@@ -10,7 +10,6 @@ class PredefinedSchedeViewModel : ViewModel() {
     val schede: LiveData<List<String>> = _schede
 
     init {
-        // In un caso reale questi dati potrebbero venire da Firebase o da un Repository
         _schede.value = listOf("Principiante", "Intermedio", "Esperto")
     }
 }
