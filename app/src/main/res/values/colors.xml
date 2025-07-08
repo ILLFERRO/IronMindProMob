@@ -11,11 +11,11 @@
     <color name="red">#F44336</color>
 
     <!-- Colore viola scuro per lo sfondo della DashBoard -->
-    <color name="dashboard_background">#4B0082</color> <!-- indigo scuro -->
+    <color name="dashboard_background">#4B0082</color>
 
     <!-- Colore bianco per i testi sopra sfondo viola -->
     <color name="dashboard_text">#FFFFFF</color>
 
     <!-- Colore viola per lo sfondo della schermata Impostazioni -->
-    <color name="settings_background">#6A1B9A</color> <!-- Viola acceso Material Design -->
+    <color name="settings_background">#6A1B9A</color>
 </resources>

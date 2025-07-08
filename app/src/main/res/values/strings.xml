@@ -11,5 +11,4 @@
         <item>Domenica</item>
     </string-array>
 
-</resources><!-- resources è il contenitore principale di tutte le risorse testuali -->
-    <!-- definisco una stringa con nome identificativo app_name e testo Iron Mind-->
+</resources>

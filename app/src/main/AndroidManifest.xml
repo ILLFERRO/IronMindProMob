@@ -214,16 +214,10 @@
             android:exported="false" />
         <activity
             android:name=".main.BackupRipristinoActivity"
-            android:exported="false" /> <!-- <application> configura le impostazioni generali dell'app -->
-        <!-- android:allowBackup="true" permette il backup dei dati su cloud (Google backup) -->
-        <!-- icon e roundIcon sono le icone principali dell'app -->
-        <!-- label è il nome dell'app visibile all'utente -->
-        <!-- supportsRtl="true" supporta la scrittura da destra a sinistra -->
-        <!-- theme è il tema predefinito, definito nel file styles.xml -->
+            android:exported="false" />
         <activity
             android:name=".main.PrincipianteActivity"
-            android:exported="false" /> <!-- name è il nome dell'attività, in questo caso è l'attività PrincipianteActivity (schermata per l'allenamento della scheda di livello principiante) -->
-        <!-- android:exported="false" mi indica che non può essere lanciata da altre app -->
+            android:exported="false" />
         <activity
             android:name=".PredefinedSchedeActivity"
             android:exported="false" />
@@ -235,8 +229,6 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-            <!-- Questa è la prima schermata, dove compare il titolo, deve essere visibile dall'esterno, infatti la caratteristica exported="true", in quanto è l'entry point -->
-            <!-- intent-filter specifica che questa è la Launcher Activity (quella che parte all'avvio) -->
         </activity>
         <activity
             android:name=".main.SettingsActivity"
