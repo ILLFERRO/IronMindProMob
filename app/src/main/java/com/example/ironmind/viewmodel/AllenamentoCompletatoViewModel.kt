@@ -22,6 +22,16 @@ class AllenamentoCompletatoViewModel(application: Application) : AndroidViewMode
 
         SchedaManager.schedePersonalizzate[nomeScheda] = eserciziCompletati.toMutableList()
         SchedaManager.salvaScheda(nomeScheda, context)
+
+        val oldPrefs = context.getSharedPreferences("allenamento_stats", Context.MODE_PRIVATE)
+        val durataTemp = oldPrefs.getLong("durata_Scheda Temporanea", 0L)
+        val dataTemp = oldPrefs.getString("ultima_data_Scheda Temporanea", "N/D")
+
+        oldPrefs.edit()
+            .putLong("durata_$nomeScheda", durataTemp)
+            .putString("ultima_data_$nomeScheda", dataTemp)
+            .apply()
+
         salvaSchedaNome(nomeScheda, context)
 
         val prefs = context.getSharedPreferences("settings", Context.MODE_PRIVATE)
