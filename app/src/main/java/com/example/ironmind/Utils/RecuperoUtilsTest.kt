@@ -1,4 +1,4 @@
-package com.example.ironmind.utils
+package com.example.ironmind.Utils
 
 fun formattaRecupero(secondi: Int): String {
     val min = secondi / 60

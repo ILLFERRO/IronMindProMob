@@ -1,6 +1,6 @@
 package com.example.ironmind
 
-import com.example.ironmind.utils.formattaRecupero
+import com.example.ironmind.Utils.formattaRecupero
 import com.example.ironmind.view.toCleanFloat
 import org.junit.Assert.assertEquals
 import org.junit.Test
