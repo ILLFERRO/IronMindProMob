@@ -33,7 +33,6 @@ class BackupRipristinoActivity : AppCompatActivity() {
             title = "Backup & Ripristino"
         }
 
-        // --- Launcher per creazione backup
         createBackupLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == Activity.RESULT_OK) {
                 val uri = result.data?.data
@@ -43,7 +42,6 @@ class BackupRipristinoActivity : AppCompatActivity() {
             }
         }
 
-        // --- Launcher per selezione file backup da ripristinare
         restoreBackupLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == Activity.RESULT_OK) {
                 val uri = result.data?.data
