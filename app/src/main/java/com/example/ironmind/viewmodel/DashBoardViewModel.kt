@@ -37,49 +37,51 @@ class DashBoardViewModel(application: Application) : AndroidViewModel(applicatio
 
     private fun caricaSchede() {
         val context = getApplication<Application>()
-        val listaSchede = mutableListOf<Pair<String, () -> Unit>>()
+        val lista = mutableListOf<Pair<String, () -> Unit>>()
 
-        val schedaPrincipianteAttiva = prefsSchede.getBoolean("schedaPrincipianteAttiva", false)
-        val schedaIntermedioAttiva = prefsSchede.getBoolean("schedaIntermedioAttiva", false)
-        val schedaEspertoAttiva = prefsSchede.getBoolean("schedaEspertoAttiva", false)
-        val schedePersonalizzate = prefsSchede.getStringSet("mieSchedeNomi", emptySet()) ?: emptySet()
+        val schedePersonalizzate =
+            prefsSchede.getStringSet("mieSchedeNomi", emptySet()) ?: emptySet()
 
-        if (schedaPrincipianteAttiva) {
-            listaSchede.add("Scheda Principiante" to {
-                val intent = Intent(context, PrincipianteActivity::class.java)
-                intent.putExtra("fromMieSchede", true)
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                context.startActivity(intent)
-            })
+        /* 1. preleva i flag; se sono già true, va bene */
+        var principiante = prefsSchede.getBoolean("schedaPrincipianteAttiva", false)
+        var intermedio   = prefsSchede.getBoolean("schedaIntermedioAttiva",  false)
+        var esperto      = prefsSchede.getBoolean("schedaEspertoAttiva",     false)
+
+        /* 2.  Fallback: se nel Set c’è il nome della scheda, considera la card “attiva” */
+        if (!principiante && "Principiante 1" in schedePersonalizzate) principiante = true
+        if (!intermedio   && "Intermedio 1"   in schedePersonalizzate) intermedio   = true
+        if (!esperto      && "Esperto 1"      in schedePersonalizzate) esperto      = true
+
+        /* 3.  Card predefinite */
+        if (principiante) lista += "Scheda Principiante" to {
+            Intent(context, PrincipianteActivity::class.java).apply {
+                putExtra("fromMieSchede", true); addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                context.startActivity(this)
+            }
+        }
+        if (intermedio)   lista += "Scheda Intermedio" to {
+            Intent(context, IntermedioActivity::class.java).apply {
+                putExtra("fromMieSchede", true); addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                context.startActivity(this)
+            }
+        }
+        if (esperto)      lista += "Scheda Esperto" to {
+            Intent(context, EspertoActivity::class.java).apply {
+                putExtra("fromMieSchede", true); addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                context.startActivity(this)
+            }
         }
 
-        if (schedaIntermedioAttiva) {
-            listaSchede.add("Scheda Intermedio" to {
-                val intent = Intent(context, IntermedioActivity::class.java)
-                intent.putExtra("fromMieSchede", true)
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                context.startActivity(intent)
-            })
+        /* 4.  Tutte le vere personalizzate */
+        for (nome in schedePersonalizzate) {
+            lista += nome to {
+                Intent(context, SchedaPersonalizzataCreata::class.java).apply {
+                    putExtra("nomeScheda", nome); addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                    context.startActivity(this)
+                }
+            }
         }
 
-        if (schedaEspertoAttiva) {
-            listaSchede.add("Scheda Esperto" to {
-                val intent = Intent(context, EspertoActivity::class.java)
-                intent.putExtra("fromMieSchede", true)
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                context.startActivity(intent)
-            })
-        }
-
-        for (nomeScheda in schedePersonalizzate) {
-            listaSchede.add(nomeScheda to {
-                val intent = Intent(context, SchedaPersonalizzataCreata::class.java)
-                intent.putExtra("nomeScheda", nomeScheda)
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                context.startActivity(intent)
-            })
-        }
-
-        _schede.value = listaSchede
+        _schede.value = lista
     }
 }
