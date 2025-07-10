@@ -32,9 +32,6 @@ class SettingsViewModel(application: Application) : AndroidViewModel(application
     private val _tempoRiposo = MutableLiveData<Pair<Int, Int>>() // minuti, secondi
     val tempoRiposo: LiveData<Pair<Int, Int>> get() = _tempoRiposo
 
-    private val _schermoAttivo = MutableLiveData<Boolean>()
-    val schermoAttivo: LiveData<Boolean> get() = _schermoAttivo
-
     fun caricaImpostazioni() {
         _startTrainingGoal.value = settingsPrefs.getString("start_training_day", "1 giorno a settimana")
         _pesoIncremento.value = settingsPrefs.getString("peso_incremento", "2.5")
@@ -42,7 +39,6 @@ class SettingsViewModel(application: Application) : AndroidViewModel(application
         _vibrazioneAttiva.value = settingsPrefs.getBoolean("vibrazione_attiva", false)
         _suoneriaAttiva.value = settingsPrefs.getBoolean("suoneria_attiva", false)
         _setDefault.value = settingsPrefs.getString("Set_Default", "3")
-        _schermoAttivo.value = settingsPrefs.getBoolean("schermo_acceso_attivo", false)
 
         val minuti = settingsPrefs.getInt("riposo_min", 0)
         val secondi = settingsPrefs.getInt("riposo_sec", 30)

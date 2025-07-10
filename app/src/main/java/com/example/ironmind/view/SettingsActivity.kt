@@ -33,7 +33,6 @@ class SettingsActivity : AppCompatActivity() {
 
     private lateinit var startTrainingDayTextView: TextView
     private lateinit var weightIncrementTextView: TextView
-    private lateinit var KeepScreenActiveTextView: TextView
     private lateinit var ShowNotificationTextView: TextView
     private lateinit var VibrateOnFinishTextView: TextView
     private lateinit var SoundOnFinishTextView: TextView
@@ -55,7 +54,6 @@ class SettingsActivity : AppCompatActivity() {
 
         startTrainingDayTextView = findViewById(R.id.weeklyGoal)
         weightIncrementTextView = findViewById(R.id.weightIncrement)
-        KeepScreenActiveTextView = findViewById(R.id.showNotification)
         ShowNotificationTextView = findViewById(R.id.showNotification)
         VibrateOnFinishTextView = findViewById(R.id.vibrateOnFinish)
         SoundOnFinishTextView = findViewById(R.id.soundOnFinish)
@@ -193,11 +191,6 @@ class SettingsActivity : AppCompatActivity() {
 
         viewModel.tempoRiposo.observe(this) { (minuti, secondi) ->
             DefaultTempoDiRiposoTextView.text = "Tempo di riposo: ${minuti}:${String.format("%02d", secondi)}"
-        }
-
-        viewModel.schermoAttivo.observe(this) {
-            val stato = if (it) "attivo" else "disattivato"
-            KeepScreenActiveTextView.text = "Tenere schermo acceso: $stato"
         }
     }
 
