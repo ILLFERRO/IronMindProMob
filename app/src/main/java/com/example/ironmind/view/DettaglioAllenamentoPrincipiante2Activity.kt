@@ -9,7 +9,7 @@ import androidx.appcompat.widget.Toolbar
 import androidx.cardview.widget.CardView
 import com.example.ironmind.R
 import com.example.ironmind.Activity.AlzateLateraliActivity
-import com.example.ironmind.Activity.DettaglioAllenamentoPrincipiante2ViewModel
+import com.example.ironmind.viewmodel.DettaglioAllenamentoPrincipiante2ViewModel
 import com.example.ironmind.Activity.PancaPianaManubriActivity
 import com.example.ironmind.Activity.PlankIsometricoActivity
 import com.example.ironmind.Activity.RematoreManubriActivity

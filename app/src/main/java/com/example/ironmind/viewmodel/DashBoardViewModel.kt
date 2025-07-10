@@ -1,4 +1,4 @@
-package com.example.ironmind.auth
+package com.example.ironmind.viewmodel
 
 import android.app.Application
 import android.content.Intent
@@ -39,19 +39,12 @@ class DashBoardViewModel(application: Application) : AndroidViewModel(applicatio
         val context = getApplication<Application>()
         val lista   = mutableListOf<Pair<String, () -> Unit>>()
 
-        /* -------------------------------------------------
-           1.  Leggi i flag correnti e la StringSet salvata
-           ------------------------------------------------- */
         var flagPrincipiante = prefsSchede.getBoolean("schedaPrincipianteAttiva", false)
         var flagIntermedio   = prefsSchede.getBoolean("schedaIntermedioAttiva",  false)
         var flagEsperto      = prefsSchede.getBoolean("schedaEspertoAttiva",     false)
 
         val personalizzate = prefsSchede.getStringSet("mieSchedeNomi", emptySet()) ?: emptySet()
 
-        /* -------------------------------------------------
-           2.  Se nel Set compare ALMENO UNA delle versioni
-               1/2/3, riattiva e persisti il flag
-           ------------------------------------------------- */
         val editorFix = prefsSchede.edit()
 
         if (!flagPrincipiante && personalizzate.any { it.startsWith("Principiante ") }) {
@@ -68,9 +61,6 @@ class DashBoardViewModel(application: Application) : AndroidViewModel(applicatio
         }
         editorFix.apply()
 
-        /* -------------------------------------------------
-           3.  Aggiungi le card predefinite, se attive
-           ------------------------------------------------- */
         if (flagPrincipiante) {
             lista += "Scheda Principiante" to {
                 Intent(context, PrincipianteActivity::class.java).apply {
@@ -101,9 +91,6 @@ class DashBoardViewModel(application: Application) : AndroidViewModel(applicatio
             }
         }
 
-        /* -------------------------------------------------
-           4.  Aggiungi TUTTE le schede personalizzate reali
-           ------------------------------------------------- */
         for (nome in personalizzate) {
             lista += nome to {
                 Intent(context, SchedaPersonalizzataCreata::class.java).apply {
@@ -114,7 +101,6 @@ class DashBoardViewModel(application: Application) : AndroidViewModel(applicatio
             }
         }
 
-        /* 5. pubblica la lista finalizzata */
         _schede.value = lista
     }
 }

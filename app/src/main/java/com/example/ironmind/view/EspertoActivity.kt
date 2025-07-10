@@ -8,7 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.cardview.widget.CardView
 import com.example.ironmind.R
-import com.example.ironmind.Activity.EspertoViewModel
+import com.example.ironmind.viewmodel.EspertoViewModel
 
 class EspertoActivity : AppCompatActivity() {
 

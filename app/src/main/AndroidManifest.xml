@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.IronMind">
 
-        <receiver android:name=".notifiche.SvegliaReceiver" android:exported="false"/>
+        <receiver android:name=".Activity.SvegliaReceiver" android:exported="false"/>
         <receiver android:name=".Utils.AllarmeRicevitore" android:exported="true" />
 
         <activity

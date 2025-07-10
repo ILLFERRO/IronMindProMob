@@ -1,7 +1,6 @@
 package com.example.ironmind.Utils
 
 import android.content.Context
-import android.util.Log
 import com.example.ironmind.Model.Esercizio
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
@@ -19,25 +18,14 @@ object SchedaManager {
     }
 
     fun getScheda(nomeScheda: String, context: Context? = null): List<Esercizio> {
-        /* 1. se l’abbiamo già in RAM, usiamola */
         schedePersonalizzate[nomeScheda]?.let { return it }
 
         if (context == null) return emptyList()
 
         val prefs = context.getSharedPreferences("IronMindPrefs", Context.MODE_PRIVATE)
 
-        Log.d(
-            "DEBUGBakcup",
-            "Prefs-raw = " +
-                    prefs.all
-                        .filterKeys { it.startsWith("scheda_") }
-                        .mapValues { it.value?.javaClass?.simpleName }
-        )
-
-        /* 2. lettura String pura (formato corretto) */
         var eserciziJson: String? = prefs.getString("scheda_$nomeScheda", null)
 
-        /* 3. fallback: la chiave è StringSet */
         if (eserciziJson == null) {
             val set = prefs.getStringSet("scheda_$nomeScheda", null)
             if (!set.isNullOrEmpty()) {
@@ -49,33 +37,26 @@ object SchedaManager {
                     try {
                         lista += Gson().fromJson<Esercizio>(item, typeExercise)
                     } catch (_: Exception) {
-                        /* non è un singolo esercizio → ignora */
                     }
                 }
 
                 if (lista.isNotEmpty()) {
-                    /** 3a. ricostruisci l’array JSON in UN’UNICA stringa */
                     eserciziJson = Gson().toJson(lista)
 
-                    /** 3b. sovrascrivi la preferenza nel formato corretto */
                     prefs.edit()
-                        .putString("scheda_$nomeScheda", eserciziJson) // stringa pulita
-                        .apply()                                       // (non serve più remove)
+                        .putString("scheda_$nomeScheda", eserciziJson)
+                        .apply()
                 }
             }
         }
 
-        /* 4. se ancora null → lista vuota */
         if (eserciziJson.isNullOrEmpty()) return emptyList()
 
-        /* 5. deserializza l’array definitivo */
         val listType = object : TypeToken<List<Esercizio>>() {}.type
         val esercizi: List<Esercizio> = Gson().fromJson(eserciziJson, listType)
 
-        /* 6. metti in cache e logga */
         schedePersonalizzate[nomeScheda] = esercizi.toMutableList()
 
-        Log.d("DEBUGBakcup", "Scheda $nomeScheda → esercizi = ${esercizi.size}")
         return esercizi
     }
 

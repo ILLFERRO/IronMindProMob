@@ -1,4 +1,4 @@
-package com.example.ironmind.Activity
+package com.example.ironmind.viewmodel
 
 import android.app.Application
 import android.content.ContentResolver
@@ -64,13 +64,12 @@ class BackupRipristinoViewModel(application: Application) : AndroidViewModel(app
 
             root.keys().forEach { prefName ->
                 val prefs  = app.getSharedPreferences(prefName, Context.MODE_PRIVATE)
-                val editor = prefs.edit().clear()      // pulizia preventiva
+                val editor = prefs.edit().clear()
 
                 val block  = root.getJSONObject(prefName)
                 block.keys().forEach { key ->
                     val v = block.get(key)
 
-                    /* ===== NUMERI ===== */
                     when (v) {
                         is Int -> {
                             val toLong  = key.startsWith("durata_") || key.endsWith("_sec")
@@ -79,23 +78,20 @@ class BackupRipristinoViewModel(application: Application) : AndroidViewModel(app
                             when {
                                 toLong  -> editor.putLong(key,  v.toLong())
                                 toFloat -> editor.putFloat(key, v.toFloat())
-                                else    -> editor.putInt(key,   v)          //  ←  tutti gli altri rimangono Int
+                                else    -> editor.putInt(key,   v)
                             }
                         }
                         is Long   -> editor.putLong(key, v)
-                        is Double -> editor.putFloat(key, v.toFloat())   // da JSON
+                        is Double -> editor.putFloat(key, v.toFloat())
                         is Float  -> editor.putFloat(key, v)
                         is Boolean-> editor.putBoolean(key, v)
 
-                        /* ===== STRINGA o SET ===== */
                         is String -> {
                             val trim = v.trim()
 
-                            // NON toccare i JSON delle schede
                             val isSchedaJson = key.startsWith("scheda_")
 
                             if (!isSchedaJson && trim.startsWith("[") && trim.endsWith("]")) {
-                                // possibile JSONArray -> Set<String>
                                 try {
                                     val arr = JSONArray(trim)
                                     val asSet = (0 until arr.length())
@@ -110,7 +106,6 @@ class BackupRipristinoViewModel(application: Application) : AndroidViewModel(app
                             }
                         }
 
-                        /* ===== fallback ===== */
                         else -> editor.putString(key, v.toString())
                     }
                 }

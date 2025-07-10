@@ -1,4 +1,4 @@
-package com.example.ironmind.Activity
+package com.example.ironmind.viewmodel
 
 import androidx.lifecycle.ViewModel
 import com.example.ironmind.Model.Esercizio

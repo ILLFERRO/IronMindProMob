@@ -13,7 +13,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 import com.example.ironmind.R
-import com.example.ironmind.auth.DashBoardViewModel
+import com.example.ironmind.viewmodel.DashBoardViewModel
 import com.example.ironmind.Activity.*
 import com.example.ironmind.Utils.SchedaManager
 import java.text.SimpleDateFormat

@@ -10,7 +10,7 @@ import androidx.cardview.widget.CardView
 import com.example.ironmind.R
 import com.example.ironmind.Activity.CalfRaiseAllaLegPressActivity
 import com.example.ironmind.Activity.CycletteTapisRoulantActivity
-import com.example.ironmind.Activity.DettaglioAllenamentoPrincipiante3ViewModel
+import com.example.ironmind.viewmodel.DettaglioAllenamentoPrincipiante3ViewModel
 import com.example.ironmind.Activity.LegCurlActivity
 import com.example.ironmind.Utils.SchedaManager
 import com.example.ironmind.Activity.SquatBilanciereActivity

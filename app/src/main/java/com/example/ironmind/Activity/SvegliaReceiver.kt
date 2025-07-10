@@ -1,4 +1,4 @@
-package com.example.ironmind.notifiche
+package com.example.ironmind.Activity
 
 import android.content.BroadcastReceiver
 import android.content.Context
@@ -9,7 +9,6 @@ import android.app.PendingIntent
 import android.media.RingtoneManager
 import android.os.Build
 import androidx.core.app.NotificationCompat
-import com.example.ironmind.Activity.PromemoriaActivity
 import com.example.ironmind.R
 
 class SvegliaReceiver : BroadcastReceiver() {

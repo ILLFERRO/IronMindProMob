@@ -6,7 +6,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import com.example.ironmind.R
-import com.example.ironmind.Activity.ObiettiviViewModel
+import com.example.ironmind.viewmodel.ObiettiviViewModel
 
 class ObiettiviActivity : AppCompatActivity() {
 

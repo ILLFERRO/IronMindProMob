@@ -1,4 +1,4 @@
-package com.example.ironmind.Activity
+package com.example.ironmind.viewmodel
 
 import android.app.Application
 import android.content.SharedPreferences

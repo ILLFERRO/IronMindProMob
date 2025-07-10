@@ -12,7 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.ViewModelProvider
 import com.example.ironmind.R
-import com.example.ironmind.Activity.BackupRipristinoViewModel
+import com.example.ironmind.viewmodel.BackupRipristinoViewModel
 
 class BackupRipristinoActivity : AppCompatActivity() {
 
