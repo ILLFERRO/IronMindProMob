@@ -37,51 +37,84 @@ class DashBoardViewModel(application: Application) : AndroidViewModel(applicatio
 
     private fun caricaSchede() {
         val context = getApplication<Application>()
-        val lista = mutableListOf<Pair<String, () -> Unit>>()
+        val lista   = mutableListOf<Pair<String, () -> Unit>>()
 
-        val schedePersonalizzate =
-            prefsSchede.getStringSet("mieSchedeNomi", emptySet()) ?: emptySet()
+        /* -------------------------------------------------
+           1.  Leggi i flag correnti e la StringSet salvata
+           ------------------------------------------------- */
+        var flagPrincipiante = prefsSchede.getBoolean("schedaPrincipianteAttiva", false)
+        var flagIntermedio   = prefsSchede.getBoolean("schedaIntermedioAttiva",  false)
+        var flagEsperto      = prefsSchede.getBoolean("schedaEspertoAttiva",     false)
 
-        /* 1. preleva i flag; se sono già true, va bene */
-        var principiante = prefsSchede.getBoolean("schedaPrincipianteAttiva", false)
-        var intermedio   = prefsSchede.getBoolean("schedaIntermedioAttiva",  false)
-        var esperto      = prefsSchede.getBoolean("schedaEspertoAttiva",     false)
+        val personalizzate = prefsSchede.getStringSet("mieSchedeNomi", emptySet()) ?: emptySet()
 
-        /* 2.  Fallback: se nel Set c’è il nome della scheda, considera la card “attiva” */
-        if (!principiante && "Principiante 1" in schedePersonalizzate) principiante = true
-        if (!intermedio   && "Intermedio 1"   in schedePersonalizzate) intermedio   = true
-        if (!esperto      && "Esperto 1"      in schedePersonalizzate) esperto      = true
+        /* -------------------------------------------------
+           2.  Se nel Set compare ALMENO UNA delle versioni
+               1/2/3, riattiva e persisti il flag
+           ------------------------------------------------- */
+        val editorFix = prefsSchede.edit()
 
-        /* 3.  Card predefinite */
-        if (principiante) lista += "Scheda Principiante" to {
-            Intent(context, PrincipianteActivity::class.java).apply {
-                putExtra("fromMieSchede", true); addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                context.startActivity(this)
-            }
+        if (!flagPrincipiante && personalizzate.any { it.startsWith("Principiante ") }) {
+            flagPrincipiante = true
+            editorFix.putBoolean("schedaPrincipianteAttiva", true)
         }
-        if (intermedio)   lista += "Scheda Intermedio" to {
-            Intent(context, IntermedioActivity::class.java).apply {
-                putExtra("fromMieSchede", true); addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                context.startActivity(this)
-            }
+        if (!flagIntermedio && personalizzate.any { it.startsWith("Intermedio ") }) {
+            flagIntermedio = true
+            editorFix.putBoolean("schedaIntermedioAttiva", true)
         }
-        if (esperto)      lista += "Scheda Esperto" to {
-            Intent(context, EspertoActivity::class.java).apply {
-                putExtra("fromMieSchede", true); addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                context.startActivity(this)
-            }
+        if (!flagEsperto && personalizzate.any { it.startsWith("Esperto ") }) {
+            flagEsperto = true
+            editorFix.putBoolean("schedaEspertoAttiva", true)
         }
+        editorFix.apply()
 
-        /* 4.  Tutte le vere personalizzate */
-        for (nome in schedePersonalizzate) {
-            lista += nome to {
-                Intent(context, SchedaPersonalizzataCreata::class.java).apply {
-                    putExtra("nomeScheda", nome); addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+        /* -------------------------------------------------
+           3.  Aggiungi le card predefinite, se attive
+           ------------------------------------------------- */
+        if (flagPrincipiante) {
+            lista += "Scheda Principiante" to {
+                Intent(context, PrincipianteActivity::class.java).apply {
+                    putExtra("fromMieSchede", true)
+                    addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                     context.startActivity(this)
                 }
             }
         }
 
+        if (flagIntermedio) {
+            lista += "Scheda Intermedio" to {
+                Intent(context, IntermedioActivity::class.java).apply {
+                    putExtra("fromMieSchede", true)
+                    addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                    context.startActivity(this)
+                }
+            }
+        }
+
+        if (flagEsperto) {
+            lista += "Scheda Esperto" to {
+                Intent(context, EspertoActivity::class.java).apply {
+                    putExtra("fromMieSchede", true)
+                    addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                    context.startActivity(this)
+                }
+            }
+        }
+
+        /* -------------------------------------------------
+           4.  Aggiungi TUTTE le schede personalizzate reali
+           ------------------------------------------------- */
+        for (nome in personalizzate) {
+            lista += nome to {
+                Intent(context, SchedaPersonalizzataCreata::class.java).apply {
+                    putExtra("nomeScheda", nome)
+                    addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                    context.startActivity(this)
+                }
+            }
+        }
+
+        /* 5. pubblica la lista finalizzata */
         _schede.value = lista
     }
 }
