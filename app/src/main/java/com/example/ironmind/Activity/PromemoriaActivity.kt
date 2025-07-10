@@ -13,6 +13,10 @@ import com.example.ironmind.Adapter.PromemoriaAdapter
 import com.example.ironmind.Model.Promemoria
 import com.example.ironmind.Utils.AlarmAvviso
 import com.example.ironmind.Utils.PromemoriaManager
+import android.Manifest
+import android.content.pm.PackageManager
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 
 class PromemoriaActivity : AppCompatActivity() {
 
@@ -31,6 +35,18 @@ class PromemoriaActivity : AppCompatActivity() {
 
         toolbarPromemoria.setNavigationOnClickListener {
             onBackPressedDispatcher.onBackPressed()
+        }
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS)
+                != PackageManager.PERMISSION_GRANTED
+            ) {
+                ActivityCompat.requestPermissions(
+                    this,
+                    arrayOf(Manifest.permission.POST_NOTIFICATIONS),
+                    1001
+                )
+            }
         }
 
         listaPromemoria = PromemoriaManager.carica(this)

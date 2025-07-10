@@ -7,6 +7,8 @@ import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
 import android.os.Build
+import android.util.Log
+import android.widget.Toast
 import androidx.core.app.NotificationCompat
 import com.example.ironmind.Activity.PromemoriaActivity
 import com.example.ironmind.R
@@ -14,6 +16,8 @@ import com.example.ironmind.R
 class AllarmeRicevitore : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent) {
         val nomePromemoria = intent.getStringExtra("nome") ?: "Promemoria"
+        Toast.makeText(context, "Promemoria ricevuto!", Toast.LENGTH_SHORT).show()
+        Log.d("AllarmeRicevitore", "Ricevuto intent per promemoria")
 
         val openIntent = Intent(context.applicationContext, PromemoriaActivity::class.java)
         openIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
