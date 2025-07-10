@@ -213,17 +213,13 @@ class AllenamentoDinamicoUIViewModel(application: Application) : AndroidViewMode
     }
 
     fun aggiornaEControllaPremi() {
-        val lista = scheda.value ?: return
         val nome = nomeScheda.value ?: return
 
         val editor = statsPrefs.edit()
 
-        val serie = statsPrefs.getInt("serie_totali", 0) + lista.sumOf { it.setCompletati ?: 0 }
-        val ripetizioni = statsPrefs.getInt("ripetizioni_totali", 0) +
-                lista.sumOf { it.ripetizioniPerSet?.sum() ?: 0 }
-
-        val pesoTotale = statsPrefs.getFloat("peso_totale", 0f) +
-                lista.sumOf { it.pesoPerSet?.sumOf { p -> p?.toDouble() ?: 0.0 } ?: 0.0 }.toFloat()
+        val serie = statsPrefs.getInt("serie_totali", 0)
+        val ripetizioni = statsPrefs.getInt("ripetizioni_totali", 0)
+        val pesoTotale = statsPrefs.getFloat("peso_totale", 0f)
 
         val allenamenti = statsPrefs.getInt("allenamenti_totali", 0) + 1
         editor.putInt("allenamenti_totali", allenamenti)
