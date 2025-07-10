@@ -13,10 +13,13 @@
         </DropdownSelection>
         <DialogSelection />
       </SelectionState>
-      <SelectionState runConfigName="elementiBaseSonoVisibili()">
+      <SelectionState runConfigName="testTimerSiAggiorna()">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="testTimerSiAggiorna()">
+      <SelectionState runConfigName="AllenamentoDinamicoUITestScheda">
+        <option name="selectionMode" value="DROPDOWN" />
+      </SelectionState>
+      <SelectionState runConfigName="AllenamentoDinamicoUITestTimer">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
     </selectionStates>

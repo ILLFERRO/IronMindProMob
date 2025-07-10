@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import com.example.ironmind.R
 import java.util.*
+import android.view.View
 
 class ProfiloEtaDataDiNascitaActivity : AppCompatActivity() {
 
@@ -40,24 +41,41 @@ class ProfiloEtaDataDiNascitaActivity : AppCompatActivity() {
         val etaSalvata = prefs.getString("profilo_eta", "")
         val dataSalvata = prefs.getString("profilo_data_nascita", "")
 
+        // Se i dati sono salvati, mostro i campi e rendo visibile solo il pulsante "Modifica"
         if (etaSalvata!!.isNotBlank() && dataSalvata!!.isNotBlank()) {
             editTextEta.setText(etaSalvata)
             textViewDataNascita.text = dataSalvata
-            buttonModifica.visibility = Button.VISIBLE
+            editTextEta.isEnabled = false
+            textViewDataNascita.isEnabled = false
+            buttonModifica.visibility = View.VISIBLE
+            buttonSalva.visibility = View.GONE
+        } else {
+            // Nessun dato salvato, permetto subito la modifica
+            editTextEta.isEnabled = true
+            textViewDataNascita.isEnabled = true
+            buttonModifica.visibility = View.GONE
+            buttonSalva.visibility = View.VISIBLE
         }
 
         textViewDataNascita.setOnClickListener {
-            mostraDatePicker()
+            if (textViewDataNascita.isEnabled) {
+                mostraDatePicker()
+            }
         }
 
-        editTextEta.isEnabled = false
-        textViewDataNascita.isEnabled = false
+        buttonModifica.setOnClickListener {
+            editTextEta.isEnabled = true
+            textViewDataNascita.isEnabled = true
+            buttonModifica.visibility = View.GONE
+            buttonSalva.visibility = View.VISIBLE
+            Toast.makeText(this, "Ora puoi modificare i dati", Toast.LENGTH_SHORT).show()
+        }
 
         buttonSalva.setOnClickListener {
             val eta = editTextEta.text.toString()
             val data = textViewDataNascita.text.toString()
 
-            if (eta.isBlank() || data == "Seleziona data di nascita") {
+            if (eta.isBlank() || data == "Seleziona data di nascita" || data.isBlank()) {
                 Toast.makeText(this, "Inserisci tutti i dati", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
@@ -68,20 +86,15 @@ class ProfiloEtaDataDiNascitaActivity : AppCompatActivity() {
                 .apply()
 
             Toast.makeText(this, "Dati salvati", Toast.LENGTH_SHORT).show()
+
             editTextEta.isEnabled = false
             textViewDataNascita.isEnabled = false
-            finish()
-        }
-
-        buttonModifica.setOnClickListener {
-            editTextEta.isEnabled = true
-            textViewDataNascita.isEnabled = true
-            Toast.makeText(this, "Ora puoi modificare i dati", Toast.LENGTH_SHORT).show()
+            buttonSalva.visibility = View.GONE
+            buttonModifica.visibility = View.VISIBLE
         }
     }
 
     private fun mostraDatePicker() {
-
         val datePicker = DatePickerDialog(
             this,
             { _, year, month, dayOfMonth ->
