@@ -61,7 +61,7 @@ class AllenamentoDinamicoUIViewModel(application: Application) : AndroidViewMode
         tempoRecuperoSec.value = min * 60 + sec
 
         setIniziali.value = prefs.getString("Set_Default", "3")?.toIntOrNull() ?: 3
-        pesoIncremento.value = prefs.getString("Incremento_Peso", "2.5")?.toFloatOrNull() ?: 2.5f
+        pesoIncremento.value = prefs.getString("peso_incremento", "2.5")?.toFloatOrNull() ?: 2.5f
     }
 
     fun aggiornaRecupero(min: Int, sec: Int) {
@@ -162,6 +162,12 @@ class AllenamentoDinamicoUIViewModel(application: Application) : AndroidViewMode
 
     fun getPesoIncremento(): Float {
         return pesoIncremento.value ?: 2.5f
+    }
+
+    fun caricaPesoIncremento(context: Context) {
+        val prefs = context.getSharedPreferences("settings", Context.MODE_PRIVATE)
+        val valore = prefs.getString("peso_incremento", "2.5") ?: "2.5"
+        pesoIncremento.value = valore.toFloatOrNull() ?: 2.5f
     }
 
     fun aggiornaSetEsercizio(indexSet: Int, peso: Float, ripetizioni: Int) {

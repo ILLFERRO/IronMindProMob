@@ -35,6 +35,8 @@ class AllenamentoDinamicoUI : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_allenamento_dinamico_ui)
 
+        viewModel.caricaPesoIncremento(this)
+
         val nomeIntent = intent.getStringExtra("nomeScheda").orEmpty()
         viewModel.inizializzaScheda(nomeIntent)
 
